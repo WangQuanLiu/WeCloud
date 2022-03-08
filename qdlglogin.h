@@ -2,7 +2,7 @@
 #define QDLGLOGIN_H
 
 #include <QDialog>
-
+#include<QPalette>
 namespace Ui {
 class QDlgLogin;
 }

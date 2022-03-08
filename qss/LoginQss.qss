@@ -1,0 +1,9 @@
+QWidget{
+    background-color:#FFFFFF;
+    
+    
+}
+QGroupBox{
+    
+    border:none;
+}
