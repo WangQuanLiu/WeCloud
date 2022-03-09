@@ -6,7 +6,7 @@
 namespace Ui {
 class QDlgLogin;
 }
-
+ 
 class QDlgLogin : public QDialog
 {
     Q_OBJECT
