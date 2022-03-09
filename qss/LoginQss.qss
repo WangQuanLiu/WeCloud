@@ -7,3 +7,7 @@ QGroupBox{
     
     border:none;
 }
+#labelWeCloud{
+
+image:url(":/qss/LoginQss.qss");
+}
