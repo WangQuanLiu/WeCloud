@@ -1,0 +1,24 @@
+﻿  Generate moc_predefs.h
+  uic mainwindow.ui
+  uic qdlglogin.ui
+  rcc source.qrc
+  moc mainwindow.h
+  moc qdlglogin.h
+  moc qssfile.h
+  main.cpp
+  mainwindow.cpp
+  qdlglogin.cpp
+  qssfile.cpp
+C:\Users\lwq\Documents\GitHub\WeClound\qdlglogin.cpp(4,46): warning C4100: “event”: 未引用的形参
+C:\Users\lwq\Documents\GitHub\WeClound\qdlglogin.cpp(9,45): warning C4100: “event”: 未引用的形参
+C:\Users\lwq\Documents\GitHub\WeClound\qdlglogin.cpp(14,48): warning C4100: “event”: 未引用的形参
+cl : 命令行 warning D9007: “/external:env:”需要“/external:W”；选项被忽略
+cl : 命令行 warning D9007: “/external:env:”需要“/external:W”；选项被忽略
+cl : 命令行 warning D9007: “/external:env:”需要“/external:W”；选项被忽略
+cl : 命令行 warning D9007: “/external:env:”需要“/external:W”；选项被忽略
+  qrc_source.cpp
+  moc_mainwindow.cpp
+cl : 命令行 warning D9007: “/external:env:”需要“/external:W”；选项被忽略
+  moc_qdlglogin.cpp
+  moc_qssfile.cpp
+  WeClound.vcxproj -> C:\Users\lwq\Documents\GitHub\WeClound\debug\WeClound.exe

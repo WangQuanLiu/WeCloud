@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <QtConfigStamp>msvc2019_64|</QtConfigStamp>
+<Qt_DEFINES_>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64</Qt_DEFINES_>
+<Qt_INCLUDEPATH_></Qt_INCLUDEPATH_>
+<Qt_LIBS_>shell32.lib;D:\software\qt\6.0.4\msvc2019_64\lib\Qt6EntryPoint.lib</Qt_LIBS_>
+</PropertyGroup>
+  <ItemGroup>
+    <QtVar Include="Qt_DEFINES_"><Value>$(Qt_DEFINES_)</Value></QtVar>
+<QtVar Include="Qt_INCLUDEPATH_"><Value>$(Qt_INCLUDEPATH_)</Value></QtVar>
+<QtVar Include="Qt_LIBS_"><Value>$(Qt_LIBS_)</Value></QtVar>
+  </ItemGroup>
+</Project>
