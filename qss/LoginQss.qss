@@ -18,3 +18,12 @@ image:url(:/images/accountLoginV2.jpg);
 #labelPictureLeft{
 background-color:#EFF2F6;
 }
+#labelAccountIcon{
+
+
+image:url(":/images/accountIcon.jpg")£»
+}
+QLineEdit{
+ 
+ border:none;
+}

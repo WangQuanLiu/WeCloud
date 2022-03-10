@@ -5,5 +5,6 @@
         <file>images/accountLoginV2.jpg</file>
         <file>images/accountLoginV3.jpg</file>
         <file>images/accountPicture.jpg</file>
+        <file>images/accountIcon.jpg</file>
     </qresource>
 </RCC>
