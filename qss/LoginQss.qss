@@ -27,3 +27,7 @@ QLineEdit{
  
  border:none;
 }
+#labelPasswordIcon{
+
+image:url(":/images/passwordIcon.jpg");
+}

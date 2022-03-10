@@ -7,6 +7,7 @@
 #include<QPainter>
 #include<QSize>
 #include<QPainterPath>
+#include<QFont>
 namespace Ui {
 class QDlgLogin;
 }
@@ -32,6 +33,10 @@ public:
     ~QDlgLogin();
 private slots:
     void on_btnOk_clicked();
+
+    void on_LineEditAccount_textChanged(const QString &arg1);
+
+    void on_LineEditPassword_textChanged(const QString &arg1);
 
 private:
     void initUi();

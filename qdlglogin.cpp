@@ -87,3 +87,17 @@ void QDlgLogin::on_btnOk_clicked()
 {
 
 }
+/*账号文字输入改变*/
+
+void QDlgLogin::on_LineEditAccount_textChanged(const QString &arg1)
+{
+   ui->LineEditAccount->setFont(QFont("STKaiti",18,QFont::Bold));
+}
+
+
+void QDlgLogin::on_LineEditPassword_textChanged(const QString &arg1)
+{
+    ui->LineEditPassword->setFont(QFont("STKaiti",12,QFont::Bold));
+    ui->LineEditPassword->setEchoMode(QLineEdit::Password);
+}
+
