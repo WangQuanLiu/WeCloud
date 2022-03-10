@@ -7,7 +7,14 @@ QGroupBox{
     
     border:none;
 }
-#labelWeCloud{
+#labelAccountPicture{
+image:url(:images/accountPicture.jpg);
+}
+#labelAccountLogin{
 
-image:url(":/qss/LoginQss.qss");
+image:url(:/images/accountLoginV2.jpg);
+
+}
+#labelPictureLeft{
+background-color:#EFF2F6;
 }

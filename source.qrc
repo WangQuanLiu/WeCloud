@@ -1,8 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/cloudPicture.jpg</file>
         <file>qss/LoginQss.qss</file>
-        <file>images/weCloud.jpg</file>
-        <file>images/WeCloud2.jpg</file>
+        <file>images/accountLogin.jpg</file>
+        <file>images/accountLoginV2.jpg</file>
+        <file>images/accountLoginV3.jpg</file>
+        <file>images/accountPicture.jpg</file>
     </qresource>
 </RCC>

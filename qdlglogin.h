@@ -3,6 +3,10 @@
 
 #include <QDialog>
 #include<QPalette>
+#include<qpushbutton.h>
+#include<QPainter>
+#include<QSize>
+#include<QPainterPath>
 namespace Ui {
 class QDlgLogin;
 }
@@ -28,8 +32,12 @@ public:
     ~QDlgLogin();
 private slots:
     void on_btnOk_clicked();
+
 private:
+    void initUi();
+     bool drawAccountPicutre();
     Ui::QDlgLogin *ui;
+  
 };
 
 #endif // QDLGLOGIN_H
