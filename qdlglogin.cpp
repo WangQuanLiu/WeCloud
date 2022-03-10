@@ -92,12 +92,35 @@ void QDlgLogin::on_btnOk_clicked()
 void QDlgLogin::on_LineEditAccount_textChanged(const QString &arg1)
 {
    ui->LineEditAccount->setFont(QFont("STKaiti",18,QFont::Bold));
+//   ui->LineEditAccount->setStyleSheet("")
+// this->setStyleSheet("#labelAccountIcon{image:url(:/images/accountIconBlue.jpg);}");
+
+  //  ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
 }
 
 
 void QDlgLogin::on_LineEditPassword_textChanged(const QString &arg1)
 {
     ui->LineEditPassword->setFont(QFont("STKaiti",12,QFont::Bold));
-    ui->LineEditPassword->setEchoMode(QLineEdit::Password);
+
+
+}
+
+
+
+
+
+void QDlgLogin::on_LineEditAccount_cursorPositionChanged(int arg1, int arg2)
+{
+     ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
+}
+
+
+
+
+
+void QDlgLogin::on_LineEditAccount_editingFinished()
+{
+     ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
 }
 

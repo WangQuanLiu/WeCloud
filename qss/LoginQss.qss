@@ -23,6 +23,14 @@ background-color:#EFF2F6;
 
 image:url(":/images/accountIcon.jpg")£»
 }
+#labelAccountIcon:hover{
+image:url(":images/accountIconBlue.jpg");
+
+
+}
+LineEditAccount:hover +labelAccountIcon{
+image:url(":images/accountIconBlue.jpg");
+}
 QLineEdit{
  
  border:none;

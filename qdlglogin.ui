@@ -57,6 +57,18 @@
           <height>31</height>
          </rect>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>181</width>
+          <height>31</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>181</width>
+          <height>31</height>
+         </size>
+        </property>
        </widget>
        <widget class="QLabel" name="labelPasswordIcon">
         <property name="geometry">
@@ -79,6 +91,18 @@
           <width>181</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>181</width>
+          <height>31</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>181</width>
+          <height>31</height>
+         </size>
         </property>
        </widget>
        <widget class="QWidget" name="horizontalLayoutWidget">
