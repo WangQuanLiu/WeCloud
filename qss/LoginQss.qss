@@ -31,3 +31,10 @@ QLineEdit{
 
 image:url(":/images/passwordIcon.jpg");
 }
+#checkBoxAutoLogin ,#checkBoxRememberPassword,#labelForgetPassword,#labelRegisterAccount{
+color:#A8A6A6;
+border-color:#A8A6A6;
+}
+#labelQRCode{
+image:url(":images/QRCode.jpg");
+}
