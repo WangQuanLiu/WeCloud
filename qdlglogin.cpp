@@ -36,7 +36,10 @@ void QDlgLogin::initUi()
 {
     setPalette(QPalette(Qt::white));//设置背景为白色
     setAutoFillBackground(true);//自动填充背景
-    drawAccountPicutre();
+    ui->LineEditPassword->setEchoMode(QLineEdit::Password);
+   // drawAccountPicutre();
+    ui->LineEditAccount->installEventFilter(this);//安装过滤器
+    ui->LineEditPassword->installEventFilter(this);
 }
 
 bool QDlgLogin::drawAccountPicutre()
@@ -108,19 +111,44 @@ void QDlgLogin::on_LineEditPassword_textChanged(const QString &arg1)
 
 
 
+/*
 
-
-void QDlgLogin::on_LineEditAccount_cursorPositionChanged(int arg1, int arg2)
+void QDlgLogin::on_LineEditAccount_cursorPositionChanged(int x, int y)
 {
      ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
+
 }
-
-
-
-
 
 void QDlgLogin::on_LineEditAccount_editingFinished()
 {
      ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
+}
+
+
+void QDlgLogin::on_LineEditAccount_textEdited(const QString &arg1)
+{
+    ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
+}
+*/
+bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
+{
+    if(watched==ui->LineEditAccount){
+
+        if(event->type()==QEvent::FocusIn){//聚焦
+            ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
+        }
+        else if(event->type()==QEvent::FocusOut)
+            ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
+    }
+    if(watched==ui->LineEditPassword){
+        if(event->type()==QEvent::FocusIn){
+            ui->labelPasswordIcon->setStyleSheet("image:url(:/images/passwordIconBlue.jpg);");
+        }
+        else if(event->type()==QEvent::FocusOut){
+            ui->labelPasswordIcon->setStyleSheet("image:url(:/images/passwordIcon.jpg);");
+        }
+    }
+
+    return QDialog::eventFilter(watched,event);//交给上层
 }
 

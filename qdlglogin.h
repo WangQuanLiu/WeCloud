@@ -38,11 +38,14 @@ private slots:
 
     void on_LineEditPassword_textChanged(const QString &arg1);
 
-    void on_LineEditAccount_cursorPositionChanged(int arg1, int arg2);
+ //   void on_LineEditAccount_cursorPositionChanged(int arg1, int arg2);
 
 
-    void on_LineEditAccount_editingFinished();
+//  void on_LineEditAccount_editingFinished();
 
+ // void on_LineEditAccount_textEdited(const QString &arg1);
+public slots:
+  bool eventFilter(QObject*,QEvent*);
 private:
     void initUi();
      bool drawAccountPicutre();

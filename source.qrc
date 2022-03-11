@@ -6,5 +6,7 @@
         <file>images/passwordIcon.jpg</file>
         <file>images/QRCode.jpg</file>
         <file>images/accountIconBlue.jpg</file>
+        <file>images/passwordIconBlue.jpg</file>
+        <file>images/ORCodeGray.jpg</file>
     </qresource>
 </RCC>
