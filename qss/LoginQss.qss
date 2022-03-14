@@ -8,7 +8,10 @@ QGroupBox{
     border:none;
 }
 #labelAccountPicture{
-image:url(:images/accountPicture.jpg);
+
+border-radius:9px;
+border-image:url(:/images/accountPicture.jpg);
+
 }
 #labelAccountLogin{
 

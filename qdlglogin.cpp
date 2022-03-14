@@ -26,6 +26,19 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
     
     
 }
+/*
+数字:18号字大小
+非数字:14号字大小
+*/
+void QDlgLogin::setLineEditFontSize( QLineEdit* lineEdit, const QString& text)
+{
+    bool isDigit;
+    text.toDouble(&isDigit);//判断是否为数字
+    if (isDigit)
+        lineEdit->setFont(QFont("STKaiti", 18, QFont::Bold));
+    else
+        lineEdit->setFont(QFont("STKaiti", 14, QFont::Bold));
+}
 
 QDlgLogin::~QDlgLogin()
 {
@@ -36,79 +49,58 @@ void QDlgLogin::initUi()
 {
     setPalette(QPalette(Qt::white));//设置背景为白色
     setAutoFillBackground(true);//自动填充背景
-    ui->LineEditPassword->setEchoMode(QLineEdit::Password);
-   // drawAccountPicutre();
+    drawAccountPicutre();
+   
+    ui->LineEditAccount->setText(QString::fromUtf8("账号"));
+    QPalette palette;
+    palette.setColor(QPalette::Text, QColor(213, 213, 213));
+    ui->LineEditAccount->setPalette(palette);
+    ui->LineEditAccount->setFont(QFont("STKaiti", 14, QFont::Bold));
+
+    ui->LineEditPassword->setText(QString::fromUtf8("密码"));
+    ui->LineEditPassword->setPalette(palette);
+    ui->LineEditPassword->setFont(QFont("STKaiti", 14, QFont::Bold));
+
     ui->LineEditAccount->installEventFilter(this);//安装过滤器
     ui->LineEditPassword->installEventFilter(this);
     setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);//设置最小化和关闭按钮
     setFixedSize(this->width(), this->height());//固定窗口大小，无法调整窗口大小
+
 }
 
 bool QDlgLogin::drawAccountPicutre()
 {
-  /*  int w=ui->labelAccountPicture->width();
-    int h=ui->labelAccountPicture->height();
-    QPixmap pixmapa(":/images/accountPicture.jpg");
-    QPixmap pximap(w,h);
-    pximap.fill(Qt::transparent);
-    QPainter painter(&pximap);
-    painter.setRenderHints(QPainter::Antialiasing);
-    QPainterPath path;
-    path.addEllipse(0,0,w,h);
-    painter.setClipPath(path);
-    painter.drawPixmap(0,0,w,h,pixmapa);
-    ui->labelAccountPicture->setPixmap(pximap);
-*/
- /*   QPixmap pixmap(":/images/accountPicture.jpg");
-    QPixmap fitpixmap=pixmap.scaled(80,80,Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
-
-    QSize size(80,80);
-    QBitmap mask(size);
-    QPainter painter(&mask);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setRenderHint(QPainter::SmoothPixmapTransform);
-    painter.fillRect(0,0,size.width(),size.height(),Qt::white);
-    painter.setBrush(QColor(0,0,0));
-    painter.drawRoundedRect(0,0,size.width(),size.height(),80,80);
-
-    fitpixmap.setMask(mask);
-    ui->labelAccountPicture->setPixmap(fitpixmap);
-*/
-  /*  int radius=80;
-    QPixmap pixmapa("/images/accountPicture.jpg");
-    QPixmap pixmap(radius,radius);
+ /*   QPixmap pixmapa(":/images/accountPicture.jpg");
+    QPixmap pixmap(60, 60);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
-    painter.setRenderHints(QPainter::Antialiasing|QPainter::SmoothPixmapTransform);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     QPainterPath path;
-    path.addEllipse(0,0,radius,radius);
+    path.addEllipse(0, 0, 60, 60);
     painter.setClipPath(path);
-    painter.drawPixmap(0,0,radius,radius,pixmapa);
+    painter.drawPixmap(0, 0, 60, 60, pixmapa);
+
+    ui->labelAccountPicture->setPixmap(pixmap);
 */
+
     return true;
 }
+
 
 void QDlgLogin::on_btnOk_clicked()
 {
 
 }
-/*账号文字输入改变*/
 
-void QDlgLogin::on_LineEditAccount_textChanged(const QString &arg1)
+void QDlgLogin::on_LineEditAccount_textChanged(const QString &text)
 {
-   ui->LineEditAccount->setFont(QFont("STKaiti",18,QFont::Bold));
-//   ui->LineEditAccount->setStyleSheet("")
-// this->setStyleSheet("#labelAccountIcon{image:url(:/images/accountIconBlue.jpg);}");
-
-  //  ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
+    setLineEditFontSize(ui->LineEditAccount, text);
 }
 
 
-void QDlgLogin::on_LineEditPassword_textChanged(const QString &arg1)
+void QDlgLogin::on_LineEditPassword_textChanged(const QString &text)
 {
-    ui->LineEditPassword->setFont(QFont("STKaiti",12,QFont::Bold));
-
-
+    setLineEditFontSize(ui->LineEditPassword, text);
 }
 
 
@@ -118,16 +110,29 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 
         if(event->type()==QEvent::FocusIn){//聚焦
             ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
+            if (ui->LineEditAccount->text() == QString::fromUtf8("账号"))
+           ui->LineEditAccount->setText("");
         }
-        else if(event->type()==QEvent::FocusOut)
+        else if (event->type() == QEvent::FocusOut) {
             ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
+            if (ui->LineEditAccount->text() == QString(""))
+                ui->LineEditAccount->setText(QString::fromUtf8("账号"));
+        }
     }
     if(watched==ui->LineEditPassword){
         if(event->type()==QEvent::FocusIn){
             ui->labelPasswordIcon->setStyleSheet("image:url(:/images/passwordIconBlue.jpg);");
+            if (ui->LineEditPassword->text() == QString::fromUtf8("密码")) {
+                ui->LineEditPassword->setText("");
+                ui->LineEditPassword->setEchoMode(QLineEdit::Password);
+            }
         }
         else if(event->type()==QEvent::FocusOut){
             ui->labelPasswordIcon->setStyleSheet("image:url(:/images/passwordIcon.jpg);");
+            if (ui->LineEditPassword->text() == QString("")) {
+                ui->LineEditPassword->setText(QString::fromUtf8("密码"));
+                ui->LineEditPassword->setEchoMode(QLineEdit::Normal);
+            }
         }
     }
 

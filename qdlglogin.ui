@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MyCloud</string>
+   <string>WeCloud</string>
   </property>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
@@ -210,6 +210,12 @@
       </item>
       <item>
        <widget class="QLabel" name="labelAccountPicture">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>80</width>
@@ -219,7 +225,7 @@
         <property name="maximumSize">
          <size>
           <width>80</width>
-          <height>90</height>
+          <height>80</height>
          </size>
         </property>
         <property name="styleSheet">

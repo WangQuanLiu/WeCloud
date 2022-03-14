@@ -8,6 +8,8 @@
 #include<QSize>
 #include<QPainterPath>
 #include<QFont>
+#include<qregexp.h>
+#include<qlineedit.h>
 namespace Ui {
 class QDlgLogin;
 }
@@ -30,6 +32,7 @@ protected:
     void MouseReleaseEvent(QMouseEvent*event);//鼠标释放
 public:
     explicit QDlgLogin(QWidget *parent = nullptr);
+   
     ~QDlgLogin();
 private slots:
     void on_btnOk_clicked();
@@ -37,12 +40,13 @@ private slots:
     void on_LineEditAccount_textChanged(const QString &arg1);
 
     void on_LineEditPassword_textChanged(const QString &arg1);
-
+   
 public slots:
   bool eventFilter(QObject*,QEvent*);
 private:
     void initUi();
      bool drawAccountPicutre();
+    inline void setLineEditFontSize( QLineEdit* lineEdit, const QString& text);
     Ui::QDlgLogin *ui;
   
 };
