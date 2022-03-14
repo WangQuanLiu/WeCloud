@@ -40,6 +40,8 @@ void QDlgLogin::initUi()
    // drawAccountPicutre();
     ui->LineEditAccount->installEventFilter(this);//安装过滤器
     ui->LineEditPassword->installEventFilter(this);
+    setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);//设置最小化和关闭按钮
+    setFixedSize(this->width(), this->height());//固定窗口大小，无法调整窗口大小
 }
 
 bool QDlgLogin::drawAccountPicutre()
@@ -110,26 +112,6 @@ void QDlgLogin::on_LineEditPassword_textChanged(const QString &arg1)
 }
 
 
-
-/*
-
-void QDlgLogin::on_LineEditAccount_cursorPositionChanged(int x, int y)
-{
-     ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
-
-}
-
-void QDlgLogin::on_LineEditAccount_editingFinished()
-{
-     ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
-}
-
-
-void QDlgLogin::on_LineEditAccount_textEdited(const QString &arg1)
-{
-    ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
-}
-*/
 bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 {
     if(watched==ui->LineEditAccount){
