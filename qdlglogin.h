@@ -1,6 +1,5 @@
 #ifndef QDLGLOGIN_H
 #define QDLGLOGIN_H
-
 #include <QDialog>
 #include<QPalette>
 #include<qpushbutton.h>
@@ -45,7 +44,7 @@ public slots:
   bool eventFilter(QObject*,QEvent*);
 private:
     void initUi();
-     bool drawAccountPicutre();
+   
     inline void setLineEditFontSize( QLineEdit* lineEdit, const QString& text);
     Ui::QDlgLogin *ui;
   

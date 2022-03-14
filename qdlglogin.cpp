@@ -49,7 +49,7 @@ void QDlgLogin::initUi()
 {
     setPalette(QPalette(Qt::white));//设置背景为白色
     setAutoFillBackground(true);//自动填充背景
-    drawAccountPicutre();
+  
    
     ui->LineEditAccount->setText(QString::fromUtf8("账号"));
     QPalette palette;
@@ -67,26 +67,6 @@ void QDlgLogin::initUi()
     setFixedSize(this->width(), this->height());//固定窗口大小，无法调整窗口大小
 
 }
-
-bool QDlgLogin::drawAccountPicutre()
-{
- /*   QPixmap pixmapa(":/images/accountPicture.jpg");
-    QPixmap pixmap(60, 60);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    QPainterPath path;
-    path.addEllipse(0, 0, 60, 60);
-    painter.setClipPath(path);
-    painter.drawPixmap(0, 0, 60, 60, pixmapa);
-
-    ui->labelAccountPicture->setPixmap(pixmap);
-*/
-
-    return true;
-}
-
-
 void QDlgLogin::on_btnOk_clicked()
 {
 
