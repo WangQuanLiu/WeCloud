@@ -9,20 +9,17 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    dlgloginstatus.cpp \
     main.cpp \
     mainwindow.cpp \
     qdlglogin.cpp \
     qssfile.cpp
 
 HEADERS += \
-    dlgloginstatus.h \
     mainwindow.h \
     qdlglogin.h \
     qssfile.h
 
 FORMS += \
-    dlgloginstatus.ui \
     mainwindow.ui \
     qdlglogin.ui
 

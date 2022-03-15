@@ -70,3 +70,23 @@ font-size:15px;
 #labelQRCode:hover{
 image:url(":images/ORCodeGray.jpg");
 }
+#labelLogin{
+   color:#A8A6A6;
+border-color:#A8A6A6;
+    font-size:18px;
+}
+#pushButtonCancel{
+   
+background-color:#07BCFC;
+border:none;
+color:#FFFFFF;
+border-radius:6px;
+font-size:15px;
+}
+#pushButtonCalcel:hover{
+    background-color:#23C1F9;
+border:none;
+color:#FFFFFF;
+border-radius:6px;
+font-size:15px;
+}

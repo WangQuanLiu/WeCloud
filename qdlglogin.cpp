@@ -1,6 +1,11 @@
 #include "qdlglogin.h"
 #include "ui_qdlglogin.h"
 
+void QDlgLogin::writeSettings()
+{
+
+}
+
 void QDlgLogin::mousePressEvent(QMouseEvent *event)
 {
 
@@ -66,6 +71,7 @@ void QDlgLogin::initUi()
     setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);//设置最小化和关闭按钮
     setFixedSize(this->width(), this->height());//固定窗口大小，无法调整窗口大小
 
+    ui->stackedWidget->setCurrentIndex(0);
 }
 void QDlgLogin::on_btnOk_clicked()
 {
@@ -117,5 +123,17 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
     }
 
     return QDialog::eventFilter(watched,event);//交给上层
+}
+
+
+void QDlgLogin::on_pushButtonLogin_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void QDlgLogin::on_pushButtonCancel_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }
 

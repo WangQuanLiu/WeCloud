@@ -40,6 +40,10 @@ private slots:
 
     void on_LineEditPassword_textChanged(const QString &arg1);
    
+    void on_pushButtonLogin_clicked();
+
+    void on_pushButtonCancel_clicked();
+
 public slots:
   bool eventFilter(QObject*,QEvent*);
 private:
