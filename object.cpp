@@ -1,12 +1,10 @@
-#include "qssfile.h"
+#include "object.h"
 
-QssFile::QssFile(QObject *parent) : QObject(parent)
+Object::Object()
 {
 
-
 }
-
-bool QssFile::readQss(const QString &QssFilename,QDialog*ptr)
+bool readQss(const QString &QssFilename,QDialog*ptr)
 {
     QString QssFilePath=":/qss/"+QssFilename;
     QFile file=(QssFilePath);

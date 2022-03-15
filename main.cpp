@@ -2,12 +2,12 @@
 
 #include <QApplication>
 #include"qdlglogin.h"
-#include"qssfile.h"
+#include"object.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QDlgLogin*dlgLogin=new QDlgLogin();
-   if(! QssFile::readQss("LoginQss.qss",dlgLogin))
+   if(! readQss("LoginQss.qss",dlgLogin))
        return 0;
     if(dlgLogin->exec()==QDialog::Accepted){
  //   MainWindow w;

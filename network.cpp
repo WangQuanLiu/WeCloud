@@ -13,6 +13,14 @@ Network::Network()
     connect(tcpClient,SIGNAL(readyRead()),this,SLOT(onSocketReadyRead()));
 }
 
+
+
+void  Network::startConnect()
+{
+    tcpClient->connectToHost(addr,port);
+
+}
+
 QString Network::getLocalIp()
 {
     QString localhostName=QHostInfo::localHostName();
@@ -23,4 +31,10 @@ QString Network::getLocalIp()
         }
     }
     return "";
+}
+
+bool Network::onConnected()
+{
+    //连接信号槽
+    return true;
 }

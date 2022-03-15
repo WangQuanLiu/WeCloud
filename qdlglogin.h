@@ -9,6 +9,7 @@
 #include<QFont>
 #include<qregexp.h>
 #include<qlineedit.h>
+#include"network.h"
 namespace Ui {
 class QDlgLogin;
 }
@@ -16,6 +17,7 @@ class QDlgLogin;
 class QDlgLogin : public QDialog
 {
     Q_OBJECT
+
 private:
     bool m_moving=false;//窗口是否在鼠标操作下移动
     QPoint m_lastPost;//上一次鼠标的位置

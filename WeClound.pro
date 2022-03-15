@@ -12,14 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     network.cpp \
-    qdlglogin.cpp \
-    qssfile.cpp
+    object.cpp \
+    qdlglogin.cpp
 
 HEADERS += \
     mainwindow.h \
     network.h \
-    qdlglogin.h \
-    qssfile.h
+    object.h \
+    qdlglogin.h
 
 FORMS += \
     mainwindow.ui \
