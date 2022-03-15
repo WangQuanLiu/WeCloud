@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/accountIcon.jpg</file>
+        <file>images/accountIconBlue.jpg</file>
+        <file>images/accountPicture.jpg</file>
+        <file>images/ORCodeGray.jpg</file>
+        <file>images/passwordIcon.jpg</file>
+        <file>images/passwordIconBlue.jpg</file>
+        <file>images/QRCode.jpg</file>
+        <file>qss/LoginQss.qss</file>
+    </qresource>
+</RCC>

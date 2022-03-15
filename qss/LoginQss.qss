@@ -1,0 +1,92 @@
+QWidget{
+    background-color:#FFFFFF;
+    
+    
+}
+QGroupBox{
+    
+    border:none;
+}
+#labelAccountPicture{
+
+border-radius:9px;
+border-image:url(:/images/accountPicture.jpg);
+
+}
+#labelAccountLogin{
+
+image:url(:/images/accountLoginV2.jpg);
+
+}
+#labelPictureLeft{
+background-color:#EFF2F6;
+}
+#labelAccountIcon{
+
+
+image:url(":/images/accountIcon.jpg");
+}
+#labelAccountIcon:hover{
+image:url(":images/accountIconBlue.jpg");
+
+
+}
+LineEditAccount:hover +labelAccountIcon{
+image:url(":images/accountIconBlue.jpg");
+}
+QLineEdit{
+ 
+ border:none;
+}
+#labelPasswordIcon{
+
+image:url(":/images/passwordIcon.jpg");
+}
+#checkBoxAutoLogin ,#checkBoxRememberPassword,#labelForgetPassword,#labelRegisterAccount{
+color:#A8A6A6;
+border-color:#A8A6A6;
+}
+#labelForgetPassword:hover,#labelRegisterAccount:hover{
+color:#999898;
+border-color:#999898;
+}
+#labelQRCode{
+image:url(":images/QRCode.jpg");
+}
+#pushButtonLogin{
+background-color:#07BCFC;
+border:none;
+color:#FFFFFF;
+border-radius:6px;
+font-size:15px;
+}
+#pushButtonLogin:hover{
+background-color:#23C1F9;
+border:none;
+color:#FFFFFF;
+border-radius:6px;
+font-size:15px;
+}
+#labelQRCode:hover{
+image:url(":images/ORCodeGray.jpg");
+}
+#labelLogin{
+   color:#A8A6A6;
+border-color:#A8A6A6;
+    font-size:18px;
+}
+#pushButtonCancel{
+   
+background-color:#07BCFC;
+border:none;
+color:#FFFFFF;
+border-radius:6px;
+font-size:15px;
+}
+#pushButtonCalcel:hover{
+    background-color:#23C1F9;
+border:none;
+color:#FFFFFF;
+border-radius:6px;
+font-size:15px;
+}
