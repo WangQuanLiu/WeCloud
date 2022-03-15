@@ -3,6 +3,7 @@
 QssFile::QssFile(QObject *parent) : QObject(parent)
 {
 
+
 }
 
 bool QssFile::readQss(const QString &QssFilename,QDialog*ptr)
