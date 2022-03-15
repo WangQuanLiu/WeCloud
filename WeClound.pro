@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT       += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 CONFIG += c++11
@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    network.cpp \
     qdlglogin.cpp \
     qssfile.cpp
 
 HEADERS += \
     mainwindow.h \
+    network.h \
     qdlglogin.h \
     qssfile.h
 
