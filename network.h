@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QTcpSocket>
 #include<QtNetwork>
+
 class Network:public QObject
 {
     friend class QDlgLogin;

@@ -129,7 +129,7 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 
 void QDlgLogin::on_pushButtonLogin_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(2);
     network.startConnect();
 }
 
