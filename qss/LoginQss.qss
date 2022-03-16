@@ -13,6 +13,10 @@ border-radius:9px;
 border-image:url(:/images/accountPicture.jpg);
 
 }
+#labelPage2AccountPicture{
+border-radius:9px;
+border-image:url(:/images/accountPicture.jpg);
+}
 #labelAccountLogin{
 
 image:url(:/images/accountLoginV2.jpg);
