@@ -19,7 +19,8 @@ Network::Network()
 void  Network::startConnect()
 {
     tcpClient->connectToHost(addr,port);
-
+    tcpClient->write("goto");
+    qDebug()<<"startConnect";
 }
 
 QString Network::getLocalIp()
@@ -38,4 +39,10 @@ bool Network::onConnected()
 {
     //连接信号槽
     return true;
+}
+
+void Network::onSocketReadyRead()
+{
+
+  qDebug()<<"onSocketReadyRead "<<tcpClient->readAll();
 }
