@@ -6,6 +6,7 @@
 #include<QtNetwork>
 class Network:public QObject
 {
+    friend class QDlgLogin;
    Q_OBJECT
 public:
     static Network& getInstance(){

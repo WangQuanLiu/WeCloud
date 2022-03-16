@@ -50,7 +50,7 @@ public slots:
   bool eventFilter(QObject*,QEvent*);
 private:
     void initUi();
-   
+   Network& network=Network::getInstance();
     inline void setLineEditFontSize( QLineEdit* lineEdit, const QString& text);
     Ui::QDlgLogin *ui;
   

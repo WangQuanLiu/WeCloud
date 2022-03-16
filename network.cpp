@@ -3,6 +3,7 @@
 Network::Network()
 {
 
+  //  qDebug<<"netWork constructor";
     tcpClient=new QTcpSocket();
     addr=getLocalIp();
     tcpClient->connectToHost(addr,port);

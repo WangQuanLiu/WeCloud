@@ -72,6 +72,7 @@ void QDlgLogin::initUi()
     setFixedSize(this->width(), this->height());//固定窗口大小，无法调整窗口大小
 
     ui->stackedWidget->setCurrentIndex(0);
+
 }
 void QDlgLogin::on_btnOk_clicked()
 {
