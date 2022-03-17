@@ -8,5 +8,7 @@
         <file>images/accountIconBlue.jpg</file>
         <file>images/passwordIconBlue.jpg</file>
         <file>images/ORCodeGray.jpg</file>
+        <file>images/verificationCodeIconBlue.jpg</file>
+        <file>images/verificationCodeIconGray.jpg</file>
     </qresource>
 </RCC>

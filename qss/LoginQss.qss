@@ -7,16 +7,13 @@ QGroupBox{
     
     border:none;
 }
-#labelAccountPicture{
+#labelAccountPicture,#labelPage2AccountPicture{
 
 border-radius:9px;
 border-image:url(:/images/accountPicture.jpg);
 
 }
-#labelPage2AccountPicture{
-border-radius:9px;
-border-image:url(:/images/accountPicture.jpg);
-}
+
 #labelAccountLogin{
 
 image:url(:/images/accountLoginV2.jpg);
@@ -25,12 +22,12 @@ image:url(:/images/accountLoginV2.jpg);
 #labelPictureLeft{
 background-color:#EFF2F6;
 }
-#labelAccountIcon{
+#labelAccountIcon,#page3LabelAccountIcon{
 
 
 image:url(":/images/accountIcon.jpg");
 }
-#labelAccountIcon:hover{
+#labelAccountIcon:hover,#page3LabelAccountIcon:hover{
 image:url(":images/accountIconBlue.jpg");
 
 
@@ -42,7 +39,7 @@ QLineEdit{
  
  border:none;
 }
-#labelPasswordIcon{
+#labelPasswordIcon,#page3LabelPasswordIcon{
 
 image:url(":/images/passwordIcon.jpg");
 }
@@ -93,4 +90,12 @@ border:none;
 color:#FFFFFF;
 border-radius:6px;
 font-size:15px;
+}
+#labelRegister{
+    font-size:25px;
+    background-color:#FFFFFF;
+   color:#999898;
+}
+#page3LabelVerification{
+image:url(":images/verificationCodeIconGray.jpg");
 }
