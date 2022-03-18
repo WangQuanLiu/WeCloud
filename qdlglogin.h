@@ -11,6 +11,9 @@
 #include<qlineedit.h>
 #include<QLabel>
 #include"network.h"
+#include<QList>
+#include<initializer_list>
+using std::initializer_list;
 namespace Ui {
 class QDlgLogin;
 }
@@ -19,12 +22,25 @@ class QMyLineEdit{
 public:
     QMyLineEdit(QLineEdit*lineEdit,QLabel*label,QString&imageBefore,QString&imageAfter,QString&text,QENUM_LinEdit enumLineEdit=QENUM_Account);
     void eventFilter(QObject *watched, QEvent *event);
+    QMyLineEdit&operator=(const QMyLineEdit&lineEdit);
 private:
     QMyLineEdit(){}
  QLineEdit*lineEdit;//输入框
  QLabel*label;//背景框
  QString imageBefore,imageAfter,text;//图片名和文本
 QENUM_LinEdit enumLineEdit;
+};
+class QMyLineEdits{
+
+public:
+    QMyLineEdits()=default;
+    QMyLineEdits(initializer_list<QMyLineEdit>list);
+    QMyLineEdits&operator=(const QMyLineEdits&lineEdits);
+    void push_back(QMyLineEdit&obj);
+    void eventFilter(QObject*watched,QEvent*event);
+private:
+
+    QList<QMyLineEdit>list;
 };
 
 class QDlgLogin : public QDialog
@@ -70,7 +86,7 @@ private:
     inline void setLineEditFontSize( QLineEdit* lineEdit, const QString& text);
     void registerAccount_clicked();
     Ui::QDlgLogin *ui;
-  
+
 };
 
 #endif // QDLGLOGIN_H

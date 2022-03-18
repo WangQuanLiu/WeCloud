@@ -223,4 +223,39 @@ void QMyLineEdit::eventFilter(QObject *watched, QEvent *event)
 
 }
 
+QMyLineEdit &QMyLineEdit::operator=(const QMyLineEdit &lineEdit)
+{
+    this->enumLineEdit=lineEdit.enumLineEdit;
+    this->imageAfter=lineEdit.imageAfter;
+    this->imageBefore=lineEdit.imageBefore;
+    this->label=lineEdit.label;
+    this->lineEdit=lineEdit.lineEdit;
+    this->text=lineEdit.text;
+    return *this;
+}
 
+
+
+QMyLineEdits::QMyLineEdits(initializer_list<QMyLineEdit> list)
+{
+    for(auto begin=list.begin();begin!=list.end();begin++)
+        this->list.push_back(*begin);
+}
+
+QMyLineEdits &QMyLineEdits::operator=(const QMyLineEdits &lineEdits)
+{
+    for(auto begin=lineEdits.list.begin();begin!=lineEdits.list.end();begin++)
+       this->list.push_back(*begin);
+    return *this;
+}
+
+void QMyLineEdits::push_back(QMyLineEdit &obj)
+{
+    list.push_back(obj);
+}
+
+void QMyLineEdits::eventFilter(QObject *watched, QEvent *event)
+{
+    for(auto begin=list.begin();begin!=list.end();begin++)
+        begin->eventFilter(watched,event);
+}
