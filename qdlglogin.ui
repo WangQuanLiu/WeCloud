@@ -35,7 +35,7 @@
     </size>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="labelAccountIcon">
@@ -263,10 +263,10 @@
     <widget class="QGroupBox" name="groupBox">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>-10</x>
        <y>-20</y>
-       <width>431</width>
-       <height>331</height>
+       <width>441</width>
+       <height>341</height>
       </rect>
      </property>
      <property name="title">
@@ -320,10 +320,10 @@
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>0</x>
         <y>80</y>
-        <width>391</width>
-        <height>221</height>
+        <width>421</width>
+        <height>261</height>
        </rect>
       </property>
       <property name="title">
@@ -332,7 +332,7 @@
       <widget class="QLabel" name="page3LabelAccountIcon">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>70</x>
          <y>10</y>
          <width>291</width>
          <height>61</height>
@@ -345,7 +345,7 @@
       <widget class="QLabel" name="page3LabelPasswordIcon">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>70</x>
          <y>70</y>
          <width>291</width>
          <height>61</height>
@@ -358,7 +358,7 @@
       <widget class="QLineEdit" name="page3LineEditAccount">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>150</x>
          <y>30</y>
          <width>181</width>
          <height>31</height>
@@ -383,7 +383,7 @@
       <widget class="QLineEdit" name="page3LineEditPassword">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>150</x>
          <y>90</y>
          <width>181</width>
          <height>31</height>
@@ -408,9 +408,9 @@
       <widget class="QLabel" name="page3LabelVerification">
        <property name="geometry">
         <rect>
-         <x>58</x>
-         <y>131</y>
-         <width>201</width>
+         <x>89</x>
+         <y>140</y>
+         <width>155</width>
          <height>50</height>
         </rect>
        </property>
@@ -421,26 +421,65 @@
       <widget class="QLineEdit" name="page3LineEditVerification">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>142</y>
-         <width>135</width>
+         <x>150</x>
+         <y>150</y>
+         <width>85</width>
          <height>31</height>
         </rect>
        </property>
        <property name="minimumSize">
         <size>
-         <width>135</width>
+         <width>85</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>135</width>
+         <width>85</width>
          <height>31</height>
         </size>
        </property>
        <property name="focusPolicy">
         <enum>Qt::WheelFocus</enum>
+       </property>
+      </widget>
+      <widget class="QVerificationCode" name="label">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>140</y>
+         <width>151</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="page3PushButtonRegister">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>210</y>
+         <width>221</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>注册</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="page3LabelBackLogin">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>54</width>
+         <height>12</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>返回登录</string>
        </property>
       </widget>
      </widget>
@@ -542,6 +581,13 @@
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QVerificationCode</class>
+   <extends>QLabel</extends>
+   <header>qverificationcode.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

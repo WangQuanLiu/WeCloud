@@ -85,6 +85,7 @@ void QDlgLogin::initUi()
     ui->page3LineEditAccount->installEventFilter(this);
     ui->page3LineEditPassword->installEventFilter(this);
     ui->page3LineEditVerification->installEventFilter(this);
+    ui->page3LabelBackLogin->installEventFilter(this);
 
     lineEdits = { QMyLineEdit(ui->LineEditAccount,ui->labelAccountIcon,"accountIcon.jpg","accountIconBlue.jpg",QString::fromUtf8("手机号码") ),
                   QMyLineEdit(ui->LineEditPassword,ui->labelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("密码"),QENUM_Password),
@@ -120,9 +121,14 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
     lineEdits.eventFilter(watched,event);
 
   
-     if(watched==ui->labelRegisterAccount)
-        if(event->type()==QEvent::MouseButtonPress)
-        registerAccount_clicked();
+    if (watched == ui->labelRegisterAccount) {
+        if (event->type() == QEvent::MouseButtonPress)
+            registerAccount_clicked();
+    }
+    else if (watched == ui->page3LabelBackLogin) {
+        if (event->type() == QEvent::MouseButtonPress)
+            ui->stackedWidget->setCurrentIndex(0);
+    }
     return QDialog::eventFilter(watched,event);//交给上层
 }
 
@@ -209,3 +215,15 @@ void QMyLineEdits::eventFilter(QObject *watched, QEvent *event)
     for(auto begin=list.begin();begin!=list.end();begin++)
         begin->eventFilter(watched,event);
 }
+
+void QDlgLogin::on_page3LineEditAccount_textChanged(const QString &text)
+{
+    setLineEditFontSize(ui->page3LineEditAccount, text);
+}
+
+
+void QDlgLogin::on_page3LineEditPassword_textChanged(const QString &text)
+{
+    setLineEditFontSize(ui->page3LineEditPassword,text);
+}
+

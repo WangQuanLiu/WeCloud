@@ -68,15 +68,19 @@ public:
 private slots:
     void on_btnOk_clicked();
 
-    void on_LineEditAccount_textChanged(const QString &arg1);
+    void on_LineEditAccount_textChanged(const QString &);
 
-    void on_LineEditPassword_textChanged(const QString &arg1);
+    void on_LineEditPassword_textChanged(const QString &);
    
     void on_pushButtonLogin_clicked();
 
     void on_pushButtonCancel_clicked();
 
 
+
+    void on_page3LineEditAccount_textChanged(const QString &);
+
+    void on_page3LineEditPassword_textChanged(const QString &);
 
 public slots:
   bool eventFilter(QObject*,QEvent*);

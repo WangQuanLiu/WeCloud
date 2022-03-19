@@ -4,6 +4,8 @@
 #include<QPainter>
 #include<qrandom.h>
 #include<qtguiglobal.h>
+#include<cstdlib>
+#include<ctime>
 const int codeNumber = 4;
 const int pointNumber = 80;
 const int lineNumber = 10;
@@ -12,9 +14,11 @@ class QVerificationCode :
 {
     Q_OBJECT
 public:
-    QVerificationCode(QWidget* parent = 0);
+    explicit   QVerificationCode(QWidget* parent = nullptr) :QLabel(parent) {
+        srand((unsigned)time(NULL));
+    }
     ~QVerificationCode();
-
+    QString getCode();
 protected:
     void paintEvent(QPaintEvent* event);
     void mousePressEvent(QMouseEvent* event);//Êó±ê°´ÏÂ

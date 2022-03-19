@@ -1,7 +1,5 @@
 #include "QVerificationCode.h"
-QVerificationCode::QVerificationCode(QWidget* parent ) {
 
-}
 QVerificationCode::~QVerificationCode()
 {
 }
@@ -11,29 +9,28 @@ void QVerificationCode::paintEvent(QPaintEvent* event)
 	QPainter painter(this);
 	QPen pen;
 	//»­µã
-	QRandomGenerator rand ;
 	for (int i = 0; i < pointNumber; i++) {
-		pen = QPen(QColor(rand.bounded(1,256), rand.bounded(1,256), rand.bounded(1,256)));
+		pen = QPen(QColor(rand()%256, rand()%256, rand()%256));
 		painter.setPen(pen);
-		painter.drawPoint(rand.bounded(1, 150), rand.bounded(1, 50));
+		painter.drawPoint(rand()%150, rand()%50);
 	}
 	//»­Ïß
 	for (int i = 0; i < lineNumber; i++) {
-		painter.drawLine(rand.bounded(1, 150), rand.bounded(1, 50),
-			rand.bounded(1, 150), rand.bounded(1, 50));
+		painter.drawLine(rand()%150, rand()%50,
+			rand()%150, rand()%50);
 	}
 	//Ëæ»úÊý×Ö
 	for (int i = 0; i < codeNumber; i++) {
-		int num = rand.bounded(0, 3);
+		int num = rand()%3;
 		if (num == 0)//Êý×Ö
-			code += QString::number(rand.bounded(0, 10));
+			code += QString::number(rand()%10);
 		else if (num == 1) {//´óÐ´×ÖÄ¸
 			int temp = 'A';
-			code += static_cast<QChar>(temp + rand.bounded(0, 26));
+			code += static_cast<QChar>(temp + rand()%26);
 		}
 		else if (num == 2) { //Ð¡Ð´×ÖÄ¸
 			int temp = 'a';
-			code += static_cast<QChar>(temp + rand.bounded(0, 26));
+			code += static_cast<QChar>(temp + rand()%26);
 		}
 	}
 	pen = QPen(QColor(255, 0, 0, 100));
@@ -49,4 +46,9 @@ void QVerificationCode::paintEvent(QPaintEvent* event)
 void QVerificationCode::mousePressEvent(QMouseEvent* event)
 {
 	update();
+}
+
+QString QVerificationCode::getCode()
+{
+	return code;
 }
