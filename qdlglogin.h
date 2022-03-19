@@ -7,7 +7,6 @@
 #include<QSize>
 #include<QPainterPath>
 #include<QFont>
-#include<qregexp.h>
 #include<qlineedit.h>
 #include<QLabel>
 #include"network.h"
@@ -20,7 +19,7 @@ class QDlgLogin;
 enum QENUM_LinEdit{QENUM_Account,QENUM_Password};//账号类、密码类
 class QMyLineEdit{
 public:
-    QMyLineEdit(QLineEdit*lineEdit,QLabel*label,QString&imageBefore,QString&imageAfter,QString&text,QENUM_LinEdit enumLineEdit=QENUM_Account);
+    QMyLineEdit(QLineEdit*lineEdit,QLabel*label,const QString&imageBefore,const QString&imageAfter,const QString&text,QENUM_LinEdit enumLineEdit=QENUM_Account);
     void eventFilter(QObject *watched, QEvent *event);
     QMyLineEdit&operator=(const QMyLineEdit&lineEdit);
 private:
@@ -53,6 +52,7 @@ private:
     QString m_user="";
     QString m_pswd="";
     int m_tryCount=0;//试错次数
+    QMyLineEdits lineEdits;//lineEdit
     void readSettings();//读设置、注册表
     void writeSettings();//写设置
     QString encrypt(const QString&str);//字符串加密

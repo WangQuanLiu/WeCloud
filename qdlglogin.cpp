@@ -86,6 +86,12 @@ void QDlgLogin::initUi()
     ui->page3LineEditPassword->installEventFilter(this);
     ui->page3LineEditVerification->installEventFilter(this);
 
+    lineEdits = { QMyLineEdit(ui->LineEditAccount,ui->labelAccountIcon,"accountIcon.jpg","accountIconBlue.jpg",QString::fromUtf8("手机号码") ),
+                  QMyLineEdit(ui->LineEditPassword,ui->labelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("密码"),QENUM_Password),
+                  QMyLineEdit(ui->page3LineEditAccount,ui->page3LabelAccountIcon,"accountIcon.jpg","accountIconBlue.jpg",QString::fromUtf8("手机号码")),
+                  QMyLineEdit(ui->page3LineEditPassword,ui->page3LabelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("密码"),QENUM_Password),
+                  QMyLineEdit(ui->page3LineEditVerification,ui->page3LabelVerification,"verificationCodeIconGray.jpg","verificationCodeIconBlue.jpg",QString::fromUtf8("验证码"))};
+
     setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);//设置最小化和关闭按钮
     setFixedSize(this->width(), this->height());//固定窗口大小，无法调整窗口大小
 
@@ -111,66 +117,10 @@ void QDlgLogin::on_LineEditPassword_textChanged(const QString &text)
 
 bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 {
+    lineEdits.eventFilter(watched,event);
 
-    if(watched==ui->LineEditAccount){
-
-        if(event->type()==QEvent::FocusIn){//聚焦
-            ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
-            if (ui->LineEditAccount->text() == QString::fromUtf8("手机号码"))
-           ui->LineEditAccount->setText("");
-        }
-        else if (event->type() == QEvent::FocusOut) {
-            ui->labelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
-            if (ui->LineEditAccount->text() == QString(""))
-                ui->LineEditAccount->setText(QString::fromUtf8("手机号码"));
-        }
-    }
-    else if(watched==ui->LineEditPassword){
-        if(event->type()==QEvent::FocusIn){
-            ui->labelPasswordIcon->setStyleSheet("image:url(:/images/passwordIconBlue.jpg);");
-            if (ui->LineEditPassword->text() == QString::fromUtf8("密码")) {
-                ui->LineEditPassword->setText("");
-                ui->LineEditPassword->setEchoMode(QLineEdit::Password);
-            }
-        }
-        else if(event->type()==QEvent::FocusOut){
-            ui->labelPasswordIcon->setStyleSheet("image:url(:/images/passwordIcon.jpg);");
-            if (ui->LineEditPassword->text() == QString("")) {
-                ui->LineEditPassword->setText(QString::fromUtf8("密码"));
-                ui->LineEditPassword->setEchoMode(QLineEdit::Normal);
-            }
-        }
-    }
-    if(watched==ui->page3LineEditAccount){
-        if(event->type()==QEvent::FocusIn){
-            ui->page3LabelAccountIcon->setStyleSheet("image:url(:/images/accountIconBlue.jpg);");
-            if (ui->page3LineEditAccount->text() == QString::fromUtf8("手机号码"))
-           ui->page3LineEditAccount->setText("");
-        }
-        else if (event->type() == QEvent::FocusOut) {
-            ui->page3LabelAccountIcon->setStyleSheet("image:url(:/images/accountIcon.jpg);");
-            if (ui->page3LineEditAccount->text() == QString(""))
-                ui->page3LineEditAccount->setText(QString::fromUtf8("手机号码"));
-        }
-    }
-
-    else if(watched==ui->page3LineEditPassword){
-        if(event->type()==QEvent::FocusIn){
-            ui->page3LabelPasswordIcon->setStyleSheet("image:url(:/images/passwordIconBlue.jpg);");
-            if (ui->page3LineEditPassword->text() == QString::fromUtf8("密码")) {
-                ui->page3LineEditPassword->setText("");
-                ui->page3LineEditPassword->setEchoMode(QLineEdit::Password);
-            }
-        }
-        else if(event->type()==QEvent::FocusOut){
-            ui->page3LabelPasswordIcon->setStyleSheet("image:url(:/images/passwordIcon.jpg);");
-            if (ui->page3LineEditPassword->text() == QString("")) {
-                ui->page3LineEditPassword->setText(QString::fromUtf8("密码"));
-                ui->page3LineEditPassword->setEchoMode(QLineEdit::Normal);
-            }
-        }
-    }
-    else if(watched==ui->labelRegisterAccount)
+  
+     if(watched==ui->labelRegisterAccount)
         if(event->type()==QEvent::MouseButtonPress)
         registerAccount_clicked();
     return QDialog::eventFilter(watched,event);//交给上层
@@ -189,13 +139,13 @@ void QDlgLogin::on_pushButtonCancel_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-
-QMyLineEdit::QMyLineEdit(QLineEdit *lineEdit, QLabel *label, QString &imageBefore, QString&imageAfter,QString &text, QENUM_LinEdit enumLineEdit)
+//text 需要QString::fromUtf8转码
+QMyLineEdit::QMyLineEdit(QLineEdit *lineEdit, QLabel *label,const QString &imageBefore, const QString&imageAfter,const QString &text, QENUM_LinEdit enumLineEdit)
 {
     this->lineEdit=lineEdit;
     this->label=label;
-    this->imageBefore=QString("image:url(:/images/%1.jpg);").arg(imageBefore);
-    this->imageAfter=QString("image:url(:/images/%1.jpg);").arg(imageAfter);
+    this->imageBefore=QString("image:url(:/images/%1);").arg(imageBefore);
+    this->imageAfter=QString("image:url(:/images/%1);").arg(imageAfter);
     this->text=text;
     this->enumLineEdit=enumLineEdit;
 }
