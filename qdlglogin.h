@@ -12,11 +12,14 @@
 #include"network.h"
 #include<QList>
 #include<initializer_list>
+#include<qregularexpression.h>
 using std::initializer_list;
 namespace Ui {
 class QDlgLogin;
 }
 enum QENUM_LinEdit{QENUM_Account,QENUM_Password};//账号类、密码类
+enum QENUM_Warning{QENUM_Error,QENUM_Normal};
+enum QENUM_Page{QENUM_Login_Page,QENUM_Register_Page};
 class QMyLineEdit{
 public:
     QMyLineEdit(QLineEdit*lineEdit,QLabel*label,const QString&imageBefore,const QString&imageAfter,const QString&text,QENUM_LinEdit enumLineEdit=QENUM_Account);
@@ -57,6 +60,9 @@ private:
     void writeSettings();//写设置
     QString encrypt(const QString&str);//字符串加密
     void initLineEditText(QLineEdit*,QString text);
+    QENUM_Warning checkAccount(QLineEdit* lineEdit);
+    QENUM_Warning checkPassword(QLineEdit* lineEdit);
+    QENUM_Warning checkVerificationCode(QLineEdit* lineEdit);
 protected:
     void mousePressEvent(QMouseEvent*event);//鼠标按下
     void mouseMoveEvent(QMouseEvent*event);//鼠标移动

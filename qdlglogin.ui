@@ -54,7 +54,7 @@
     <widget class="QLineEdit" name="LineEditAccount">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>120</y>
        <width>181</width>
        <height>31</height>
@@ -92,7 +92,7 @@
     <widget class="QLineEdit" name="LineEditPassword">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>180</y>
        <width>181</width>
        <height>31</height>
@@ -258,6 +258,32 @@
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="labelAccountWarningDialog">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>155</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>账号格式不正确</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelPasswordWarningDialog">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>215</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>密码格式不正确</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="page_3">
     <widget class="QGroupBox" name="groupBox">
@@ -358,7 +384,7 @@
       <widget class="QLineEdit" name="page3LineEditAccount">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>140</x>
          <y>30</y>
          <width>181</width>
          <height>31</height>
@@ -383,7 +409,7 @@
       <widget class="QLineEdit" name="page3LineEditPassword">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>140</x>
          <y>90</y>
          <width>181</width>
          <height>31</height>
@@ -421,7 +447,7 @@
       <widget class="QLineEdit" name="page3LineEditVerification">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>140</x>
          <y>150</y>
          <width>85</width>
          <height>31</height>
@@ -446,7 +472,7 @@
       <widget class="QVerificationCode" name="label">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>230</x>
          <y>140</y>
          <width>151</width>
          <height>51</height>
@@ -480,6 +506,45 @@
        </property>
        <property name="text">
         <string>返回登录</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="page3LabelAccountWarningDialog">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>65</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>账号格式不正确</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="page3LabelPasswordWarningDialog">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>125</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>密码不正确</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="page3LabelVerificationCodeWarningDialog">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>185</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>验证码错误</string>
        </property>
       </widget>
      </widget>

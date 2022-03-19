@@ -99,3 +99,8 @@ font-size:15px;
 #page3LabelVerification{
 image:url(":images/verificationCodeIconGray.jpg");
 }
+#labelAccountWarningDialog,#labelPasswordWarningDialog,#page3LabelAccountWarningDialog
+,#page3LabelPasswordWarningDialog,#page3LabelVerificationCodeWarningDialog
+{
+color:#D35230
+}

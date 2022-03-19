@@ -12,8 +12,30 @@ void QDlgLogin::initLineEditText(QLineEdit *linedit, QString text)
    palette.setColor(QPalette::Text, QColor(213, 213, 213));
      linedit->setText(text);
     linedit->setPalette(palette);
-    linedit->setFont(QFont("STKaiti", 14, QFont::Bold));
+    linedit->setFont(QFont("STKaiti", 12, QFont::Bold));
 
+}
+
+QENUM_Warning QDlgLogin::checkAccount(QLineEdit* lineEdit)
+{
+    QRegularExpression re("\\d{11,11}");
+    QRegularExpressionMatch match = re.match(lineEdit->text());
+    if (!match.hasMatch()) {//匹配
+        ui->labelAccountWarningDialog->setText(QString::fromUtf8("账号格式错误"));
+        ui->labelAccountWarningDialog->setVisible(true);
+        return QENUM_Error;
+    }
+    return QENUM_Normal;
+}
+
+QENUM_Warning QDlgLogin::checkPassword(QLineEdit* lineEdit)
+{
+    return QENUM_Warning();
+}
+
+QENUM_Warning QDlgLogin::checkVerificationCode(QLineEdit* lineEdit)
+{
+    return QENUM_Warning();
 }
 
 void QDlgLogin::mousePressEvent(QMouseEvent *event)
@@ -52,7 +74,7 @@ void QDlgLogin::setLineEditFontSize( QLineEdit* lineEdit, const QString& text)
     if (isDigit)
         lineEdit->setFont(QFont("STKaiti", 18, QFont::Bold));
     else
-        lineEdit->setFont(QFont("STKaiti", 14, QFont::Bold));
+        lineEdit->setFont(QFont("STKaiti", 12, QFont::Bold));
 }
 
 void QDlgLogin::registerAccount_clicked()
@@ -72,9 +94,9 @@ void QDlgLogin::initUi()
   
 
     initLineEditText(ui->LineEditAccount,"手机号码");
-    initLineEditText(ui->LineEditPassword,"密码");
+    initLineEditText(ui->LineEditPassword,"8位以上数字与字母组合");
     initLineEditText(ui->page3LineEditAccount,"手机号码");
-    initLineEditText(ui->page3LineEditPassword,"密码");
+    initLineEditText(ui->page3LineEditPassword,"8位以上数字与字母组合");
     initLineEditText(ui->page3LineEditVerification,"验证码");
 
 
@@ -87,10 +109,18 @@ void QDlgLogin::initUi()
     ui->page3LineEditVerification->installEventFilter(this);
     ui->page3LabelBackLogin->installEventFilter(this);
 
+    ui->labelAccountWarningDialog->setVisible(false);
+    ui->labelPasswordWarningDialog->setVisible(false);
+    ui->page3LabelAccountWarningDialog->setVisible(false);
+    ui->page3LabelPasswordWarningDialog->setVisible(false);
+    ui->page3LabelVerificationCodeWarningDialog->setVisible(false);
+
+
+
     lineEdits = { QMyLineEdit(ui->LineEditAccount,ui->labelAccountIcon,"accountIcon.jpg","accountIconBlue.jpg",QString::fromUtf8("手机号码") ),
-                  QMyLineEdit(ui->LineEditPassword,ui->labelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("密码"),QENUM_Password),
+                  QMyLineEdit(ui->LineEditPassword,ui->labelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("8位以上数字与字母组合"),QENUM_Password),
                   QMyLineEdit(ui->page3LineEditAccount,ui->page3LabelAccountIcon,"accountIcon.jpg","accountIconBlue.jpg",QString::fromUtf8("手机号码")),
-                  QMyLineEdit(ui->page3LineEditPassword,ui->page3LabelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("密码"),QENUM_Password),
+                  QMyLineEdit(ui->page3LineEditPassword,ui->page3LabelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",QString::fromUtf8("8位以上数字与字母组合"),QENUM_Password),
                   QMyLineEdit(ui->page3LineEditVerification,ui->page3LabelVerification,"verificationCodeIconGray.jpg","verificationCodeIconBlue.jpg",QString::fromUtf8("验证码"))};
 
     setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);//设置最小化和关闭按钮
@@ -135,7 +165,9 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 
 void QDlgLogin::on_pushButtonLogin_clicked()
 {
+    if (checkAccount(ui->LineEditAccount) == QENUM_Error)return;
     ui->stackedWidget->setCurrentIndex(2);
+   
     network.startConnect();
 }
 
