@@ -109,11 +109,11 @@ void QDlgLogin::initUi()
     ui->page3LineEditVerification->installEventFilter(this);
     ui->page3LabelBackLogin->installEventFilter(this);
 
-    ui->labelAccountWarningDialog->setVisible(false);
-    ui->labelPasswordWarningDialog->setVisible(false);
-    ui->page3LabelAccountWarningDialog->setVisible(false);
-    ui->page3LabelPasswordWarningDialog->setVisible(false);
-    ui->page3LabelVerificationCodeWarningDialog->setVisible(false);
+ //   ui->labelAccountWarningDialog->setVisible(false);
+   // ui->labelPasswordWarningDialog->setVisible(false);
+  // ui->page3LabelAccountWarningDialog->setVisible(false);
+  //  ui->page3LabelPasswordWarningDialog->setVisible(false);
+  //  ui->page3LabelVerificationCodeWarningDialog->setVisible(false);
 
 
 
@@ -166,7 +166,7 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 void QDlgLogin::on_pushButtonLogin_clicked()
 {
     if (checkAccount(ui->LineEditAccount) == QENUM_Error)return;
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(3);
    
     network.startConnect();
 }
