@@ -13,14 +13,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     network.cpp \
-    object.cpp \
     qdlglogin.cpp
 
 HEADERS += \
     QVerificationCode.h \
     mainwindow.h \
     network.h \
-    object.h \
     qdlglogin.h
 
 FORMS += \
@@ -34,3 +32,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     source.qrc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/include/ -lcommonLib
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/include/ -lcommonLibd
+else:unix: LIBS += -L$$PWD/include/ -lcommonLib
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/libcommonLib.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/libcommonLibd.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLib.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLibd.lib
+else:unix: PRE_TARGETDEPS += $$PWD/include/libcommonLib.a

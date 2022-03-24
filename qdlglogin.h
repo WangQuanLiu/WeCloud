@@ -53,8 +53,8 @@ class QDlgLogin : public QDialog
 private:
     bool m_moving=false;//窗口是否在鼠标操作下移动
     QPoint m_lastPost;//上一次鼠标的位置
-    QString m_user="";
-    QString m_pswd="";
+    QString userName="";
+    QString password="";
     int m_tryCount=0;//试错次数
     QMyLineEdits lineEdits;//lineEdit
     void readSettings();//读设置、注册表

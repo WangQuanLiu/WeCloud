@@ -2,7 +2,7 @@
 
 #include <QApplication>
 #include"qdlglogin.h"
-#include"object.h"
+#include"mcommon.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

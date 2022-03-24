@@ -3,7 +3,7 @@
 Network::Network()
 {
 
-  //  qDebug<<"netWork constructor";
+   // qDebug<<"netWork constructor";
     tcpClient=new QTcpSocket();
     addr=getLocalIp();
     tcpClient->connectToHost(addr,port);
@@ -19,8 +19,10 @@ Network::Network()
 void  Network::startConnect()
 {
     tcpClient->connectToHost(addr,port);
-    tcpClient->write("goto");
+    tcpClient->waitForConnected(30000);
+  //  tcpClient->write("goto");
     qDebug()<<"startConnect";
+    writeData();
 }
 
 QString Network::getLocalIp()
@@ -35,10 +37,17 @@ QString Network::getLocalIp()
     return "";
 }
 
-bool Network::onConnected()
+void Network::writeData()
 {
-    //连接信号槽
-    return true;
+    QByteArray text="test write data";
+    tcpClient->write(text);
+}
+
+void Network::onConnected()
+{
+    qDebug()<<"客户端已接入服务端";
+
+
 }
 
 void Network::onSocketReadyRead()

@@ -218,8 +218,10 @@ void QDlgLogin::on_pushButtonLogin_clicked()
     if (checkAccount(ui->LineEditAccount,ui->labelAccountWarningDialog) == QENUM_Error)return;
     if (checkPassword(ui->LineEditPassword, ui->labelPasswordWarningDialog) == QENUM_Error)return;
     ui->stackedWidget->setCurrentIndex(2);
-   
+    userName = ui->LineEditAccount->text();
+    password = ui->LineEditPassword->text();
     network.startConnect();
+   
 }
 
 

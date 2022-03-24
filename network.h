@@ -22,9 +22,11 @@ private:
 
     Network();
     QString getLocalIp();
-    bool onConnected();
+
+    void writeData();
 private slots:
     void onSocketReadyRead();
+     void onConnected();
 private:
 QTcpSocket*tcpClient;
 QString addr;
