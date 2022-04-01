@@ -115,7 +115,7 @@ font-size:15px;
 }
 #page2LabelWelcome{
      font-font-family:STKaiti;
-    font-size:25px;
+    font-size:18px;
     background-color:#FFFFFF;
     color:#5D5D5D;
 }
@@ -131,7 +131,7 @@ image:url(":images/verificationCodeIconGray.jpg");
 {
 color:#D35230
 }
-QProgressBar{
+#page2ProgressBar{
     font:9px;
     font-color:#FFFFFF;
     border-radius:5px;
@@ -143,4 +143,7 @@ QProgressBar{
 QProgressBar:chunk{
     border-radius:5px;
     background-color:#1ABC9C;
+}
+#page2Icon{
+    image:url(":images/logo.png");
 }

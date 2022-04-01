@@ -10,5 +10,7 @@
         <file>images/ORCodeGray.jpg</file>
         <file>images/verificationCodeIconBlue.jpg</file>
         <file>images/verificationCodeIconGray.jpg</file>
+        <file>images/logo.ico</file>
+        <file>images/logo.png</file>
     </qresource>
 </RCC>

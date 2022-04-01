@@ -221,7 +221,7 @@
       <item>
        <widget class="QLabel" name="labelWelcome">
         <property name="text">
-         <string>欢迎登录</string>
+         <string>欢迎登录WeCloud</string>
         </property>
        </widget>
       </item>
@@ -507,11 +507,11 @@
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
-    <widget class="QProgressBar" name="progressBar">
+    <widget class="QProgressBar" name="page2ProgressBar">
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>160</y>
+       <y>200</y>
        <width>331</width>
        <height>10</height>
       </rect>
@@ -520,38 +520,79 @@
       <number>24</number>
      </property>
     </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget_6">
+    <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>50</y>
        <width>411</width>
-       <height>81</height>
+       <height>128</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
-      <item>
-       <spacer name="horizontalSpacer_11">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="page2LabelWelcome">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>正在登录</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="page2Icon">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>75</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_6">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
+        </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
+          <width>35</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="QLabel" name="page2LabelWelcome">
-        <property name="text">
-         <string>正在登录</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_12">
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -801,7 +842,7 @@
       <item>
        <widget class="QLabel" name="page4LabelWelcome">
         <property name="text">
-         <string>欢迎登录</string>
+         <string>欢迎登录WeCloud</string>
         </property>
        </widget>
       </item>
