@@ -51,13 +51,13 @@ image:url(":/images/passwordIcon.jpg");
 }
 #checkBoxAutoLogin ,#checkBoxRememberPassword,#labelForgetPassword,#labelRegisterAccount
 ,#page3LabelBackLogin,#Page4CheckBoxAutoLogin,#Page4CheckBoxRememberPassword,
-#Page4LabelForgetPassword,#Page4LabelRegisterAccount
+#Page4LabelForgetPassword,#Page4LabelRegisterAccount,#page4LabelForgetPassword
 {
 color:#A8A6A6;
 border-color:#A8A6A6;
 }
 #labelForgetPassword:hover,#labelRegisterAccount:hover,#page3LabelBackLogin:hover,
-#Page4LabelForgetPassword:hover,#Page4LabelRegisterAccount:hover
+#Page4LabelForgetPassword:hover,#Page4LabelRegisterAccount:hover,#page4LabelForgetPassword:hover
 {
 color:#999898;
 border-color:#999898;
@@ -107,6 +107,18 @@ font-size:15px;
     background-color:#FFFFFF;
    color:#999898;
 }
+#labelWelcome,#page4LabelWelcome{
+    font-font-family:STKaiti;
+    font-size:25px;
+    background-color:#FFFFFF;
+     color:#999898;
+}
+#page2LabelWelcome{
+     font-font-family:STKaiti;
+    font-size:25px;
+    background-color:#FFFFFF;
+    color:#5D5D5D;
+}
 #page3LabelVerification,#page4LabelVerification{
 image:url(":images/verificationCodeIconGray.jpg");
 }
@@ -118,4 +130,17 @@ image:url(":images/verificationCodeIconGray.jpg");
 #Page4LabelAccountWarningDialog,#Page4LabelPasswordWarningDialog,#page4LabelVerificationCodeWarningDialog
 {
 color:#D35230
+}
+QProgressBar{
+    font:9px;
+    font-color:#FFFFFF;
+    border-radius:5px;
+    text-align:center;
+    border:1px solid #E8EDF2;
+    background-color:rgb(255,255,255);
+    border-color: rgb(180,180,180);
+}
+QProgressBar:chunk{
+    border-radius:5px;
+    background-color:#1ABC9C;
 }

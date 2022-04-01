@@ -19,7 +19,7 @@ Network::Network()
 void  Network::startConnect()
 {
     tcpClient->connectToHost(addr,port);
-    tcpClient->waitForConnected(30000);
+    tcpClient->waitForConnected(10000);
   //  tcpClient->write("goto");
     qDebug()<<"startConnect";
     writeData();

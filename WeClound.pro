@@ -45,3 +45,6 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/lib
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLib.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLibd.lib
 else:unix: PRE_TARGETDEPS += $$PWD/include/libcommonLib.a
+
+RC_ICONS = logo.ico
+RC_FILE = logo.rc

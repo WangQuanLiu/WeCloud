@@ -135,7 +135,7 @@ void QDlgLogin::initUi()
 {
     setPalette(QPalette(Qt::white));//设置背景为白色
     setAutoFillBackground(true);//自动填充背景
-  
+    ui->progressBar->setFormat("");
     initFilter();
     initVisible();
     initLineEditText(ui->LineEditAccount,lineEditAccountInitText);
