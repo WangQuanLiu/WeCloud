@@ -220,8 +220,8 @@ void QDlgLogin::on_pushButtonLogin_clicked()
     ui->stackedWidget->setCurrentIndex(2);
     userName = ui->LineEditAccount->text();
     password = ui->LineEditPassword->text();
-    network.startConnect();
-   
+   // network.startConnect();
+    network.start();
 }
 
 

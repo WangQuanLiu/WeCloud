@@ -13,6 +13,7 @@
 #include<QList>
 #include<initializer_list>
 #include<qregularexpression.h>
+#include<qthread.h>
 using std::initializer_list;
 namespace Ui {
 class QDlgLogin;
@@ -100,7 +101,7 @@ private:
    inline void initUi();
   inline  void initVisible();
     void initFilter();
-   Network& network=Network::getInstance();
+    Network& network= Network::getInstance();
     inline void setLineEditFontSize( QLineEdit* lineEdit, const QString& text);
     void registerAccount_clicked();
     Ui::QDlgLogin *ui;

@@ -1,6 +1,6 @@
 #include "network.h"
 
-Network::Network()
+NetworkCommunication::NetworkCommunication()
 {
 
    // qDebug<<"netWork constructor";
@@ -16,7 +16,7 @@ Network::Network()
 
 
 
-void  Network::startConnect()
+void  NetworkCommunication::startConnect()
 {
     tcpClient->connectToHost(addr,port);
     tcpClient->waitForConnected(10000);
@@ -25,7 +25,7 @@ void  Network::startConnect()
     writeData();
 }
 
-QString Network::getLocalIp()
+QString NetworkCommunication::getLocalIp()
 {
     QString localhostName=QHostInfo::localHostName();
     QHostInfo info=QHostInfo::fromName(localhostName);
@@ -37,21 +37,26 @@ QString Network::getLocalIp()
     return "";
 }
 
-void Network::writeData()
+void NetworkCommunication::writeData()
 {
     QByteArray text="test write data";
     tcpClient->write(text);
 }
 
-void Network::onConnected()
+void NetworkCommunication::onConnected()
 {
     qDebug()<<"客户端已接入服务端";
 
 
 }
 
-void Network::onSocketReadyRead()
+void NetworkCommunication::onSocketReadyRead()
 {
 
   qDebug()<<"onSocketReadyRead "<<tcpClient->readAll();
+}
+
+void Network::run() {
+    NetworkCommunication& networkCommunication = NetworkCommunication::getInstance();
+    networkCommunication.startConnect();
 }

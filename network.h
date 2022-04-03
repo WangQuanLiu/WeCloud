@@ -1,36 +1,49 @@
 #ifndef NETWORK_H
 #define NETWORK_H
-
 #include <QObject>
 #include <QTcpSocket>
 #include<QtNetwork>
-
-class Network:public QObject
+#include<qthread.h>
+class NetworkCommunication:public QObject
 {
-    friend class QDlgLogin;
-   Q_OBJECT
+    
 public:
-    static Network& getInstance(){
-        static Network instance;
+    static NetworkCommunication& getInstance(){
+        static NetworkCommunication instance;
         return instance;
     }
     void startConnect();
-    ~Network(){}
-    Network(const Network&)=delete;
-    Network&operator=(const Network&)=delete;
-private:
+    ~NetworkCommunication(){}
+    NetworkCommunication(const NetworkCommunication&)=delete;
+    NetworkCommunication&operator=(const NetworkCommunication&)=delete;
 
-    Network();
-    QString getLocalIp();
-
-    void writeData();
 private slots:
     void onSocketReadyRead();
      void onConnected();
 private:
-QTcpSocket*tcpClient;
+    NetworkCommunication();
+QString getLocalIp();
+void writeData();
+QTcpSocket* tcpClient;
 QString addr;
-qint32 port=1200;
+qint32 port = 1200;
 };
 
+class Network :public QThread
+{
+    friend class QDlgLogin;
+public:
+    static Network& getInstance() {
+        static Network instance;
+        return instance;
+    }
+    ~Network() {}
+    Network(const Network&) = delete;
+    Network& operator=(const Network&) = delete;
+
+protected:
+    void run() Q_DECL_OVERRIDE;
+private:
+    Network() {}
+};
 #endif // NETWORK_H
