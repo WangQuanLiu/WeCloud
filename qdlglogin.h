@@ -1,4 +1,4 @@
-#ifndef QDLGLOGIN_H
+﻿#ifndef QDLGLOGIN_H
 #define QDLGLOGIN_H
 #include <QDialog>
 #include<QPalette>

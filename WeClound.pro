@@ -25,17 +25,16 @@ FORMS += \
     mainwindow.ui \
     qdlglogin.ui
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
     source.qrc
 
+
+RC_ICONS = logo.ico
+RC_FILE = logo.rc
+
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/include/ -lcommonLib
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/include/ -lcommonLibd
-else:unix: LIBS += -L$$PWD/include/ -lcommonLib
 
 INCLUDEPATH += $$PWD/include
 DEPENDPATH += $$PWD/include
@@ -44,7 +43,3 @@ win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/libcom
 else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/libcommonLibd.a
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLib.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLibd.lib
-else:unix: PRE_TARGETDEPS += $$PWD/include/libcommonLib.a
-
-RC_ICONS = logo.ico
-RC_FILE = logo.rc

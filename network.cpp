@@ -1,12 +1,11 @@
-#include "network.h"
+﻿#include "network.h"
 
 NetworkCommunication::NetworkCommunication()
 {
 
    // qDebug<<"netWork constructor";
-    tcpClient=new QTcpSocket();
-    addr=getLocalIp();
-    tcpClient->connectToHost(addr,port);
+    tcpClient=new QTcpSocket(this);
+    addr= getLocalIp();
     connect(tcpClient,SIGNAL(connected()),this,SLOT(onConnected()));
     connect(tcpClient,SIGNAL(disconnected()),this,SLOT(onDisConnected()));
     connect(tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
@@ -18,28 +17,31 @@ NetworkCommunication::NetworkCommunication()
 
 void  NetworkCommunication::startConnect()
 {
+    addr=getLocalIp();
     tcpClient->connectToHost(addr,port);
-    tcpClient->waitForConnected(10000);
-  //  tcpClient->write("goto");
+    tcpClient->waitForConnected(1000);
+ //   tcpClient->connectToHost(addr,port);
     qDebug()<<"startConnect";
-    writeData();
+ //   writeData();
 }
 
-QString NetworkCommunication::getLocalIp()
+QHostAddress NetworkCommunication::getLocalIp()
 {
     QString localhostName=QHostInfo::localHostName();
     QHostInfo info=QHostInfo::fromName(localhostName);
     foreach(QHostAddress address,info.addresses()){
         if(address.protocol()==QAbstractSocket::IPv4Protocol){
-            return address.toString();
+            return address;
         }
     }
-    return "";
+    return QHostAddress("");
 }
 
 void NetworkCommunication::writeData()
 {
     QByteArray text="test write data";
+    qDebug()<<text;
+    text.append('\n');
     tcpClient->write(text);
 }
 
@@ -47,7 +49,7 @@ void NetworkCommunication::onConnected()
 {
     qDebug()<<"客户端已接入服务端";
 
-
+    writeData();
 }
 
 void NetworkCommunication::onSocketReadyRead()
@@ -59,4 +61,5 @@ void NetworkCommunication::onSocketReadyRead()
 void Network::run() {
     NetworkCommunication& networkCommunication = NetworkCommunication::getInstance();
     networkCommunication.startConnect();
+    exec();//事件循环
 }

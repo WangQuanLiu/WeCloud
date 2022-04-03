@@ -6,6 +6,7 @@
 #include<qthread.h>
 class NetworkCommunication:public QObject
 {
+    Q_OBJECT
     
 public:
     static NetworkCommunication& getInstance(){
@@ -22,11 +23,11 @@ private slots:
      void onConnected();
 private:
     NetworkCommunication();
-QString getLocalIp();
+    QHostAddress getLocalIp();
 void writeData();
 QTcpSocket* tcpClient;
-QString addr;
-qint32 port = 1200;
+QHostAddress addr;
+qint32 port = 1800;
 };
 
 class Network :public QThread
