@@ -38,7 +38,11 @@ public:
         static Network instance;
         return instance;
     }
-    ~Network() {}
+    ~Network() {
+    
+        terminate();
+        wait();
+    }
     Network(const Network&) = delete;
     Network& operator=(const Network&) = delete;
 

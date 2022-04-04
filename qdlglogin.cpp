@@ -1,4 +1,4 @@
-#include "qdlglogin.h"
+﻿#include "qdlglogin.h"
 #include "ui_qdlglogin.h"
 
 void QDlgLogin::writeSettings()
@@ -73,6 +73,19 @@ QENUM_Warning QDlgLogin::checkVerificationCode(QLineEdit* lineEdit)
     return QENUM_Warning();
 }
 
+void QDlgLogin::close()
+{
+    network.quit();
+    timer->stop();
+}
+
+void QDlgLogin::onProgressBarLoader()
+{
+    
+    static int i = 1;
+    ui->page2ProgressBar->setValue(i++);
+}
+
 void QDlgLogin::mousePressEvent(QMouseEvent *event)
 {
 
@@ -104,7 +117,7 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
    ui->setupUi(this);
    initUi();
  //   QWidget widget;
-    
+   initProgressBar();
     
 }
 /*
@@ -129,6 +142,16 @@ void QDlgLogin::registerAccount_clicked()
 QDlgLogin::~QDlgLogin()
 {
     delete ui;
+    close();
+}
+
+inline void QDlgLogin::initProgressBar()
+{
+    ui->page2ProgressBar->setRange(0, 100);
+    ui->page2ProgressBar->setValue(0);
+    timer = new QTimer();
+    timer->setInterval(50);
+    connect(timer, SIGNAL(timeout()), this, SLOT(onProgressBarLoader()));
 }
 
 void QDlgLogin::initUi()
@@ -212,12 +235,19 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
     return QDialog::eventFilter(watched,event);//交给上层
 }
 
+void QDlgLogin::close(QCloseEvent *event)
+{
+
+    close();
+}
+
 
 void QDlgLogin::on_pushButtonLogin_clicked()
 {
     if (checkAccount(ui->LineEditAccount,ui->labelAccountWarningDialog) == QENUM_Error)return;
     if (checkPassword(ui->LineEditPassword, ui->labelPasswordWarningDialog) == QENUM_Error)return;
     ui->stackedWidget->setCurrentIndex(2);
+    timer->start();
     userName = ui->LineEditAccount->text();
     password = ui->LineEditPassword->text();
    // network.startConnect();

@@ -14,6 +14,7 @@
 #include<initializer_list>
 #include<qregularexpression.h>
 #include<qthread.h>
+#include<qtimer.h>
 using std::initializer_list;
 namespace Ui {
 class QDlgLogin;
@@ -67,6 +68,7 @@ private:
     QENUM_Warning checkPassword(QLineEdit* lineEdit,QLabel*WarningDialog);
     QENUM_Warning checkPassword(const QString& text);
     QENUM_Warning checkVerificationCode(QLineEdit* lineEdit);
+    void close();
 protected:
     void mousePressEvent(QMouseEvent*event);//鼠标按下
     void mouseMoveEvent(QMouseEvent*event);//鼠标移动
@@ -87,7 +89,7 @@ private slots:
 
     void on_pushButtonCancel_clicked();
 
-
+    void onProgressBarLoader();
 
     void on_page3LineEditAccount_textChanged(const QString &);
 
@@ -95,9 +97,12 @@ private slots:
 
     void on_page3PushButtonRegister_clicked();
 
+
 public slots:
   bool eventFilter(QObject*,QEvent*);
+  void close(QCloseEvent*event);
 private:
+    inline void initProgressBar();
    inline void initUi();
   inline  void initVisible();
     void initFilter();
@@ -108,6 +113,7 @@ private:
     QString lineEditAccountInitText = QString::fromUtf8("手机号码");
     QString lineEditPasswordInitText = QString::fromUtf8("8位以上数字与字母组合");
     QString lineEditVerificationCodeInitText = QString::fromUtf8("验证码");
+    QTimer* timer;//进度条定时器
 };
 
 #endif // QDLGLOGIN_H
