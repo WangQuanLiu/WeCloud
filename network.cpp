@@ -40,13 +40,14 @@ QHostAddress NetworkCommunication::getLocalIp()
 void NetworkCommunication::writeData(Message* msg)
 {
     msgList.append(msg);
-
+    tcpClient->write(msg->getData());
 }
 
 void NetworkCommunication::onConnected()
 {
     qDebug()<<"客户端已接入服务端";
-
+    Message msg;
+   
     //writeData();
 }
 

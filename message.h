@@ -4,12 +4,14 @@
 #include <QObject>
 #include<QTime>
 #include<QDateTime>
+//#include<network.h>
 enum  ENUM_Network_Massage {
 ENUM_NetMsg_NULL=1,
 ENUM_NetMsg_PassworkVerification_Request
 };
 
 class  NetworkMessage {
+   // friend NetworkCommunication;
 public:
     NetworkMessage() = default;
     ~NetworkMessage() = default;
@@ -27,18 +29,18 @@ public:
    }
     ENUM_Network_Massage getMsgType();
     QByteArray getData();
-
-private:
+protected:
     void setMsgType(ENUM_Network_Massage msgType);
-    void setData(const QByteArray&data);
+    void setData(const QByteArray& data);
     ENUM_Network_Massage msgType;//消息类型
     QByteArray data;
 };
 
-class Message
+class Message:public NetworkMessage
 {
-
+  //  friend class NetworkCommunication;
 public:
+
     explicit Message();
     Message&operator++();
     Message&operator++(int val);
@@ -49,11 +51,11 @@ public:
     QByteArray& getData();
    
 private:
-    void setId(const QString& id);
+  void setId(const QString& id);
   QDateTime curDateTime;
   QString id;
   unsigned int tryCount;
-  NetworkMessage networkMessage;
+  //NetworkMessage networkMessage;
 };
 
 #endif // MESSAGE_H

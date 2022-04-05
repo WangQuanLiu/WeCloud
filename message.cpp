@@ -10,7 +10,6 @@ Message::Message()
 
 Message &Message::operator++()
 {
-
     this->tryCount++;
     return *this;
 }
@@ -22,7 +21,8 @@ Message &Message::operator++(int){
 Message& Message::operator=(const Message& obj)
 {
     this->id = obj.id;
-    this->networkMessage = obj.networkMessage;
+    this->msgType = obj.msgType;
+    this->data = obj.data;
     this->tryCount = obj.tryCount;
     return *this;
 }
@@ -36,7 +36,7 @@ unsigned int Message::getTryCount()
 }
 ENUM_Network_Massage Message::getMsgType()
 {
-    return networkMessage.getMsgType();
+    return getMsgType();
 }
 QByteArray& Message::getData()
 {
@@ -44,9 +44,9 @@ QByteArray& Message::getData()
     data.append("id:");
     data.append(id.toStdString().c_str());
     data.append("\n");
-    data.append("type:" + networkMessage.getMsgType());
+    data.append("type:" + msgType);
     data.append("\n");
-    data.append("data:" + networkMessage.getData());
+    data.append("data:" + data);
     return data;
 }
 void Message::setId(const QString& id)
