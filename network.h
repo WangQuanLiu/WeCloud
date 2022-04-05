@@ -1,9 +1,11 @@
-#ifndef NETWORK_H
+﻿#ifndef NETWORK_H
 #define NETWORK_H
 #include <QObject>
 #include <QTcpSocket>
 #include<QtNetwork>
 #include<qthread.h>
+#include<qlist.h>
+#include<message.h>
 class NetworkCommunication:public QObject
 {
     Q_OBJECT
@@ -24,10 +26,11 @@ private slots:
 private:
     NetworkCommunication();
     QHostAddress getLocalIp();
-void writeData();
+void writeData(Message*msg);
 QTcpSocket* tcpClient;
 QHostAddress addr;
 qint32 port = 1800;
+QList<Message*>msgList;
 };
 
 class Network :public QThread

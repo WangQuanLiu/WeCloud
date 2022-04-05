@@ -12,12 +12,14 @@ SOURCES += \
     QVerificationCode.cpp \
     main.cpp \
     mainwindow.cpp \
+    message.cpp \
     network.cpp \
     qdlglogin.cpp
 
 HEADERS += \
     QVerificationCode.h \
     mainwindow.h \
+    message.h \
     network.h \
     qdlglogin.h
 

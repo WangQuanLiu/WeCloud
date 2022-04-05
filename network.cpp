@@ -37,19 +37,17 @@ QHostAddress NetworkCommunication::getLocalIp()
     return QHostAddress("");
 }
 
-void NetworkCommunication::writeData()
+void NetworkCommunication::writeData(Message* msg)
 {
-    QByteArray text="test write data";
-    qDebug()<<text;
-    text.append('\n');
-    tcpClient->write(text);
+    msgList.append(msg);
+
 }
 
 void NetworkCommunication::onConnected()
 {
     qDebug()<<"客户端已接入服务端";
 
-    writeData();
+    //writeData();
 }
 
 void NetworkCommunication::onSocketReadyRead()
