@@ -1,13 +1,5 @@
 ﻿#include "message.h"
 
-Message::Message()
-{
-
-  curDateTime=QDateTime::currentDateTime();
-  id=curDateTime.toString("yyyy-MM-dd hh:mm:ss:zzz");
-  tryCount=1;
-}
-
 Message &Message::operator++()
 {
     this->tryCount++;
@@ -38,20 +30,25 @@ ENUM_Network_Massage Message::getMsgType()
 {
     return getMsgType();
 }
-QByteArray& Message::getData()
+QByteArray Message::getData()
 {
     QByteArray data;
     data.append("id:");
     data.append(id.toStdString().c_str());
-    data.append("\n");
-    data.append("type:" + msgType);
-    data.append("\n");
-    data.append("data:" + data);
+    data.append('\n');
+    data.append("type:");
+    data.append(QString::number(msgType).toStdString().c_str());
+    data.append('\n');
+    data.append("data:" + this->data);
     return data;
 }
 void Message::setId(const QString& id)
 {
     this->id = id;
+}
+NetworkMessage::NetworkMessage(const NetworkMessage& obj)
+{
+    *this = obj;
 }
 NetworkMessage &NetworkMessage::operator=(const NetworkMessage &obj)
 {

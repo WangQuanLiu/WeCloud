@@ -46,8 +46,9 @@ void NetworkCommunication::writeData(Message* msg)
 void NetworkCommunication::onConnected()
 {
     qDebug()<<"客户端已接入服务端";
-    Message msg;
-   
+    Message msg(ENUM_NetMsg_PassworkVerification_Request, QString("245"));
+    QByteArray temp = msg.getData();
+    tcpClient->write(temp);
     //writeData();
 }
 
