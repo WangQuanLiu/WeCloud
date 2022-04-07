@@ -9,38 +9,33 @@
 class NetworkCommunication:public QObject
 {
     Q_OBJECT
-    
+        friend class Network;
 public:
-    static NetworkCommunication& getInstance(){
-        static NetworkCommunication instance;
-        return instance;
-    }
+    
+    NetworkCommunication();
     void startConnect();
     ~NetworkCommunication(){}
-    NetworkCommunication(const NetworkCommunication&)=delete;
-    NetworkCommunication&operator=(const NetworkCommunication&)=delete;
-
 private slots:
     void onSocketReadyRead();
      void onConnected();
+     void addData(Message* msg);
+     void addData(Message msg);
 private:
-    NetworkCommunication();
+    
     QHostAddress getLocalIp();
-void writeData(Message*msg);
-QTcpSocket* tcpClient;
-QHostAddress addr;
-qint32 port = 1800;
-QList<Message*>msgList;
+    void writeData( );
+    QTcpSocket* tcpClient;
+    QHostAddress addr;
+    qint32 port = 1800;
+    QList<Message*>msgList;
 };
 
 class Network :public QThread
 {
+    Q_OBJECT
     friend class QDlgLogin;
 public:
-    static Network& getInstance() {
-        static Network instance;
-        return instance;
-    }
+    Network();
     ~Network() {
     
         terminate();
@@ -48,10 +43,19 @@ public:
     }
     Network(const Network&) = delete;
     Network& operator=(const Network&) = delete;
-
+   
+   
+    void stop();
+    void addData(Message* msg);
+    void addData(Message& msg);
+    void writeData();
 protected:
     void run() Q_DECL_OVERRIDE;
+   
 private:
-    Network() {}
+    NetworkCommunication* networkCommunication ;
+  
+    QList<Message>msgMan;
+   
 };
 #endif // NETWORK_H

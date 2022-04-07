@@ -5,10 +5,18 @@ Message &Message::operator++()
     this->tryCount++;
     return *this;
 }
-Message &Message::operator++(int){
+Message Message::operator++(int){
     Message temp=*this;
     this->tryCount++;
     return temp;
+}
+Message& Message::operator=(const Message* obj)
+{
+    this->id = obj->id;
+    this->msgType = obj->msgType;
+    this->data = obj->data;
+    this->tryCount = obj->tryCount;
+    return *this;
 }
 Message& Message::operator=(const Message& obj)
 {

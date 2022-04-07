@@ -75,7 +75,7 @@ QENUM_Warning QDlgLogin::checkVerificationCode(QLineEdit* lineEdit)
 
 void QDlgLogin::close()
 {
-    network.quit();
+    network->quit();
     timer->stop();
 }
 
@@ -118,7 +118,8 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
    initUi();
  //   QWidget widget;
    initProgressBar();
-    
+   network = new Network();
+   network->start();
 }
 /*
 数字:18号字大小
@@ -250,8 +251,12 @@ void QDlgLogin::on_pushButtonLogin_clicked()
     timer->start();
     userName = ui->LineEditAccount->text();
     password = ui->LineEditPassword->text();
-   // network.startConnect();
-    network.start();
+   // network.start();
+  
+    Message msg(ENUM_NetMsg_PassworkVerification_Request, "Account:"+userName+"password:"+password);
+    network->addData(msg);
+    network->writeData();
+  
 }
 
 

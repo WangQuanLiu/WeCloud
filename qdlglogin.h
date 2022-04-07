@@ -106,7 +106,7 @@ private:
    inline void initUi();
   inline  void initVisible();
     void initFilter();
-    Network& network= Network::getInstance();
+    Network* network;
     inline void setLineEditFontSize( QLineEdit* lineEdit, const QString& text);
     void registerAccount_clicked();
     Ui::QDlgLogin *ui;

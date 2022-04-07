@@ -1,6 +1,6 @@
 ﻿#ifndef MESSAGE_H
 #define MESSAGE_H
-
+#include<string>
 #include <QObject>
 #include<QTime>
 #include<QDateTime>
@@ -42,13 +42,13 @@ public:
     explicit Message(){
          curDateTime = QDateTime::currentDateTime();
          id = curDateTime.toString("yyyy-MM-dd hh:mm:ss:zzz");
-         tryCount = 1;
+         tryCount = 0;
         }
     explicit Message(const NetworkMessage& obj) :Message(){
         this->msgType = obj.msgType;
         this->data = obj.data;
     }
-    explicit Message(ENUM_Network_Massage msgType, const QString& text):Message() {
+     Message(ENUM_Network_Massage msgType, const QString& text):Message() {
         this->msgType = msgType;
         this->data = text.toUtf8();
     }
@@ -56,8 +56,13 @@ public:
         this->msgType = msgType;
         this->data = text;
     }
+    explicit  Message(ENUM_Network_Massage msgType, const char* text) {
+        this->msgType = msgType;
+        this->data = text;
+    }
     Message&operator++();
-    Message&operator++(int val);
+    Message operator++(int val);
+    Message& operator=(const Message* obj);
     Message& operator=(const Message& obj);
     QString getId();
     unsigned int getTryCount();
