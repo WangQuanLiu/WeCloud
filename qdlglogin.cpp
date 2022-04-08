@@ -252,10 +252,12 @@ void QDlgLogin::on_pushButtonLogin_clicked()
     userName = ui->LineEditAccount->text();
     password = ui->LineEditPassword->text();
    // network.start();
-  
-    Message msg(ENUM_NetMsg_PassworkVerification_Request, "Account:"+userName+"password:"+password);
+    QString text;
+        text+=MSG_ACCOUNT(userName) + "\n";
+        text += MSG_PASSWORD(password)+"\n";
+    Message msg(ENUM_NetMsg_PassworkVerification_Request, text);
     network->addData(msg);
-    network->writeData();
+    network->sendData();
   
 }
 

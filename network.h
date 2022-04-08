@@ -23,7 +23,7 @@ private slots:
 private:
     
     QHostAddress getLocalIp();
-    void writeData( );
+    void sendData( );
     QTcpSocket* tcpClient;
     QHostAddress addr;
     qint32 port = 1800;
@@ -48,7 +48,7 @@ public:
     void stop();
     void addData(Message* msg);
     void addData(Message& msg);
-    void writeData();
+    void sendData();
 protected:
     void run() Q_DECL_OVERRIDE;
    

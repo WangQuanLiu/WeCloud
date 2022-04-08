@@ -8,6 +8,25 @@ enum  ENUM_Network_Massage {
 ENUM_NetMsg_NULL=1,
 ENUM_NetMsg_PassworkVerification_Request
 };
+#define MSG_ID_BEGIN "<Id>"
+#define MSG_ID_END "</Id>"
+#define MSG_ID(X) MSG_ID_BEGIN+QString(X)+MSG_ID_END
+
+#define MSG_TYPE_BEGIN "<Type>"
+#define MSG_TYPE_END "</Type>"
+#define MSG_TYPE(X) MSG_TYPE_BEGIN+QString(X)+MSG_TYPE_END
+
+#define MSG_ACCOUNT_BEGIN "<Account>"
+#define MSG_ACCOUNT_END "</Account>"
+#define MSG_ACCOUNT(X) MSG_ACCOUNT_BEGIN+QString(X)+MSG_ACCOUNT_END
+
+#define MSG_PASSWORD_BEGIN "<Password>"
+#define MSG_PASSWORD_END "</Password>"
+#define MSG_PASSWORD(X) MSG_PASSWORD_BEGIN+QString(X)+MSG_PASSWORD_END
+
+#define MSG_DATA_BEGIN "<Data>"
+#define MSG_DATA_END "</Data>"
+#define MSG_DATA(X) MSG_DATA_BEGIN+QString(X)+MSG_DATA_END
 
 class  NetworkMessage {
     friend class Message;
@@ -41,7 +60,7 @@ class Message:public NetworkMessage
 public:
     explicit Message(){
          curDateTime = QDateTime::currentDateTime();
-         id = curDateTime.toString("yyyy-MM-dd hh:mm:ss:zzz");
+         id = curDateTime.toString("yyyy-MM-dd-hh:mm:ss:zzz");
          tryCount = 0;
         }
     explicit Message(const NetworkMessage& obj) :Message(){

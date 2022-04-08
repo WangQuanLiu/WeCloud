@@ -40,15 +40,15 @@ ENUM_Network_Massage Message::getMsgType()
 }
 QByteArray Message::getData()
 {
-    QByteArray data;
-    data.append("id:");
-    data.append(id.toStdString().c_str());
-    data.append('\n');
-    data.append("type:");
-    data.append(QString::number(msgType).toStdString().c_str());
-    data.append('\n');
-    data.append("data:" + this->data);
-    return data;
+    QString data;
+    data.append(MSG_ID(id.toStdString().c_str()));
+    data.append("\n");
+    data.append(MSG_TYPE(QString::number(msgType).toStdString().c_str()));
+    data.append("\n");
+    data.append(this->data);
+
+    return data.toLatin1();
+
 }
 void Message::setId(const QString& id)
 {

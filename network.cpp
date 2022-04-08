@@ -8,24 +8,16 @@ NetworkCommunication::NetworkCommunication()
     connect(tcpClient, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
         this, SLOT(onSocketStateChanged(QAbstractSocket::SocketState)));
     connect(tcpClient, SIGNAL(readyRead()), this, SLOT(onSocketReadyRead()));
-   // qDebug<<"netWork constructor";
-    
     addr= getLocalIp();
-  
 }
 
 
 
 void  NetworkCommunication::startConnect()
 {
-   
-
     addr=getLocalIp();
     tcpClient->connectToHost(addr,port);
     tcpClient->waitForConnected(1000);
- //   tcpClient->connectToHost(addr,port);
-    qDebug()<<"startConnect";
- //   writeData();
 }
 
 QHostAddress NetworkCommunication::getLocalIp()
@@ -52,7 +44,7 @@ void NetworkCommunication::addData(Message msg)
 }
 
 
-void NetworkCommunication::writeData( )
+void NetworkCommunication::sendData( )
 {
     if (msgList.size() <= 0)return;
     for (auto msg : msgList) {
@@ -65,11 +57,7 @@ void NetworkCommunication::writeData( )
 void NetworkCommunication::onConnected()
 {
     qDebug()<<"客户端已接入服务端";
-    Message msg(ENUM_NetMsg_PassworkVerification_Request, "245");
-   QByteArray temp = msg.getData();
-    tcpClient->write(temp);
-    
-   //writeData();
+
 }
 
 void NetworkCommunication::onSocketReadyRead()
@@ -80,16 +68,15 @@ void NetworkCommunication::onSocketReadyRead()
 void Network::run() {
     networkCommunication = new NetworkCommunication();
     networkCommunication->startConnect();
-   
     exec();//事件循环
   
 }
 
 
 
-void Network::writeData()
+void Network::sendData()
 {
-    networkCommunication->writeData();
+    networkCommunication->sendData();
 }
 
 void Network::stop()
