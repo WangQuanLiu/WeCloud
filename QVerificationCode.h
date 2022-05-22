@@ -1,4 +1,4 @@
-#ifndef QVERIFICATIONCODE_H
+ï»¿#ifndef QVERIFICATIONCODE_H
 #define QVERIFICATIONCODE_H
 #include<qlabel.h>
 #include<QPainter>
@@ -21,7 +21,7 @@ public:
     QString getCode();
 protected:
     void paintEvent(QPaintEvent* event);
-    void mousePressEvent(QMouseEvent* event);//Êó±ê°´ÏÂ
+    void mousePressEvent(QMouseEvent* event);//é¼ æ ‡æŒ‰ä¸‹
 private:
     QString code;
 };

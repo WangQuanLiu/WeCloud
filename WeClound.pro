@@ -11,20 +11,22 @@ CONFIG += c++11
 SOURCES += \
     QVerificationCode.cpp \
     main.cpp \
-    mainwindow.cpp \
     message.cpp \
+    mframelesswidget.cpp \
+    mmainwindow.cpp \
     network.cpp \
     qdlglogin.cpp
 
 HEADERS += \
     QVerificationCode.h \
-    mainwindow.h \
     message.h \
+    mframelesswidget.h \
+    mmainwindow.h \
     network.h \
     qdlglogin.h
 
 FORMS += \
-    mainwindow.ui \
+    mmainwindow.ui \
     qdlglogin.ui
 
 
@@ -45,3 +47,5 @@ win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/libcom
 else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/libcommonLibd.a
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLib.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/include/commonLibd.lib
+
+

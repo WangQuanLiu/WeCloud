@@ -5,17 +5,25 @@ void QDlgLogin::writeSettings()
 {
 
 }
-
+/*
+ * 输入:linedite为行文本容器，text为文本内容
+ * 功能：把linedit容器设置为text的文本内容，并设置成固定的字体颜色与大小
+ * 输出：void
+ */
 void QDlgLogin::initLineEditText(QLineEdit *linedit, QString text)
 {
     QPalette palette;
-   palette.setColor(QPalette::Text, QColor(213, 213, 213));
-     linedit->setText(text);
+    palette.setColor(QPalette::Text, QColor(213, 213, 213));
+    linedit->setText(text);
     linedit->setPalette(palette);
     linedit->setFont(QFont("STKaiti", 12, QFont::Bold));
 
 }
-
+/*
+ * 输入：lineEdit为文本容器,warningDialog为警告内容
+ * 功能: 检验文本内的格式是否正确，如果错误则进行报错显示
+ * 输出：输出是否格式正确,正确返回QENUM_Noraml，错误返回QEnum_Error
+ */
 QENUM_Warning QDlgLogin::checkAccount(QLineEdit* lineEdit,  QLabel* WarningDialog)
 {
     QRegularExpression re("^1\\d{10}$");
@@ -32,7 +40,11 @@ QENUM_Warning QDlgLogin::checkAccount(QLineEdit* lineEdit,  QLabel* WarningDialo
     }
     return QENUM_Normal;
 }
-
+/*
+ * 输入：账号的文本内容
+ * 功能：检验账号的文本内容
+ * 输出：文本内容正确就返回QENUM_Normal，错误就返回QENUM_Error
+ */
 QENUM_Warning QDlgLogin::checkAccount(const QString& text)
 {
     QRegularExpression re("\\d{11,11}");
@@ -41,7 +53,11 @@ QENUM_Warning QDlgLogin::checkAccount(const QString& text)
         return QENUM_Error;
     return QENUM_Normal;
 }
-
+/*
+ * 输入：lineEdit为密码的文本框对象，WarningDialog为警告框的对象
+ * 功能：检验密码文本框的内容是否正确，若正确能不显示警告框，不正确就显示警告框
+ * 输出：密码文本框的内容若正确返回QENUM_Normal，错误则返回QENUM_Error
+ */
 QENUM_Warning QDlgLogin::checkPassword(QLineEdit* lineEdit,QLabel*WarningDialog)
 {
     QRegularExpression re("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$");
@@ -59,7 +75,11 @@ QENUM_Warning QDlgLogin::checkPassword(QLineEdit* lineEdit,QLabel*WarningDialog)
     }
     return QENUM_Normal;
 }
-
+/*
+ * 输入：密码的文本内容
+ * 功能：检验密码的文本内容
+ * 输出：文本内容正确就返回QENUM_Normal，错误就返回QENUM_Error
+ */
 QENUM_Warning QDlgLogin::checkPassword(const QString& text)
 {
     QRegularExpression re("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$");
@@ -67,9 +87,14 @@ QENUM_Warning QDlgLogin::checkPassword(const QString& text)
     if (!match.hasMatch())return QENUM_Error;
     return QENUM_Normal;
 }
-
+/*
+ * 输入：验证码文本框对象
+ * 功能：校验验证码是否正确
+ * 输出：正确返回QENUM_Normal，错误返回QENUM_Warning
+ */
 QENUM_Warning QDlgLogin::checkVerificationCode(QLineEdit* lineEdit)
 {
+
     return QENUM_Warning();
 }
 
@@ -100,7 +125,11 @@ void QDlgLogin::MouseReleaseEvent(QMouseEvent *event)
 {
 
 }
-
+/*
+ * 输入：label为警告框对象,dialogText为label警告框所提示的对象的输入框的初始化文本，text为输入框的内容文本
+ * 功能：根据文本框的内容来进行警告框的显示与隐藏
+ * 输出：void
+ */
 void QDlgLogin::setWarningDialogVisible(QLabel* label,const QString& dialogText,const QString& text, QENUM_LinEdit lineEditType)
 {
     if (dialogText == text || text == QString(""))//未点击LineEdit，
@@ -122,8 +151,9 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
    network->start();
 }
 /*
-数字:18号字大小
-非数字:14号字大小
+输入：lineEdit为文本框对象，text为文本内容
+功能：若文本内容为数字能设置字体为STKaiti,字体大小为18,若非数字则设置为STKaiti,字体大小为12
+输出：
 */
 void QDlgLogin::setLineEditFontSize( QLineEdit* lineEdit, const QString& text)
 {
@@ -134,7 +164,9 @@ void QDlgLogin::setLineEditFontSize( QLineEdit* lineEdit, const QString& text)
     else
         lineEdit->setFont(QFont("STKaiti", 12, QFont::Bold));
 }
-
+/*
+ * 功能：显示注册界面
+ */
 void QDlgLogin::registerAccount_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
@@ -145,7 +177,10 @@ QDlgLogin::~QDlgLogin()
     delete ui;
     close();
 }
-
+/*
+ *
+ * 功能：初始化登陆进度条
+ */
 inline void QDlgLogin::initProgressBar()
 {
     ui->page2ProgressBar->setRange(0, 100);
@@ -154,7 +189,9 @@ inline void QDlgLogin::initProgressBar()
     timer->setInterval(50);
     connect(timer, SIGNAL(timeout()), this, SLOT(onProgressBarLoader()));
 }
-
+/*
+ * 功能：进行初始化界面的设置
+ */
 void QDlgLogin::initUi()
 {
     setPalette(QPalette(Qt::white));//设置背景为白色
@@ -180,6 +217,9 @@ void QDlgLogin::initUi()
     ui->stackedWidget->setCurrentIndex(0);
 
 }
+/*
+ * 功能：初始化各个对象框的可视化
+ */
 void QDlgLogin::initVisible()
 {
     ui->labelAccountWarningDialog->setVisible(false);
@@ -191,6 +231,9 @@ void QDlgLogin::initVisible()
     ui->Page4LabelPasswordWarningDialog->setVisible(false);
     ui->page4LabelVerificationCodeWarningDialog->setVisible(false);
 }
+/*
+ * 功能：初始化过滤器
+ */
 void QDlgLogin::initFilter()
 {
     ui->LineEditAccount->installEventFilter(this);//安装过滤器
@@ -205,7 +248,6 @@ void QDlgLogin::on_btnOk_clicked()
 {
 
 }
-
 void QDlgLogin::on_LineEditAccount_textChanged(const QString &text)
 {
     setLineEditFontSize(ui->LineEditAccount, text);
@@ -219,7 +261,11 @@ void QDlgLogin::on_LineEditPassword_textChanged(const QString &text)
     setWarningDialogVisible(ui->labelPasswordWarningDialog, lineEditPasswordInitText, text,QENUM_Password);
 }
 
-
+/*
+ * 输入：watched为初始观察的对象,event为事件
+ * 功能：进行事件的过滤，
+ * 输出:成功返回true，失败返回false
+ */
 bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 {
     lineEdits.eventFilter(watched,event);
@@ -241,7 +287,10 @@ void QDlgLogin::close(QCloseEvent *event)
 
     close();
 }
-
+/*
+ *
+ * 功能：登陆点击事件响应
+ */
 
 void QDlgLogin::on_pushButtonLogin_clicked()
 {
@@ -277,7 +326,9 @@ QMyLineEdit::QMyLineEdit(QLineEdit *lineEdit, QLabel *label,const QString &image
     this->text=text;
     this->enumLineEdit=enumLineEdit;
 }
-
+/*
+ * 功能：事件过滤
+ */
 void QMyLineEdit::eventFilter(QObject *watched, QEvent *event)
 {
     if(watched==lineEdit){
@@ -331,7 +382,10 @@ void QMyLineEdits::push_back(QMyLineEdit &obj)
 {
     list.push_back(obj);
 }
-
+/*
+ *
+ * 功能：进行集体事件的过滤
+ */
 void QMyLineEdits::eventFilter(QObject *watched, QEvent *event)
 {
     for(auto begin=list.begin();begin!=list.end();begin++)

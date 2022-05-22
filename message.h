@@ -52,9 +52,16 @@ public:
     void setData(const QByteArray& data);
 protected:
     ENUM_Network_Massage msgType;//消息类型
-    QByteArray data;
+    QByteArray data;//消息数据
 };
-
+/*
+ * Message为消息类包括
+ * msgType 消息类型
+ * data 消息数据
+ * id 数据的序号
+ * curDataTime发送时间
+ * tryCount 尝试发送消息的次数
+ */
 class Message:public NetworkMessage
 {
 public:

@@ -12,5 +12,6 @@
         <file>images/verificationCodeIconGray.jpg</file>
         <file>images/logo.ico</file>
         <file>images/logo.png</file>
+        <file>images/minButton.png</file>
     </qresource>
 </RCC>

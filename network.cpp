@@ -11,7 +11,11 @@ NetworkCommunication::NetworkCommunication()
     addr= getLocalIp();
 }
 
-
+/*
+ *
+ * 功能：开始与服务器连接
+ *
+ */
 
 void  NetworkCommunication::startConnect()
 {
@@ -19,7 +23,10 @@ void  NetworkCommunication::startConnect()
     tcpClient->connectToHost(addr,port);
     tcpClient->waitForConnected(1000);
 }
-
+/*
+ * 功能：获取本地Ip
+ * 输出：返回本地IPv4地址
+ */
 QHostAddress NetworkCommunication::getLocalIp()
 {
     QString localhostName=QHostInfo::localHostName();

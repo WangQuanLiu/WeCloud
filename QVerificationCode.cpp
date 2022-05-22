@@ -1,43 +1,45 @@
-#include "QVerificationCode.h"
+ï»¿#include "QVerificationCode.h"
 
 QVerificationCode::~QVerificationCode()
 {
 }
 void QVerificationCode::paintEvent(QPaintEvent* event)
 {
+    Q_UNUSED(event);
+   //UNSUE(event);
 	code.clear();
 	QPainter painter(this);
 	QPen pen;
-	//»­µã
+	//ç”»ç‚¹
 	for (int i = 0; i < pointNumber; i++) {
 		pen = QPen(QColor(rand()%256, rand()%256, rand()%256));
 		painter.setPen(pen);
 		painter.drawPoint(rand()%150, rand()%50);
 	}
-	//»­Ïß
+	//ç”»çº¿
 	for (int i = 0; i < lineNumber; i++) {
 		painter.drawLine(rand()%150, rand()%50,
 			rand()%150, rand()%50);
 	}
-	//Ëæ»úÊı×Ö
+	//éšæœºæ•°å­—
 	for (int i = 0; i < codeNumber; i++) {
 		int num = rand()%3;
-		if (num == 0)//Êı×Ö
+		if (num == 0)//æ•°å­—
 			code += QString::number(rand()%10);
-		else if (num == 1) {//´óĞ´×ÖÄ¸
+		else if (num == 1) {//å¤§å†™å­—æ¯
 			int temp = 'A';
 			code += static_cast<QChar>(temp + rand()%26);
 		}
-		else if (num == 2) { //Ğ¡Ğ´×ÖÄ¸
+		else if (num == 2) { //å°å†™å­—æ¯
 			int temp = 'a';
 			code += static_cast<QChar>(temp + rand()%26);
 		}
 	}
 	pen = QPen(QColor(255, 0, 0, 100));
-	QFont font("¿¬Ìå", 25, QFont::Bold, true);
+	QFont font("æ¥·ä½“", 25, QFont::Bold, true);
 	painter.setFont(font);
 	painter.setPen(pen);
-	//»æ»­×Ö
+	//ç»˜ç”»å­—
 	for (int i = 0; i < codeNumber; i++)
 		painter.drawText(10 + 30 * i, 5, 30, 40, Qt::AlignCenter, QString(code[i]));
 
@@ -45,6 +47,8 @@ void QVerificationCode::paintEvent(QPaintEvent* event)
 
 void QVerificationCode::mousePressEvent(QMouseEvent* event)
 {
+    Q_UNUSED(event);
+
 	update();
 }
 

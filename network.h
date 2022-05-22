@@ -6,6 +6,13 @@
 #include<qthread.h>
 #include<qlist.h>
 #include<message.h>
+/*
+ * NetworkCommunication 为网络通信类
+ * tcpClient为tcp通信类
+ * port 为端口号
+ * MsgList为消息集合
+ *
+ */
 class NetworkCommunication:public QObject
 {
     Q_OBJECT

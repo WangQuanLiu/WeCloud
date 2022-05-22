@@ -36,7 +36,7 @@ unsigned int Message::getTryCount()
 }
 ENUM_Network_Massage Message::getMsgType()
 {
-    return getMsgType();
+    return this->msgType;
 }
 QByteArray Message::getData()
 {
