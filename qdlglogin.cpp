@@ -12,6 +12,7 @@ void QDlgLogin::writeSettings()
  */
 void QDlgLogin::initLineEditText(QLineEdit *linedit, QString text)
 {
+    if(linedit==nullptr)return;
     QPalette palette;
     palette.setColor(QPalette::Text, QColor(213, 213, 213));
     linedit->setText(text);
@@ -132,6 +133,7 @@ void QDlgLogin::MouseReleaseEvent(QMouseEvent *event)
  */
 void QDlgLogin::setWarningDialogVisible(QLabel* label,const QString& dialogText,const QString& text, QENUM_LinEdit lineEditType)
 {
+    if(label==nullptr)return;
     if (dialogText == text || text == QString(""))//未点击LineEdit，
         label->setVisible(false);
     else if (lineEditType == QENUM_Account && checkAccount(text) == QENUM_Error)
@@ -149,6 +151,7 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
    initProgressBar();
    network = new Network();
    network->start();
+
 }
 /*
 输入：lineEdit为文本框对象，text为文本内容
@@ -157,10 +160,11 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
 */
 void QDlgLogin::setLineEditFontSize( QLineEdit* lineEdit, const QString& text)
 {
+    if(lineEdit==nullptr)return;
     bool isDigit;
     text.toDouble(&isDigit);//判断是否为数字
     if (isDigit)
-        lineEdit->setFont(QFont("STKaiti", 18, QFont::Bold));
+        lineEdit->setFont(QFont("STKaiti", 16, QFont::Bold));
     else
         lineEdit->setFont(QFont("STKaiti", 12, QFont::Bold));
 }
@@ -204,6 +208,12 @@ void QDlgLogin::initUi()
     initLineEditText(ui->page3LineEditAccount,lineEditAccountInitText);
     initLineEditText(ui->page3LineEditPassword,lineEditPasswordInitText);
     initLineEditText(ui->page3LineEditVerification,lineEditVerificationCodeInitText);
+
+    setLabelFontSize(ui->labelRegisterAccount,10);
+    setLabelFontSize(ui->labelForgetPassword,10);
+    setLabelFontSize(ui->page3LabelBackLogin,10);
+    setLabelFontSize(ui->labelAccountWarningDialog,10);
+    setLabelFontSize(ui->labelPasswordWarningDialog,10);
 
     lineEdits = { QMyLineEdit(ui->LineEditAccount,ui->labelAccountIcon,"accountIcon.jpg","accountIconBlue.jpg",lineEditAccountInitText ),
                   QMyLineEdit(ui->LineEditPassword,ui->labelPasswordIcon,"passwordIcon.jpg","passwordIconBlue.jpg",lineEditPasswordInitText,QENUM_Password),

@@ -35,7 +35,7 @@
     </size>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="labelAccountIcon">
@@ -192,7 +192,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>忘记密码?</string>
+      <string>忘记密码</string>
      </property>
     </widget>
     <widget class="QWidget" name="horizontalLayoutWidget_4">
@@ -248,7 +248,7 @@
        <x>-10</x>
        <y>-10</y>
        <width>441</width>
-       <height>351</height>
+       <height>381</height>
       </rect>
      </property>
      <property name="title">
@@ -871,7 +871,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>忘记密码?</string>
+      <string>忘记密码</string>
      </property>
     </widget>
    </widget>

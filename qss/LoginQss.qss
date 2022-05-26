@@ -85,7 +85,7 @@ image:url(":images/ORCodeGray.jpg");
 #labelLogin{
    color:#A8A6A6;
 border-color:#A8A6A6;
-    font-size:18px;
+    font-size:12px;
 }
 #pushButtonCancel{
    
@@ -100,7 +100,7 @@ font-size:15px;
 border:none;
 color:#FFFFFF;
 border-radius:6px;
-font-size:15px;
+font-size:12px;
 }
 #labelRegister{
     font-size:25px;
@@ -146,4 +146,7 @@ QProgressBar:chunk{
 }
 #page2Icon{
     image:url(":images/logo.png");
+}
+#page3LabelBackLogin,#labelRegisterAccount{
+    front-size:5px;
 }

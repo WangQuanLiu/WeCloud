@@ -13,5 +13,8 @@
         <file>images/logo.ico</file>
         <file>images/logo.png</file>
         <file>images/minButton.png</file>
+        <file>images/close.svg</file>
+        <file>images/close_h.svg</file>
+        <file>qss/mFramelessWidgetQss.css</file>
     </qresource>
 </RCC>

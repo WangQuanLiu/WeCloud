@@ -1,4 +1,5 @@
-﻿#ifndef QDLGLOGIN_H
+﻿#pragma execution_character_set("utf-8")
+#ifndef QDLGLOGIN_H
 #define QDLGLOGIN_H
 #include <QDialog>
 #include<QPalette>
@@ -15,6 +16,7 @@
 #include<qregularexpression.h>
 #include<qthread.h>
 #include<qtimer.h>
+#include"mcommon.h"
 using std::initializer_list;
 namespace Ui {
 class QDlgLogin;

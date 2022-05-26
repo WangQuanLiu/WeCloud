@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += network
+QT       += printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 CONFIG += c++11
@@ -10,29 +11,33 @@ CONFIG += c++11
 
 SOURCES += \
     QVerificationCode.cpp \
+    framelessmainwindow.cpp \
     main.cpp \
+    mainwindow.cpp \
+    mcommon.cpp \
     message.cpp \
-    mframelesswidget.cpp \
-    mmainwindow.cpp \
     network.cpp \
     qdlglogin.cpp
 
 HEADERS += \
     QVerificationCode.h \
+    framelessmainwindow.h \
+    mainwindow.h \
+    mcommon.h \
     message.h \
-    mframelesswidget.h \
-    mmainwindow.h \
     network.h \
     qdlglogin.h
 
 FORMS += \
-    mmainwindow.ui \
+    mainwindow.ui \
     qdlglogin.ui
 
 
 RESOURCES += \
     source.qrc
 
+LIBS += User32.Lib
+LIBS += gdi32.lib
 
 RC_ICONS = logo.ico
 RC_FILE = logo.rc
