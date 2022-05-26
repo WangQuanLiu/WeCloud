@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "mcommon.h"
 #pragma execution_character_set("utf-8")
 MainWindow::MainWindow(QWidget *parent) : FramelessMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -16,8 +16,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::initForm()
 {
+    this->resize(QSize(950,600));
     //设置标题栏控件
-    ui->labTitle->setText("无边框窗体示例-支持win、linux、mac等系统 (QQ: 517216493 WX: feiyangqingyun)");
+    ui->labTitle->setText(" ");
     this->setWindowTitle(ui->labTitle->text());
     this->setTitleBar(ui->labTitle);
 
@@ -27,11 +28,13 @@ void MainWindow::initForm()
 
     //设置样式表
     QStringList list;
-    list << "#titleBar{background:#BBBBBB;}";
+    list << "#titleBar{background:#2B8CF5;}";
     list << "#titleBar{border-top-left-radius:8px;border-top-right-radius:8px;}";
-    list << "#widgetMain{border:2px solid #BBBBBB;background:#FFFFFF;}";
-    //list << "#widgetMain{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}";
+    list << "#widgetMain{border:2px solid #FFFFFF;background:#FFFFFF;}";
+    list << "#widgetMain{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}";
     this->setStyleSheet(list.join(""));
+    readQss("mainWindow.qss",this);
+
 }
 
 void MainWindow::titleDblClick()

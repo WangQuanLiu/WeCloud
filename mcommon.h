@@ -18,7 +18,7 @@ public:
 enum QEnumMessage {QEnumMsg_Login,QEnumMsg_SendMsg,QEnumMsg_Register};
 
 
-bool readQss(const QString&QssFilename,QDialog*ptr);
+bool readQss(const QString&QssFilename,QWidget*ptr);
 void setLabelFontSize( QLabel* lineEdit,unsigned fontSize);
 void setNormalShowScale();
 #endif // MCOMMON_H

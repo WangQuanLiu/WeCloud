@@ -151,7 +151,7 @@ QDlgLogin::QDlgLogin(QWidget *parent) :
    initProgressBar();
    network = new Network();
    network->start();
-
+  readQss("LoginQss.qss",this);
 }
 /*
 输入：lineEdit为文本框对象，text为文本内容

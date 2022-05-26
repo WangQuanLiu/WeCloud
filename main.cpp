@@ -8,25 +8,16 @@ int main(int argc, char *argv[])
     //init();
     QApplication a(argc, argv);
     QDlgLogin*dlgLogin=new QDlgLogin();
-   if(! readQss("LoginQss.qss",dlgLogin))
-       return 0;
 
-  // MainWindow m;
-  // m.show();
+   MainWindow m;
+   m.show();
     if(dlgLogin->exec()==QDialog::Accepted){
         QDlgLogin login;
         login.show();
 
- //   MainWindow m;
-  //  m.show();
-   // MMainWindow w;
-  //  w.show();
-
-
-   return a.exec();
   }
    // else
-    return 0;
+    return a.exec();
 }
 void init(){
     setNormalShowScale();

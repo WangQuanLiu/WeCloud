@@ -3,7 +3,7 @@
 MCommon::MCommon()
 {
 }
-bool readQss(const QString &QssFilename,QDialog*ptr)
+bool readQss(const QString &QssFilename,QWidget*ptr)
 {
     QString QssFilePath=":/qss/"+QssFilename;
     QFile file=(QssFilePath);
