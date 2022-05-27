@@ -7,11 +7,64 @@ MainWindow::MainWindow(QWidget *parent) : FramelessMainWindow(parent), ui(new Ui
    // qputenv("QT_SCALE_FACTOR", QString::number(1.0).toUtf8());
     ui->setupUi(this);
     this->initForm();
+    initFilter();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == ui->labelMenuMin) {
+        if (event->type() == QEvent::MouseButtonPress)
+            labelMin_Clicked();
+    }
+    else if(watched==ui->labelMenuMax){
+        if(event->type()==QEvent::MouseButtonPress)
+            labelMax_Clicked();
+    }
+    else if(watched==ui->labelMenuClose){
+        if(event->type()==QEvent::MouseButtonPress)
+            labelClose_Clicked();
+    }
+  return QMainWindow::eventFilter(watched,event);//交给上层
+}
+
+void MainWindow::labelMin_Clicked()
+{
+#ifdef Q_OS_MACOS
+    this->setWindowFlags(this->windowFlags() & ~Qt::FramelessWindowHint);
+#endif
+    this->showMinimized();
+
+}
+
+void MainWindow::labelMax_Clicked()
+{
+    if(this->isMaximized()){
+       this->showNormal();
+     }
+    else{
+        this->showMaximized();
+      }
+
+
+}
+
+void MainWindow::labelClose_Clicked()
+{
+
+    this->close();
+}
+
+void MainWindow::initFilter()
+{
+
+    ui->labelMenuMin->installEventFilter(this);
+    ui->labelMenuMax->installEventFilter(this);
+    ui->labelMenuClose->installEventFilter(this);
 }
 
 void MainWindow::initForm()
@@ -27,51 +80,22 @@ void MainWindow::initForm()
     connect(this, SIGNAL(windowStateChange(bool)), this, SLOT(windowStateChange(bool)));
 
     //设置样式表
-    QStringList list;
-    list << "#titleBar{background:#2B8CF5;}";
-    list << "#titleBar{border-top-left-radius:8px;border-top-right-radius:8px;}";
-    list << "#widgetMain{border:2px solid #FFFFFF;background:#FFFFFF;}";
-    list << "#widgetMain{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}";
-    this->setStyleSheet(list.join(""));
+  //  QStringList list;
+ //   list << "#titleBar{background:#2B8CF5;}";
+  //  list << "#titleBar{border-top-left-radius:8px;border-top-right-radius:8px;}";
+ //   list << "#widgetMain{border:2px solid #FFFFFF;background:#FFFFFF;}";
+ //   list << "#widgetMain{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}";
+  //  this->setStyleSheet(list.join(""));
     readQss("mainWindow.qss",this);
+
 
 }
 
 void MainWindow::titleDblClick()
 {
-    on_btnMenu_Max_clicked();
+
+    labelMax_Clicked();
 }
 
-void MainWindow::windowStateChange(bool max)
-{
-    ui->btnMenu_Max->setText(max ? "normal" : "max");
-}
 
-void MainWindow::on_btnMenu_Min_clicked()
-{
-#ifdef Q_OS_MACOS
-    this->setWindowFlags(this->windowFlags() & ~Qt::FramelessWindowHint);
-#endif
-    this->showMinimized();
-}
 
-void MainWindow::on_btnMenu_Max_clicked()
-{
-   if(this->isMaximized()){
-
-      this->showNormal();
-       ui->btnMenu_Max->setText("max");
-
-    }
-   else{
-
-       this->showMaximized();
-       ui->btnMenu_Max->setText("normal");
-     }
-
-}
-
-void MainWindow::on_btnMenu_Close_clicked()
-{
-    this->close();
-}

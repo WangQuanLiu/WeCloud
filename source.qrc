@@ -12,7 +12,10 @@
         <file>images/verificationCodeIconGray.jpg</file>
         <file>images/logo.ico</file>
         <file>images/logo.png</file>
-        <file>images/minButton.png</file>
         <file>images/min.png</file>
+        <file>qss/mainWindow.qss</file>
+        <file>images/min_hover.png</file>
+        <file>images/max.png</file>
+        <file>images/close.png</file>
     </qresource>
 </RCC>

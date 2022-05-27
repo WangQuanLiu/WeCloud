@@ -1,0 +1,24 @@
+#titleBar{
+background:#2B8CF5;
+}
+#titleBar{
+border-top-left-radius:8px;
+border-top-right-radius:8px;
+}
+#widgetMain{
+border:2px solid #FFFFFF;
+background:#FFFFFF;
+}
+#widgetMain{
+border-bottom-left-radius:8px;
+border-bottom-right-radius:8px;
+}
+#labelMenuMin{
+border-image: url(":/images/min.png")
+}
+#labelMenuMax{
+border-image: url(":images/max.png")
+}
+#labelMenuClose{
+border-image: url(":images/close.png")
+}

@@ -11,12 +11,12 @@ int main(int argc, char *argv[])
 
    MainWindow m;
    m.show();
-    if(dlgLogin->exec()==QDialog::Accepted){
+  /*  if(dlgLogin->exec()==QDialog::Accepted){
         QDlgLogin login;
         login.show();
 
   }
-   // else
+*/
     return a.exec();
 }
 void init(){
