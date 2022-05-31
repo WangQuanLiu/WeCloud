@@ -22,3 +22,16 @@ border-image: url(":images/max.png")
 #labelMenuClose{
 border-image: url(":images/close.png")
 }
+#lineEditMenuSearch{
+background-color: rgba(255,255,255,80);
+border-width:0px;
+border-style:outset;
+border-radius: 10px;
+padding: 0 20px;
+}
+#labelMenuInterval{
+border-image: url(":images/menuInterval.png")
+}
+#labelMenuAdd{
+border-image: url(":images/menuAdd.png")
+}

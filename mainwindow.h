@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include "framelessmainwindow.h"
-
+#include <QColor>
+#include <QRgb>
 namespace Ui {
 class MainWindow;
 }
@@ -25,6 +26,7 @@ private:
       void labelMax_Clicked();
       void labelClose_Clicked();
       void initFilter();
+      void init();
 private slots:
     void initForm();
     void titleDblClick();

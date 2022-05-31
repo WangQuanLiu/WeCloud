@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : FramelessMainWindow(parent), ui(new Ui
     ui->setupUi(this);
     this->initForm();
     initFilter();
+    init();
 }
 
 MainWindow::~MainWindow()
@@ -67,13 +68,28 @@ void MainWindow::initFilter()
     ui->labelMenuClose->installEventFilter(this);
 }
 
+void MainWindow::init()
+{
+
+    QPalette pe;
+    pe.setColor(QPalette::Background,Qt::black);
+    pe.setColor(QPalette::WindowText,Qt::white);
+    ui->label->setPalette(pe);
+    QColor color;
+    color.setRgb(235,235,235);
+    pe.setColor(QPalette::Background,color);
+    ui->widgetLeft->setAutoFillBackground(true);
+    ui->widgetLeft->setPalette(pe);
+
+}
+
 void MainWindow::initForm()
 {
     this->resize(QSize(950,600));
     //设置标题栏控件
-    ui->labTitle->setText(" ");
-    this->setWindowTitle(ui->labTitle->text());
-    this->setTitleBar(ui->labTitle);
+   // ui->lineEditMenuSearch->setText(" ");
+   // this->setWindowTitle(ui->lineEditMenuSearch->text());
+    this->setTitleBar(ui->titleBar);
 
     //关联信号
     connect(this, SIGNAL(titleDblClick()), this, SLOT(titleDblClick()));

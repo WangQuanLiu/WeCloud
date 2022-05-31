@@ -17,5 +17,8 @@
         <file>images/min_hover.png</file>
         <file>images/max.png</file>
         <file>images/close.png</file>
+        <file>images/search.png</file>
+        <file>images/menuInterval.png</file>
+        <file>images/menuAdd.png</file>
     </qresource>
 </RCC>
