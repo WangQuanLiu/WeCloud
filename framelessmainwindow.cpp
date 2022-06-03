@@ -57,6 +57,7 @@ void FramelessMainWindow::showEvent(QShowEvent *event)
 
 void FramelessMainWindow::doWindowStateChange(QEvent *event)
 {
+
     //非最大化才能移动和拖动大小
     if (windowState() == Qt::WindowNoState) {
         moveEnable = true;

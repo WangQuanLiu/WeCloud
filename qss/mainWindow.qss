@@ -35,3 +35,6 @@ border-image: url(":images/menuInterval.png")
 #labelMenuAdd{
 border-image: url(":images/menuAdd.png")
 }
+#labelMenuLeftMessage{
+border-radius: 8px;
+}

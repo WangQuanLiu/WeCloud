@@ -20,5 +20,9 @@
         <file>images/search.png</file>
         <file>images/menuInterval.png</file>
         <file>images/menuAdd.png</file>
+        <file>images/menuLeftMessage.png</file>
+        <file>images/menuLeftMessage_click.png</file>
+        <file>images/menuLeftContact.png</file>
+        <file>images/menuLeftContact_click.png</file>
     </qresource>
 </RCC>

@@ -42,3 +42,37 @@ void setLabelFontSize(QLabel *lineEdit,unsigned fontSize)
     font.setPointSize(fontSize);
     lineEdit->setFont(font);
 }
+
+QPixmap pixmapScale(const QPixmap &image, const int &width,const int &heignt)
+{
+
+    QPixmap temp_image;
+    temp_image=image.scaled(width,heignt,Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+    return temp_image;
+}
+
+QPixmap getRoundRectPixmap(QPixmap srcPixmap, int radius)
+{
+    if(srcPixmap.isNull())return srcPixmap;
+    //获取图片尺寸
+    int imageWidth=srcPixmap.width();
+    int imageHeight=srcPixmap.height();
+
+    //处理大尺寸的图片，保证图片显示区域完整
+    QPixmap newPixmap=srcPixmap.scaled(imageWidth,imageHeight,Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+
+    QPixmap destImage(imageWidth,imageHeight);
+    destImage.fill(Qt::transparent);
+    QPainter painter(&destImage);
+    //抗锯齿
+    painter.setRenderHints(QPainter::Antialiasing,true);
+    //图片平滑处理
+    painter.setRenderHints(QPainter::SmoothPixmapTransform,true);
+    //将图片裁剪成圆角
+    QPainterPath path;
+    QRect rect(0,0,imageWidth,imageHeight);
+    path.addRoundedRect(rect,radius,radius);
+    painter.setClipPath(path);
+    painter.drawPixmap(0,0,imageWidth,imageHeight,newPixmap);
+    return destImage;
+}

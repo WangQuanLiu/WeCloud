@@ -29,8 +29,32 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     else if(watched==ui->labelMenuClose){
         if(event->type()==QEvent::MouseButtonPress)
             labelClose_Clicked();
+    }else if(watched==ui->labelMenuLeftMessage){
+        if(event->type()==QEvent::MouseButtonPress){
+            labelMenuLeftMessage_Clicked();
+        }
+    }else if(watched==ui->labelMenuLeftContact){
+        if(event->type()==QEvent::MouseButtonPress)
+            labelMenuLeftContact_Clicked();
     }
-  return QMainWindow::eventFilter(watched,event);//交给上层
+    return QMainWindow::eventFilter(watched,event);//交给上层
+}
+
+void MainWindow::setLabelPixmap(const QString &imagePath, QLabel *label)
+{
+    QPixmap pixmap;
+    if(!pixmap.load(imagePath))return ;
+    QPixmap newPixmap=pixmapScale(pixmap, label->width(),label->height());
+    label->setPixmap(newPixmap);
+}
+
+void MainWindow::setLabelRoundRectPixmap(const QString &imagePath, QLabel *label)
+{
+    QPixmap pixmap;
+    if(!pixmap.load(imagePath))return ;
+    QPixmap newPixmap=pixmapScale(pixmap, label->width(),label->height());
+    newPixmap=getRoundRectPixmap(newPixmap,8);
+    label->setPixmap(newPixmap);
 }
 
 void MainWindow::labelMin_Clicked()
@@ -50,8 +74,6 @@ void MainWindow::labelMax_Clicked()
     else{
         this->showMaximized();
       }
-
-
 }
 
 void MainWindow::labelClose_Clicked()
@@ -60,12 +82,23 @@ void MainWindow::labelClose_Clicked()
     this->close();
 }
 
+void MainWindow::labelMenuLeftMessage_Clicked()
+{
+    setLabelRoundRectPixmap(":images/menuLeftMessage_click.png",ui->labelMenuLeftMessage);
+}
+
+void MainWindow::labelMenuLeftContact_Clicked()
+{
+    setLabelRoundRectPixmap(":images/menuLeftContact_click.png",ui->labelMenuLeftContact);
+}
+
 void MainWindow::initFilter()
 {
-
     ui->labelMenuMin->installEventFilter(this);
     ui->labelMenuMax->installEventFilter(this);
     ui->labelMenuClose->installEventFilter(this);
+    ui->labelMenuLeftMessage->installEventFilter(this);
+    ui->labelMenuLeftContact->installEventFilter(this);
 }
 
 void MainWindow::init()
@@ -81,6 +114,15 @@ void MainWindow::init()
     ui->widgetLeft->setAutoFillBackground(true);
     ui->widgetLeft->setPalette(pe);
 
+    initLabelPixmap();
+
+
+}
+
+void MainWindow::initLabelPixmap()
+{
+    setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
+    setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
 }
 
 void MainWindow::initForm()
@@ -90,18 +132,9 @@ void MainWindow::initForm()
    // ui->lineEditMenuSearch->setText(" ");
    // this->setWindowTitle(ui->lineEditMenuSearch->text());
     this->setTitleBar(ui->titleBar);
-
     //关联信号
     connect(this, SIGNAL(titleDblClick()), this, SLOT(titleDblClick()));
     connect(this, SIGNAL(windowStateChange(bool)), this, SLOT(windowStateChange(bool)));
-
-    //设置样式表
-  //  QStringList list;
- //   list << "#titleBar{background:#2B8CF5;}";
-  //  list << "#titleBar{border-top-left-radius:8px;border-top-right-radius:8px;}";
- //   list << "#widgetMain{border:2px solid #FFFFFF;background:#FFFFFF;}";
- //   list << "#widgetMain{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}";
-  //  this->setStyleSheet(list.join(""));
     readQss("mainWindow.qss",this);
 
 
@@ -109,9 +142,10 @@ void MainWindow::initForm()
 
 void MainWindow::titleDblClick()
 {
-
     labelMax_Clicked();
 }
+
+
 
 
 
