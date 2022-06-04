@@ -7,54 +7,66 @@
 #include <QLabel>
 #include <QPainter>
 #include <QEvent>
+#include <initializer_list>
 namespace Ui {
 class MainWindow;
 }
-class MQLabels;
-class MQLabel{
+template<typename T>
+class MQObjects;
+template<typename T>
+class MQObject{
 public:
-    friend MQLabels;
-    MQLabel(QLabel*label,void(*clickFuncPtr)(void)){
-        this->label=label;
+    friend MQObjects<T>;
+    MQObject(T*object,void(*clickFuncPtr)(void)){
+        this->object=object;
         this->clickFuncPtr=clickFuncPtr;
     }
-    MQLabel operator=(const MQLabel&obj){
-        this->label=obj.label;
+    MQObject operator=(const MQObject&obj){
+        this->object=obj.object;
         this->clickFuncPtr=obj.clickFuncPtr;
         return *this;
     }
-    QLabel* getLabel(){
-        return this->label;
+    void  eventFilter(QObject*watched,QEvent*event){
+        if(watched==object){
+            if(event->type()==QEvent::MouseButtonPress){
+                   this->clickFuncPtr();
+            }
+        }
+    }
+    T* getLabel(){
+        return this->object;
     }
     void (*getClickFuncPtr(void))(){
         return this->clickFuncPtr;
     }
-    void setLabel( QLabel*label){
-        this->label=label;
+    void setLabel( T*object){
+        this->object=object;
     }
     void setClickFuncPtr( void(*clickFuncPtr)(void)){
         this->clickFuncPtr=clickFuncPtr;
     }
 private:
-    QLabel*label;
-    void (*clickFuncPtr)(void);
+    T*object;
+    void (*clickFuncPtr)();
 };
-class MQLabels{
+template<typename T>
+class MQObjects{
 public:
-    void push_back(MQLabel&label){
-        labelVec.push_back(label);
+    MQObjects()=default;
+    MQObjects(std::initializer_list<MQObject<T>>list){
+        for(auto begin=list.begin();begin!=list.end();begin++)
+            this->objectVec.push_back(*begin);
+    }
+    void push_back(MQObject<T>&object){
+        objectVec.push_back(object);
     }
     void eventFilter(QObject*watched,QEvent*event){
-        for(int i=0;i<labelVec.size();i++){
-            if(watched==labelVec[i].label){
-                if(event->type() == QEvent::MouseButtonPress){
-                    labelVec[i].clickFuncPtr();
-                }
-            }
+        for(int i=0;i<objectVec.size();i++){
+            objectVec[i].eventFilter();
         }
     }
 private:
-    std::vector<MQLabel>labelVec;
+    std::vector<MQObject<T>>objectVec;
 };
 
 class MainWindow : public FramelessMainWindow
@@ -84,6 +96,8 @@ private:
 private slots:
     void initForm();
     void titleDblClick();
+private:
+    MQObjects<QLabel> mqlabes;
 };
 
 #endif // MAINWINDOW_H

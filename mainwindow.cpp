@@ -18,6 +18,8 @@ MainWindow::~MainWindow()
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
+
+/*
     if (watched == ui->labelMenuMin) {
         if (event->type() == QEvent::MouseButtonPress)
             labelMin_Clicked();
@@ -37,6 +39,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         if(event->type()==QEvent::MouseButtonPress)
             labelMenuLeftContact_Clicked();
     }
+    */
     return QMainWindow::eventFilter(watched,event);//½»¸øÉÏ²ã
 }
 

@@ -294,7 +294,7 @@ bool QDlgLogin::eventFilter(QObject *watched, QEvent *event)
 
 void QDlgLogin::close(QCloseEvent *event)
 {
-
+  Q_UNUSED(event);
     close();
 }
 /*
