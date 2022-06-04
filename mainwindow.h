@@ -10,63 +10,94 @@
 #include <initializer_list>
 namespace Ui {
 class MainWindow;
-}
-template<typename T>
 class MQObjects;
+class MQObject;
+/*
 template<typename T>
+
+template<typename T>
+
+*/
+typedef std::function<void(void)>FuncPtr;
+}
+using Ui::FuncPtr;
 class MQObject{
 public:
-    friend MQObjects<T>;
-    MQObject(T*object,void(*clickFuncPtr)(void)){
+   // friend MQObjects<T>;
+    MQObject()=default;
+    MQObject(QLabel*object,FuncPtr unClickFuncPtr,FuncPtr clickFuncPtr){
         this->object=object;
         this->clickFuncPtr=clickFuncPtr;
+        this->unClickFuncPtr=unClickFuncPtr;
     }
     MQObject operator=(const MQObject&obj){
         this->object=obj.object;
         this->clickFuncPtr=obj.clickFuncPtr;
+        this->unClickFuncPtr=obj.unClickFuncPtr;
         return *this;
     }
     void  eventFilter(QObject*watched,QEvent*event){
         if(watched==object){
             if(event->type()==QEvent::MouseButtonPress){
-                   this->clickFuncPtr();
+                   (this->clickFuncPtr)();
+                isPressed=true;
             }
         }
     }
-    T* getLabel(){
-        return this->object;
+    void unClickFunc(){
+        this->unClickFuncPtr();
+        isPressed=false;
     }
-    void (*getClickFuncPtr(void))(){
-        return this->clickFuncPtr;
+    bool getIsPressed(){
+        return isPressed;
     }
-    void setLabel( T*object){
+    void setObject( QLabel*object){
         this->object=object;
     }
-    void setClickFuncPtr( void(*clickFuncPtr)(void)){
+    void setUnClickFuncPtr(FuncPtr unClickFuncPtr){
+        this->unClickFuncPtr=unClickFuncPtr;
+    }
+    void setClickFuncPtr( FuncPtr clickFuncPtr){
         this->clickFuncPtr=clickFuncPtr;
     }
 private:
-    T*object;
-    void (*clickFuncPtr)();
+    bool isPressed=false;
+    QLabel*object;
+    FuncPtr clickFuncPtr,unClickFuncPtr;
 };
-template<typename T>
+
 class MQObjects{
 public:
+    using Object=MQObject;
     MQObjects()=default;
-    MQObjects(std::initializer_list<MQObject<T>>list){
+    MQObjects(std::initializer_list<Object>list){
         for(auto begin=list.begin();begin!=list.end();begin++)
             this->objectVec.push_back(*begin);
     }
-    void push_back(MQObject<T>&object){
+    void push_back(Object&object){
         objectVec.push_back(object);
     }
     void eventFilter(QObject*watched,QEvent*event){
-        for(int i=0;i<objectVec.size();i++){
-            objectVec[i].eventFilter();
+       static int index=-1;
+       int i;
+        for( i=0;i<objectVec.size();i++){
+            objectVec[i].eventFilter(watched,event);
+            if(objectVec[i].getIsPressed()==true&&i!=index){
+                //index=i;
+                break;
+            }
+        }
+        if(i!=index&&i<objectVec.size()){
+            index=i;
+        for(int j=0;j<objectVec.size();j++){
+            if(index!=j){
+                objectVec[j].unClickFunc();
+            }
+        }
         }
     }
 private:
-    std::vector<MQObject<T>>objectVec;
+    std::vector<Object>objectVec;
 };
 
 class MainWindow : public FramelessMainWindow
@@ -74,6 +105,8 @@ class MainWindow : public FramelessMainWindow
     Q_OBJECT
 
 public:
+
+    friend class MQObject;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
@@ -90,6 +123,8 @@ private:
       void labelClose_Clicked();
       void labelMenuLeftMessage_Clicked();
       void labelMenuLeftContact_Clicked();
+      void labelMenuLeftMessage_unClicked();
+      void labelMenuLeftContact_unClicked();
       void initFilter();
       void init();
       void initLabelPixmap();
@@ -97,7 +132,7 @@ private slots:
     void initForm();
     void titleDblClick();
 private:
-    MQObjects<QLabel> mqlabes;
+    MQObjects menuLeftobjects;
 };
 
 #endif // MAINWINDOW_H

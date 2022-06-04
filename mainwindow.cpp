@@ -4,7 +4,7 @@
 #pragma execution_character_set("utf-8")
 MainWindow::MainWindow(QWidget *parent) : FramelessMainWindow(parent), ui(new Ui::MainWindow)
 {
-   // qputenv("QT_SCALE_FACTOR", QString::number(1.0).toUtf8());
+
     ui->setupUi(this);
     this->initForm();
     initFilter();
@@ -18,28 +18,28 @@ MainWindow::~MainWindow()
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
-
-/*
-    if (watched == ui->labelMenuMin) {
-        if (event->type() == QEvent::MouseButtonPress)
+    menuLeftobjects.eventFilter(watched,event);
+    if(watched==this){
+        if(event->type()==QEvent::WindowStateChange){
+            ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
+        }
+    }
+   else if(watched==ui->labelMenuMin){
+        if(event->type()==QEvent::MouseButtonPress){
             labelMin_Clicked();
+        }
     }
     else if(watched==ui->labelMenuMax){
-        if(event->type()==QEvent::MouseButtonPress)
+        if(event->type()==QEvent::MouseButtonPress){
             labelMax_Clicked();
+        }
     }
     else if(watched==ui->labelMenuClose){
-        if(event->type()==QEvent::MouseButtonPress)
-            labelClose_Clicked();
-    }else if(watched==ui->labelMenuLeftMessage){
         if(event->type()==QEvent::MouseButtonPress){
-            labelMenuLeftMessage_Clicked();
+            labelClose_Clicked();
         }
-    }else if(watched==ui->labelMenuLeftContact){
-        if(event->type()==QEvent::MouseButtonPress)
-            labelMenuLeftContact_Clicked();
     }
-    */
+
     return QMainWindow::eventFilter(watched,event);//½»¸øÉÏ²ã
 }
 
@@ -95,6 +95,16 @@ void MainWindow::labelMenuLeftContact_Clicked()
     setLabelRoundRectPixmap(":images/menuLeftContact_click.png",ui->labelMenuLeftContact);
 }
 
+void MainWindow::labelMenuLeftMessage_unClicked()
+{
+    setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
+}
+
+void MainWindow::labelMenuLeftContact_unClicked()
+{
+     setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
+}
+
 void MainWindow::initFilter()
 {
     ui->labelMenuMin->installEventFilter(this);
@@ -118,14 +128,17 @@ void MainWindow::init()
     ui->widgetLeft->setPalette(pe);
 
     initLabelPixmap();
-
+    menuLeftobjects={MQObject(ui->labelMenuLeftMessage,std::bind(&MainWindow::labelMenuLeftMessage_unClicked,this),std::bind(&MainWindow::labelMenuLeftMessage_Clicked,this)),
+             MQObject(ui->labelMenuLeftContact,std::bind(&MainWindow::labelMenuLeftContact_unClicked,this),std::bind(&MainWindow::labelMenuLeftContact_Clicked,this))};
 
 }
 
 void MainWindow::initLabelPixmap()
 {
-    setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
-    setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
+    //setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
+    //setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
+    labelMenuLeftMessage_unClicked();
+    labelMenuLeftContact_unClicked();
 }
 
 void MainWindow::initForm()
