@@ -115,6 +115,8 @@ private:
 
 public slots:
       bool eventFilter(QObject*,QEvent*);
+protected:
+       void showEvent(QShowEvent *event);
 private:
       void setLabelPixmap(const QString&imagePath,QLabel*label);
       void setLabelRoundRectPixmap(const QString&imagePath,QLabel*label);

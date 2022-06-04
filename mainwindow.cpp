@@ -23,7 +23,11 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         if(event->type()==QEvent::WindowStateChange){
             ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
         }
+        else if(event->type()==QEvent::Resize){
+            ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
+        }
     }
+
    else if(watched==ui->labelMenuMin){
         if(event->type()==QEvent::MouseButtonPress){
             labelMin_Clicked();
@@ -41,6 +45,13 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     }
 
     return QMainWindow::eventFilter(watched,event);//交给上层
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    //解决有时候窗体重新显示的时候假死不刷新的BUG
+    setAttribute(Qt::WA_Mapped);
+    QMainWindow::showEvent(event);
 }
 
 void MainWindow::setLabelPixmap(const QString &imagePath, QLabel *label)
@@ -112,6 +123,7 @@ void MainWindow::initFilter()
     ui->labelMenuClose->installEventFilter(this);
     ui->labelMenuLeftMessage->installEventFilter(this);
     ui->labelMenuLeftContact->installEventFilter(this);
+    this->installEventFilter(this);
 }
 
 void MainWindow::init()
