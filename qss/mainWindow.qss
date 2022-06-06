@@ -38,3 +38,10 @@ border-image: url(":images/mainWindow/menuTop/menuAdd.png")
 #pageMessageWidgetLeft{
 border-radius: 8px;
 }
+QToolTip{
+border-radius:6px;
+background-color: rgba(50,50,50,80);
+color:#FDFDFD;
+border-width:30px;
+border-height:30px;
+}

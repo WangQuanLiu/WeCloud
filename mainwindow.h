@@ -10,6 +10,7 @@
 #include <initializer_list>
 #include <QList>
 #include <QLabel>
+#include <QToolTip>
 namespace Ui {
 class MainWindow;
 class MQObjects;

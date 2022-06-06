@@ -27,7 +27,16 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         }
 
     }
-
+    else if(watched==ui->menuLeftCalendar){
+        if(event->type()==QEvent::ToolTip){
+            int x=QCursor::pos().x()+10;
+            int y=QCursor::pos().y()-18;
+            QPoint point;
+            point.setX(x);
+            point .setY(y);
+           QToolTip::showText(point,"日历",ui->menuLeftCalendar);
+        }
+    }
    else if(watched==ui->labelMenuMin){
         if(event->type()==QEvent::MouseButtonPress){
             labelMin_Clicked();
@@ -190,6 +199,8 @@ void MainWindow::initFilter()
     ui->menuLeftSchedule->installEventFilter(this);
     ui->menuLeftSetting->installEventFilter(this);
     this->installEventFilter(this);
+
+  //  ui->menuLeftCalendar->setToolTip("日历");
 }
 
 
@@ -206,9 +217,9 @@ void MainWindow::init()
     pe.setColor(QPalette::Background,color);
     ui->widgetLeft->setAutoFillBackground(true);
     ui->widgetLeft->setPalette(pe);
-
+    ui->widgetLeft->setMouseTracking(true);
     initLabelPixmap();
-   menuLeftobjects={MQObject(ui->menuLeftMessage,std::bind(&MainWindow::menuLeftMessage_unClicked,this),std::bind(&MainWindow::menuLeftMessage_Clicked,this)),
+    menuLeftobjects={MQObject(ui->menuLeftMessage,std::bind(&MainWindow::menuLeftMessage_unClicked,this),std::bind(&MainWindow::menuLeftMessage_Clicked,this)),
              MQObject(ui->menuLeftContact,std::bind(&MainWindow::menuLeftContact_unClicked,this),std::bind(&MainWindow::menuLeftContact_Clicked,this)),
              MQObject(ui->menuLeftDocument,std::bind(&MainWindow::menuLeftDocument_unClicked,this),std::bind(&MainWindow::menuLeftDocument_Clicked,this)),
              MQObject(ui->menuLeftMeet,std::bind(&MainWindow::menuLeftMeet_unClicked,this),std::bind(&MainWindow::menuLeftMeet_clicked,this)),

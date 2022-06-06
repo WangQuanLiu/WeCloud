@@ -76,3 +76,11 @@ QPixmap getRoundRectPixmap(QPixmap srcPixmap, int radius)
     painter.drawPixmap(0,0,imageWidth,imageHeight,newPixmap);
     return destImage;
 }
+
+void initTooltip()
+{
+    QPalette palette=QToolTip::palette();
+    palette.setColor(QPalette::Inactive,QPalette::ToolTipBase,Qt::black);//设置背景色
+    palette.setColor(QPalette::Inactive,QPalette::Text,Qt::white);//字体颜色
+    QToolTip::setPalette(palette);
+}
