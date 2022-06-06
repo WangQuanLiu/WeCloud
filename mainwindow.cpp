@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) : FramelessMainWindow(parent), ui(new Ui
     this->initForm();
     initFilter();
     init();
+
 }
 
 MainWindow::~MainWindow()
@@ -20,12 +21,11 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
     menuLeftobjects.eventFilter(watched,event);
     if(watched==this){
-        if(event->type()==QEvent::WindowStateChange){
-            ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
+        if(event->type()==QEvent::WindowStateChange||
+                event->type()==QEvent::Resize){
+           ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
         }
-        else if(event->type()==QEvent::Resize){
-            ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
-        }
+
     }
 
    else if(watched==ui->labelMenuMin){
@@ -67,7 +67,7 @@ void MainWindow::setLabelRoundRectPixmap(const QString &imagePath, QLabel *label
     QPixmap pixmap;
     if(!pixmap.load(imagePath))return ;
     QPixmap newPixmap=pixmapScale(pixmap, label->width(),label->height());
-    newPixmap=getRoundRectPixmap(newPixmap,8);
+    newPixmap=getRoundRectPixmap(newPixmap,5);
     label->setPixmap(newPixmap);
 }
 
@@ -96,24 +96,84 @@ void MainWindow::labelClose_Clicked()
     this->close();
 }
 
-void MainWindow::labelMenuLeftMessage_Clicked()
+void MainWindow::menuLeftMessage_Clicked()
 {
-    setLabelRoundRectPixmap(":images/menuLeftMessage_click.png",ui->labelMenuLeftMessage);
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/message_click.png",ui->menuLeftMessage);
 }
 
-void MainWindow::labelMenuLeftContact_Clicked()
+void MainWindow::menuLeftContact_Clicked()
 {
-    setLabelRoundRectPixmap(":images/menuLeftContact_click.png",ui->labelMenuLeftContact);
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/contact_click.png",ui->menuLeftContact);
 }
 
-void MainWindow::labelMenuLeftMessage_unClicked()
+void MainWindow::menuLeftDocument_Clicked()
 {
-    setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/document_click.png",ui->menuLeftDocument);
 }
 
-void MainWindow::labelMenuLeftContact_unClicked()
+void MainWindow::menuLeftMeet_clicked()
 {
-     setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/meet_click.png",ui->menuLeftMeet);
+}
+
+void MainWindow::menuLeftCloud_clicked()
+{
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/cloud_click.png",ui->menuLeftCloud);
+}
+
+void MainWindow::menuleftCalendar_clicked()
+{
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/calendar_click.png",ui->menuLeftCalendar);
+}
+
+void MainWindow::menuLeftSchedule_clicked()
+{
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/schedule_click.png",ui->menuLeftSchedule);
+}
+
+void MainWindow::menuLeftSetting_clicked()
+{
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/setting_click.png",ui->menuLeftSetting);
+}
+
+void MainWindow::menuLeftCalendar_unClicked()
+{
+    setLabelRoundRectPixmap(":images/mainWindow/menuLeft/calendar.png",ui->menuLeftCalendar);
+}
+
+void MainWindow::menuLeftMessage_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/message.png",ui->menuLeftMessage);
+}
+
+void MainWindow::menuLeftContact_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/contact.png",ui->menuLeftContact);
+}
+
+void MainWindow::menuLeftDocument_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/document.png",ui->menuLeftDocument);
+}
+
+void MainWindow::menuLeftMeet_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/meet.png",ui->menuLeftMeet);
+}
+
+void MainWindow::menuLeftCloud_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/cloud.png",ui->menuLeftCloud);
+}
+
+void MainWindow::menuLeftSchedule_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/schedule.png",ui->menuLeftSchedule);
+}
+
+void MainWindow::menuLeftSetting_unClicked()
+{
+    setLabelPixmap(":images/mainWindow/menuLeft/setting.png",ui->menuLeftSetting);
 }
 
 void MainWindow::initFilter()
@@ -121,10 +181,18 @@ void MainWindow::initFilter()
     ui->labelMenuMin->installEventFilter(this);
     ui->labelMenuMax->installEventFilter(this);
     ui->labelMenuClose->installEventFilter(this);
-    ui->labelMenuLeftMessage->installEventFilter(this);
-    ui->labelMenuLeftContact->installEventFilter(this);
+    ui->menuLeftMessage->installEventFilter(this);
+    ui->menuLeftContact->installEventFilter(this);
+    ui->menuLeftDocument->installEventFilter(this);
+    ui->menuLeftMeet->installEventFilter(this);
+    ui->menuLeftCloud->installEventFilter(this);
+    ui->menuLeftCalendar->installEventFilter(this);
+    ui->menuLeftSchedule->installEventFilter(this);
+    ui->menuLeftSetting->installEventFilter(this);
     this->installEventFilter(this);
 }
+
+
 
 void MainWindow::init()
 {
@@ -140,8 +208,14 @@ void MainWindow::init()
     ui->widgetLeft->setPalette(pe);
 
     initLabelPixmap();
-    menuLeftobjects={MQObject(ui->labelMenuLeftMessage,std::bind(&MainWindow::labelMenuLeftMessage_unClicked,this),std::bind(&MainWindow::labelMenuLeftMessage_Clicked,this)),
-             MQObject(ui->labelMenuLeftContact,std::bind(&MainWindow::labelMenuLeftContact_unClicked,this),std::bind(&MainWindow::labelMenuLeftContact_Clicked,this))};
+   menuLeftobjects={MQObject(ui->menuLeftMessage,std::bind(&MainWindow::menuLeftMessage_unClicked,this),std::bind(&MainWindow::menuLeftMessage_Clicked,this)),
+             MQObject(ui->menuLeftContact,std::bind(&MainWindow::menuLeftContact_unClicked,this),std::bind(&MainWindow::menuLeftContact_Clicked,this)),
+             MQObject(ui->menuLeftDocument,std::bind(&MainWindow::menuLeftDocument_unClicked,this),std::bind(&MainWindow::menuLeftDocument_Clicked,this)),
+             MQObject(ui->menuLeftMeet,std::bind(&MainWindow::menuLeftMeet_unClicked,this),std::bind(&MainWindow::menuLeftMeet_clicked,this)),
+             MQObject(ui->menuLeftCloud,std::bind(&MainWindow::menuLeftCloud_unClicked,this),std::bind(&MainWindow::menuLeftCloud_clicked,this)),
+             MQObject(ui->menuLeftCalendar,std::bind(&MainWindow::menuLeftCalendar_unClicked,this),std::bind(&MainWindow::menuleftCalendar_clicked,this)),
+             MQObject(ui->menuLeftSchedule,std::bind(&MainWindow::menuLeftSchedule_unClicked,this),std::bind(&MainWindow::menuLeftSchedule_clicked,this)),
+             MQObject(ui->menuLeftSetting,std::bind(&MainWindow::menuLeftSetting_unClicked,this),std::bind(&MainWindow::menuLeftSetting_clicked,this))};
 
 }
 
@@ -149,8 +223,14 @@ void MainWindow::initLabelPixmap()
 {
     //setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
     //setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
-    labelMenuLeftMessage_unClicked();
-    labelMenuLeftContact_unClicked();
+    menuLeftMessage_unClicked();
+    menuLeftContact_unClicked();
+    menuLeftDocument_unClicked();
+    menuLeftMeet_unClicked();
+    menuLeftCloud_unClicked();
+    menuLeftCalendar_unClicked();
+    menuLeftSchedule_unClicked();
+    menuLeftSetting_unClicked();
 }
 
 void MainWindow::initForm()

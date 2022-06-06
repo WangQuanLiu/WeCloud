@@ -7,8 +7,8 @@ int main(int argc, char *argv[])
 {
     //init();
     QApplication a(argc, argv);
-    QDlgLogin*dlgLogin=new QDlgLogin();
-
+   // QDlgLogin*dlgLogin=new QDlgLogin();
+   //         dlgLogin->exec();
    MainWindow m;
    m.show();
 /*    if(dlgLogin->exec()==QDialog::Accepted){

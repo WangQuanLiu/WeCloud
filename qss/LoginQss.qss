@@ -31,15 +31,15 @@ background-color:#EFF2F6;
 #labelAccountIcon,#page3LabelAccountIcon,#page4LabelAccountIcon{
 
 
-image:url(":/images/accountIcon.jpg");
+image:url(":/images/login/accountIcon.jpg");
 }
 #labelAccountIcon:hover,#page3LabelAccountIcon:hover{
-image:url(":images/accountIconBlue.jpg");
+image:url(":images/login/accountIconBlue.jpg");
 
 
 }
 LineEditAccount:hover +labelAccountIcon{
-image:url(":images/accountIconBlue.jpg");
+image:url(":images/login/accountIconBlue.jpg");
 }
 QLineEdit{
  
@@ -47,7 +47,7 @@ QLineEdit{
 }
 #labelPasswordIcon,#page3LabelPasswordIcon,#Page4LabelPasswordIcon{
 
-image:url(":/images/passwordIcon.jpg");
+image:url(":/images/login/passwordIcon.jpg");
 }
 #checkBoxAutoLogin ,#checkBoxRememberPassword,#labelForgetPassword,#labelRegisterAccount
 ,#page3LabelBackLogin,#Page4CheckBoxAutoLogin,#Page4CheckBoxRememberPassword,
@@ -63,7 +63,7 @@ color:#999898;
 border-color:#999898;
 }
 #labelQRCode,#Page4LabelQRCode{
-image:url(":images/QRCode.jpg");
+image:url(":images/login/QRCode.jpg");
 }
 #pushButtonLogin,#page3PushButtonRegister,#Page4PushButtonLogin{
 background-color:#07BCFC;
@@ -80,7 +80,7 @@ border-radius:6px;
 font-size:15px;
 }
 #labelQRCode:hover,#Page4LabelQRCode:hover{
-image:url(":images/ORCodeGray.jpg");
+image:url(":images/login/ORCodeGray.jpg");
 }
 #labelLogin{
    color:#A8A6A6;
@@ -120,10 +120,10 @@ font-size:12px;
     color:#5D5D5D;
 }
 #page3LabelVerification,#page4LabelVerification{
-image:url(":images/verificationCodeIconGray.jpg");
+image:url(":images/login/verificationCodeIconGray.jpg");
 }
 #page3LabelVerification:hover,#page4LabelVerification:hover{
-    image:url(":images/verificationCodeIconBlue.jpg");
+    image:url(":images/login/verificationCodeIconBlue.jpg");
 }
 #labelAccountWarningDialog,#labelPasswordWarningDialog,#page3LabelAccountWarningDialog
 ,#page3LabelPasswordWarningDialog,#page3LabelVerificationCodeWarningDialog,

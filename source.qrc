@@ -2,27 +2,39 @@
     <qresource prefix="/">
         <file>qss/LoginQss.qss</file>
         <file>images/accountPicture.jpg</file>
-        <file>images/accountIcon.jpg</file>
-        <file>images/passwordIcon.jpg</file>
-        <file>images/QRCode.jpg</file>
-        <file>images/accountIconBlue.jpg</file>
-        <file>images/passwordIconBlue.jpg</file>
-        <file>images/ORCodeGray.jpg</file>
-        <file>images/verificationCodeIconBlue.jpg</file>
-        <file>images/verificationCodeIconGray.jpg</file>
         <file>images/logo.ico</file>
         <file>images/logo.png</file>
-        <file>images/min.png</file>
         <file>qss/mainWindow.qss</file>
-        <file>images/min_hover.png</file>
-        <file>images/max.png</file>
-        <file>images/close.png</file>
-        <file>images/search.png</file>
-        <file>images/menuInterval.png</file>
-        <file>images/menuAdd.png</file>
-        <file>images/menuLeftMessage.png</file>
-        <file>images/menuLeftMessage_click.png</file>
-        <file>images/menuLeftContact.png</file>
-        <file>images/menuLeftContact_click.png</file>
+        <file>images/login/accountIcon.jpg</file>
+        <file>images/login/accountIconBlue.jpg</file>
+        <file>images/login/ORCodeGray.jpg</file>
+        <file>images/login/passwordIcon.jpg</file>
+        <file>images/login/passwordIconBlue.jpg</file>
+        <file>images/login/QRCode.jpg</file>
+        <file>images/login/verificationCodeIconBlue.jpg</file>
+        <file>images/login/verificationCodeIconGray.jpg</file>
+        <file>images/mainWindow/menuTop/close.png</file>
+        <file>images/mainWindow/menuTop/max.png</file>
+        <file>images/mainWindow/menuTop/menuAdd.png</file>
+        <file>images/mainWindow/menuTop/menuInterval.png</file>
+        <file>images/mainWindow/menuTop/min.png</file>
+        <file>images/mainWindow/menuTop/min_hover.png</file>
+        <file>images/mainWindow/menuTop/search.png</file>
+        <file>images/mainWindow/menuLeft/calendar.png</file>
+        <file>images/mainWindow/menuLeft/calendar_click.png</file>
+        <file>images/mainWindow/menuLeft/cloud.png</file>
+        <file>images/mainWindow/menuLeft/cloud_click.png</file>
+        <file>images/mainWindow/menuLeft/contact.png</file>
+        <file>images/mainWindow/menuLeft/contact_click.png</file>
+        <file>images/mainWindow/menuLeft/document.png</file>
+        <file>images/mainWindow/menuLeft/document_click.png</file>
+        <file>images/mainWindow/menuLeft/meet.png</file>
+        <file>images/mainWindow/menuLeft/meet_click.png</file>
+        <file>images/mainWindow/menuLeft/message.png</file>
+        <file>images/mainWindow/menuLeft/message_click.png</file>
+        <file>images/mainWindow/menuLeft/schedule.png</file>
+        <file>images/mainWindow/menuLeft/schedule_click.png</file>
+        <file>images/mainWindow/menuLeft/setting.png</file>
+        <file>images/mainWindow/menuLeft/setting_click.png</file>
     </qresource>
 </RCC>

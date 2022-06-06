@@ -9,6 +9,7 @@ Message Message::operator++(int){
     Message temp=*this;
     this->tryCount++;
     return temp;
+
 }
 Message& Message::operator=(const Message* obj)
 {

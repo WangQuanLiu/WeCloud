@@ -331,8 +331,8 @@ QMyLineEdit::QMyLineEdit(QLineEdit *lineEdit, QLabel *label,const QString &image
 {
     this->lineEdit=lineEdit;
     this->label=label;
-    this->imageBefore=QString("image:url(:/images/%1);").arg(imageBefore);
-    this->imageAfter=QString("image:url(:/images/%1);").arg(imageAfter);
+    this->imageBefore=QString("image:url(:/images/login/%1);").arg(imageBefore);
+    this->imageAfter=QString("image:url(:/images/login/%1);").arg(imageAfter);
     this->text=text;
     this->enumLineEdit=enumLineEdit;
 }

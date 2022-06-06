@@ -8,6 +8,8 @@
 #include <QPainter>
 #include <QEvent>
 #include <initializer_list>
+#include <QList>
+#include <QLabel>
 namespace Ui {
 class MainWindow;
 class MQObjects;
@@ -23,7 +25,7 @@ typedef std::function<void(void)>FuncPtr;
 using Ui::FuncPtr;
 class MQObject{
 public:
-   // friend MQObjects<T>;
+    friend class MQObjects;
     MQObject()=default;
     MQObject(QLabel*object,FuncPtr unClickFuncPtr,FuncPtr clickFuncPtr){
         this->object=object;
@@ -71,8 +73,9 @@ public:
     using Object=MQObject;
     MQObjects()=default;
     MQObjects(std::initializer_list<Object>list){
-        for(auto begin=list.begin();begin!=list.end();begin++)
+        for(auto begin=list.begin();begin!=list.end();begin++){
             this->objectVec.push_back(*begin);
+        }
     }
     void push_back(Object&object){
         objectVec.push_back(object);
@@ -123,10 +126,25 @@ private:
       void labelMin_Clicked();
       void labelMax_Clicked();
       void labelClose_Clicked();
-      void labelMenuLeftMessage_Clicked();
-      void labelMenuLeftContact_Clicked();
-      void labelMenuLeftMessage_unClicked();
-      void labelMenuLeftContact_unClicked();
+
+      void menuLeftMessage_Clicked();
+      void menuLeftContact_Clicked();
+      void menuLeftDocument_Clicked();
+      void menuLeftMeet_clicked();
+      void menuLeftCloud_clicked();
+      void menuleftCalendar_clicked();
+      void menuLeftSchedule_clicked();
+      void menuLeftSetting_clicked();
+
+      void menuLeftCalendar_unClicked();
+      void menuLeftMessage_unClicked();
+      void menuLeftContact_unClicked();
+      void menuLeftDocument_unClicked();
+      void menuLeftMeet_unClicked();
+      void menuLeftCloud_unClicked();
+      void menuLeftSchedule_unClicked();
+      void menuLeftSetting_unClicked();
+
       void initFilter();
       void init();
       void initLabelPixmap();

@@ -14,13 +14,13 @@ border-bottom-left-radius:8px;
 border-bottom-right-radius:8px;
 }
 #labelMenuMin{
-border-image: url(":/images/min.png")
+border-image: url(":/images/mainWindow/menuTop/min.png")
 }
 #labelMenuMax{
-border-image: url(":images/max.png")
+border-image: url(":images/mainWindow/menuTop/max.png")
 }
 #labelMenuClose{
-border-image: url(":images/close.png")
+border-image: url(":images/mainWindow/menuTop/close.png")
 }
 #lineEditMenuSearch{
 background-color: rgba(255,255,255,80);
@@ -30,11 +30,11 @@ border-radius: 10px;
 padding: 0 20px;
 }
 #labelMenuInterval{
-border-image: url(":images/menuInterval.png")
+border-image: url(":images/mainWindow/menuTop/menuInterval.png")
 }
 #labelMenuAdd{
-border-image: url(":images/menuAdd.png")
+border-image: url(":images/mainWindow/menuTop/menuAdd.png")
 }
-#labelMenuLeftMessage{
+#pageMessageWidgetLeft{
 border-radius: 8px;
 }
