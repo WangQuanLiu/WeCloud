@@ -23,20 +23,22 @@ class MQObject{
 public:
     friend class MQObjects;
     MQObject()=default;
-    MQObject(QLabel*object,FuncPtr unClickFuncPtr,FuncPtr clickFuncPtr){
+    MQObject(QLabel*object,FuncPtr unClickFuncPtr,FuncPtr clickFuncPtr,QEvent::Type eventType=QEvent::MouseButtonPress ){
         this->object=object;
         this->clickFuncPtr=clickFuncPtr;
         this->unClickFuncPtr=unClickFuncPtr;
+        this->eventType=eventType;
     }
     MQObject operator=(const MQObject&obj){
         this->object=obj.object;
         this->clickFuncPtr=obj.clickFuncPtr;
         this->unClickFuncPtr=obj.unClickFuncPtr;
+        this->eventType=obj.eventType;
         return *this;
     }
     void  eventFilter(QObject*watched,QEvent*event){
         if(watched==object){
-            if(event->type()==QEvent::MouseButtonPress){
+            if(event->type()==eventType){
                    (this->clickFuncPtr)();
                 isPressed=true;
             }
@@ -58,10 +60,14 @@ public:
     void setClickFuncPtr( FuncPtr clickFuncPtr){
         this->clickFuncPtr=clickFuncPtr;
     }
+    void setEventType(QEvent::Type eventType){
+        this->eventType=eventType;
+    }
 private:
     bool isPressed=false;
     QLabel*object;
     FuncPtr clickFuncPtr,unClickFuncPtr;
+    QEvent::Type eventType;
 };
 
 class MQObjects{

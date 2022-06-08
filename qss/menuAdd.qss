@@ -1,0 +1,15 @@
+#widget,#MenuAddDialog
+{
+border:2px solid #EAEAEA;
+background:#EAEAEA;
+border-radius: 8px;
+}
+QLabel{
+color:#777777;
+}
+#labelMessage:hover{
+image:url(":images/mainWindow/menuAdd/message_click.png");
+}
+#labelContact:hover{
+image:url(":images/mainWindow/menuAdd/message_click.png");
+}

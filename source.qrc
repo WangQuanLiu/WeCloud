@@ -42,5 +42,11 @@
         <file>images/mainWindow/menuAdd/calendar.png</file>
         <file>images/mainWindow/menuAdd/schedule.png</file>
         <file>images/mainWindow/menuAdd/team.png</file>
+        <file>qss/menuAdd.qss</file>
+        <file>images/mainWindow/menuAdd/message_hover.png</file>
+        <file>images/mainWindow/menuAdd/contact_hover.png</file>
+        <file>images/mainWindow/menuAdd/meet_hover.png</file>
+        <file>images/mainWindow/menuAdd/calendar_hover.png</file>
+        <file>images/mainWindow/menuAdd/schedule_hover.png</file>
     </qresource>
 </RCC>

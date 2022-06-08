@@ -11,7 +11,8 @@ using namespace Common;
 class MenuAddDialog : public QDialog
 {
     Q_OBJECT
-
+public slots:
+      bool eventFilter(QObject*,QEvent*);
 public:
     explicit MenuAddDialog(QWidget *parent = nullptr);
     ~MenuAddDialog();
@@ -21,8 +22,18 @@ public:
     void calendar_unClcik();
     void schedule_unClick();
     void team_unClick();
+
+    void message_hover();
+    void contact_hover();
+    void meet_hover();
+    void calendar_hover();
+    void schedule_hover();
+    void init();
+private slots:
+
+
 private:
-    MQObjects objects;
+
     Ui::MenuAddDialog *ui;
 };
 
