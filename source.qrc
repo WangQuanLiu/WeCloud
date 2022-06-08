@@ -36,5 +36,11 @@
         <file>images/mainWindow/menuLeft/schedule_click.png</file>
         <file>images/mainWindow/menuLeft/setting.png</file>
         <file>images/mainWindow/menuLeft/setting_click.png</file>
+        <file>images/mainWindow/menuAdd/message.png</file>
+        <file>images/mainWindow/menuAdd/contact.png</file>
+        <file>images/mainWindow/menuAdd/meet.png</file>
+        <file>images/mainWindow/menuAdd/calendar.png</file>
+        <file>images/mainWindow/menuAdd/schedule.png</file>
+        <file>images/mainWindow/menuAdd/team.png</file>
     </qresource>
 </RCC>

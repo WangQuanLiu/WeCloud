@@ -84,3 +84,19 @@ void initTooltip()
     palette.setColor(QPalette::Inactive,QPalette::Text,Qt::white);//字体颜色
     QToolTip::setPalette(palette);
 }
+void Common::setLabelPixmap(const QString &imagePath, QLabel *label)
+{
+    QPixmap pixmap;
+    if(!pixmap.load(imagePath))return ;
+    QPixmap newPixmap=pixmapScale(pixmap, label->width(),label->height());
+    label->setPixmap(newPixmap);
+}
+
+void Common::setLabelRoundRectPixmap(const QString &imagePath, QLabel *label,int radius)
+{
+    QPixmap pixmap;
+    if(!pixmap.load(imagePath))return ;
+    QPixmap newPixmap=pixmapScale(pixmap, label->width(),label->height());
+    newPixmap=getRoundRectPixmap(newPixmap,radius);
+    label->setPixmap(newPixmap);
+}
