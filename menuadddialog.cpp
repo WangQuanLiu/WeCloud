@@ -3,43 +3,40 @@
 
 bool MenuAddDialog::eventFilter(QObject *watched, QEvent *event)
 {
-   if(watched==ui->labelMessage){
-        if(event->type()==QEvent::HoverEnter){
-             message_hover();
 
-        }else if(event->type()==QEvent::HoverLeave){
-             message_unClick();
-        }
-   }
-   else if(watched==ui->labelContact){
-        if(event->type()==QEvent::HoverEnter){
+    if(event->type()==QEvent::HoverEnter){
+        if(watched==ui->labelMessage){
+            message_hover();
+        }else if(watched==ui->labelContact){
             contact_hover();
-
-        } else if(event->type()==QEvent::HoverLeave){
-            contact_unClick();
-        }
-    }
-   else if(watched==ui->labelCalendar){
-        if(event->type()==QEvent::HoverEnter){
+        }else if(watched==ui->labelMeet){
+            meet_hover();
+        }else if(watched==ui->labelSchedule){
+            schedule_hover();
+        }else if(watched==ui->labelCalendar){
             calendar_hover();
-        }else if(event->type()==QEvent::HoverLeave){
+        }
+    }else if(event->type()==QEvent::HoverLeave){
+        if(watched==ui->labelMessage){
+            message_unClick();
+        }else if(watched==ui->labelContact){
+            contact_unClick();
+        }else if(watched==ui->labelMeet){
+            meet_unClick();
+        }else if(watched==ui->labelSchedule){
+            schedule_unClick();
+        }else if(watched==ui->labelCalendar){
             calendar_unClcik();
         }
-   }
-   else if(watched==ui->labelMeet){
-       if(event->type()==QEvent::HoverEnter){
-           meet_hover();
-       }else if(event->type()==QEvent::HoverLeave){
-           meet_unClick();
-       }
     }
-   else if(watched==ui->labelSchedule){
-        if(event->type()==QEvent::HoverEnter){
-            schedule_hover();
-        }  else if(event->type()==QEvent::HoverLeave){
-            schedule_unClick();
-        }
+   else if(event->type()==QEvent::ActivationChange){
+
+            if(QApplication::activeWindow()!=this){
+
+                this->hide();
+            }
     }
+
      return QDialog::eventFilter(watched,event);//½»¸øÉÏ²ã
 }
 
@@ -48,7 +45,7 @@ MenuAddDialog::MenuAddDialog(QWidget *parent) :
     ui(new Ui::MenuAddDialog)
 {
     ui->setupUi(this);
-
+    isShow=false;
   //  ui->widget->setStyleSheet("#widget,#MenuAddDialog{border:2px solid #EAEAEA;background:#EAEAEA;border-radius: 8px;}QLabel{color:#777777;}");
     init();
 
@@ -121,14 +118,33 @@ void MenuAddDialog::init()
     schedule_unClick();
     team_unClick();
     this->setAttribute(Qt::WA_Hover,true);
-    this->installEventFilter(this);
+  //   this->setWindowFlags(Qt::Window);
     ui->labelMessage->installEventFilter(this);
-    ui->labelCalendar->installEventFilter(this);
     ui->labelContact->installEventFilter(this);
-    ui->labelSchedule->installEventFilter(this);
     ui->labelMeet->installEventFilter(this);
+    ui->labelCalendar->installEventFilter(this);
+    ui->labelSchedule->installEventFilter(this);
     ui->labelTeam->installEventFilter(this);
+    this->installEventFilter(this);
 }
+
+bool MenuAddDialog::getIsShow()
+{
+    return this->isShow;
+}
+
+void MenuAddDialog::showed()
+{
+    this->show();
+    this->isShow=true;
+}
+
+void MenuAddDialog::hiddened()
+{
+    this->hide();
+    this->isShow=false;
+}
+
 
 void MenuAddDialog::message_unClick()
 {

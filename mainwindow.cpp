@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) : FramelessMainWindow(parent), ui(new Ui
     initFilter();
     init();
 
+
 }
 
 MainWindow::~MainWindow()
@@ -21,6 +22,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
     menuLeftobjects.eventFilter(watched,event);
     toolTips.eventFilter(watched,event);
+
     if(watched==this){
         if(event->type()==QEvent::WindowStateChange||
                 event->type()==QEvent::Resize){
@@ -28,21 +30,21 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         }
 
     }
-   else if(watched==ui->labelMenuMin){
-        if(event->type()==QEvent::MouseButtonPress){
+    else if(event->type()==QEvent::MouseButtonPress){
+        if(watched==ui->labelMenuMin)
             labelMin_Clicked();
-        }
-    }
-    else if(watched==ui->labelMenuMax){
-        if(event->type()==QEvent::MouseButtonPress){
+        else if(watched==ui->labelMenuMax)
             labelMax_Clicked();
-        }
-    }
-    else if(watched==ui->labelMenuClose){
-        if(event->type()==QEvent::MouseButtonPress){
+        else if(watched==ui->labelMenuClose)
             labelClose_Clicked();
-        }
+        else if(watched==ui->labelMenuAdd)
+            labelMenuAdd_Clicked();
+
     }
+
+
+
+
 
     return QMainWindow::eventFilter(watched,event);//交给上层
 }
@@ -79,6 +81,23 @@ void MainWindow::labelClose_Clicked()
 {
 
     this->close();
+}
+
+void MainWindow::labelMenuAdd_Clicked()
+{
+    QPoint point=ui->labelMenuAdd->pos();
+    int x,y;
+    x=this->frameGeometry().x()+ui->titleBar->width()-480;
+    y=this->frameGeometry().y()+ui->titleBar->height()-11;
+    menuAddDialog->move(QPoint(x,y));
+  //  menuAddDialog->show();
+    menuAddDialog->showed();
+}
+
+
+void MainWindow::labelAccountPicture_unClicked()
+{
+    setLabelRoundRectPixmap(":images/accountPicture.jpg",ui->labelAccountPicture,10);
 }
 
 void MainWindow::menuLeftMessage_Clicked()
@@ -166,6 +185,8 @@ void MainWindow::initFilter()
     ui->labelMenuMin->installEventFilter(this);
     ui->labelMenuMax->installEventFilter(this);
     ui->labelMenuClose->installEventFilter(this);
+    ui->labelMenuAdd->installEventFilter(this);
+
     ui->menuLeftMessage->installEventFilter(this);
     ui->menuLeftContact->installEventFilter(this);
     ui->menuLeftDocument->installEventFilter(this);
@@ -174,6 +195,7 @@ void MainWindow::initFilter()
     ui->menuLeftCalendar->installEventFilter(this);
     ui->menuLeftSchedule->installEventFilter(this);
     ui->menuLeftSetting->installEventFilter(this);
+
     this->installEventFilter(this);
 
   //  ui->menuLeftCalendar->setToolTip("日历");
@@ -187,7 +209,7 @@ void MainWindow::init()
     QPalette pe;
     pe.setColor(QPalette::Background,Qt::black);
     pe.setColor(QPalette::WindowText,Qt::white);
-    ui->label->setPalette(pe);
+   // ui->label->setPalette(pe);
     QColor color;
     color.setRgb(235,235,235);
     pe.setColor(QPalette::Background,color);
@@ -211,10 +233,10 @@ void MainWindow::init()
               MQToolTip(ui->menuLeftDocument,"文档"),
               MQToolTip(ui->menuLeftMeet,"会议"),
               MQToolTip(ui->menuLeftCloud,"云盘"),
-              MQToolTip(ui->menuLeftCalendar,"日历"),
+              MQToolTip(ui->menuLeftCalendar,"日程"),
               MQToolTip(ui->menuLeftSchedule,"待办"),
               MQToolTip(ui->menuLeftSetting,"设置")};
-
+    menuAddDialog=new MenuAddDialog();
 }
 
 void MainWindow::initLabelPixmap()
@@ -229,6 +251,7 @@ void MainWindow::initLabelPixmap()
     menuLeftCalendar_unClicked();
     menuLeftSchedule_unClicked();
     menuLeftSetting_unClicked();
+    labelAccountPicture_unClicked();
 }
 
 void MainWindow::initForm()

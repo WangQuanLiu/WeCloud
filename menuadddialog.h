@@ -29,11 +29,15 @@ public:
     void calendar_hover();
     void schedule_hover();
     void init();
+
+    bool getIsShow();
+    void showed();
+    void hiddened();
 private slots:
 
 
 private:
-
+    bool isShow;
     Ui::MenuAddDialog *ui;
 };
 

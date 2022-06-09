@@ -35,6 +35,9 @@ border-image: url(":images/mainWindow/menuTop/menuInterval.png")
 #labelMenuAdd{
 border-image: url(":images/mainWindow/menuTop/menuAdd.png")
 }
+#labelMenuStick{
+border-image: url(":images/mainWindow/menuTop/menuAdd.png")
+}
 #pageMessageWidgetLeft{
 border-radius: 8px;
 }

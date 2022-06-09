@@ -12,6 +12,7 @@
 #include <QLabel>
 #include <QToolTip>
 #include "mcommon.h"
+#include "menuadddialog.h"
 namespace Ui {
 class MainWindow;
 }
@@ -36,10 +37,11 @@ protected:
        void showEvent(QShowEvent *event);
 private:
 
-      void labelMin_Clicked();
-      void labelMax_Clicked();
-      void labelClose_Clicked();
-
+    inline  void labelMin_Clicked();
+    inline  void labelMax_Clicked();
+    inline  void labelClose_Clicked();
+      void labelMenuAdd_Clicked();
+      void labelAccountPicture_unClicked();
       void menuLeftMessage_Clicked();
       void menuLeftContact_Clicked();
       void menuLeftDocument_Clicked();
@@ -65,6 +67,7 @@ private slots:
     void initForm();
     void titleDblClick();
 private:
+    MenuAddDialog*menuAddDialog;
     MQObjects menuLeftobjects;
     MQToolTips toolTips;
 };

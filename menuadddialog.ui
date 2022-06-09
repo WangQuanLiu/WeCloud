@@ -357,7 +357,7 @@
          </size>
         </property>
         <property name="text">
-         <string> 新建日历</string>
+         <string> 新建日程</string>
         </property>
        </widget>
       </item>

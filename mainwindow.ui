@@ -67,21 +67,33 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>30</width>
+           <width>4</width>
            <height>20</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelAccountPicture">
+         <property name="minimumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>刘王权</string>
+          <string/>
          </property>
         </widget>
        </item>

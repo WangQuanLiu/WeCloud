@@ -13,3 +13,15 @@ image:url(":images/mainWindow/menuAdd/message_click.png");
 #labelContact:hover{
 image:url(":images/mainWindow/menuAdd/message_click.png");
 }
+#labelMeet:hover{
+image:url(":images/mainWindow/menuAdd/message_click.png");
+}
+#labelTeam:hover{
+image:url(":images/mainWindow/menuAdd/message_click.png");
+}
+#labelSchedule:hover{
+image:url(":images/mainWindow/menuAdd/message_click.png");
+}
+#labelCalendar:hover{
+image:url(":images/mainWindow/menuAdd/message_click.png");
+}
