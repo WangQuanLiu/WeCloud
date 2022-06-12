@@ -16,6 +16,14 @@ public slots:
 public:
     explicit MenuAddDialog(QWidget *parent = nullptr);
     ~MenuAddDialog();
+
+    bool getIsShow();
+    void showed();
+    void hiddened();
+private slots:
+
+
+private:
     void message_unClick();
     void contact_unClick();
     void meet_unClick();
@@ -31,13 +39,6 @@ public:
     void team_hover();
     void init();
 
-    bool getIsShow();
-    void showed();
-    void hiddened();
-private slots:
-
-
-private:
     bool isShow;
     Ui::MenuAddDialog *ui;
 };

@@ -1,0 +1,10 @@
+#MDialogMessage,#widget{
+border:2px solid #FFFFFF;
+background:#FFFFFF;
+border-radius: 8px;
+}
+#MDialogMessage:hover{
+border:2px solid #EAEAEA;
+background:#EFEEEE;
+border-radius: 8px;
+}
