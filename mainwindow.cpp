@@ -39,6 +39,8 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
             labelClose_Clicked();
         else if(watched==ui->labelMenuAdd)
             labelMenuAdd_Clicked();
+        else if(watched==ui->labelAccountPicture)
+            labelAccountPicture_Clicked();
 
     }
 
@@ -92,6 +94,15 @@ void MainWindow::labelMenuAdd_Clicked()
     menuAddDialog->move(QPoint(x,y));
   //  menuAddDialog->show();
     menuAddDialog->showed();
+}
+
+void MainWindow::labelAccountPicture_Clicked()
+{
+    int x,y;
+    x=this->x();
+    y=this->frameGeometry().y()+ui->titleBar->height()-11;
+    accountPictureDialog->move(QPoint(x,y));
+    accountPictureDialog->show();
 }
 
 
@@ -195,7 +206,7 @@ void MainWindow::initFilter()
     ui->menuLeftCalendar->installEventFilter(this);
     ui->menuLeftSchedule->installEventFilter(this);
     ui->menuLeftSetting->installEventFilter(this);
-
+    ui->labelAccountPicture->installEventFilter(this);
     this->installEventFilter(this);
 
   //  ui->menuLeftCalendar->setToolTip("日历");
@@ -237,6 +248,7 @@ void MainWindow::init()
               MQToolTip(ui->menuLeftSchedule,"待办"),
               MQToolTip(ui->menuLeftSetting,"设置")};
     menuAddDialog=new MenuAddDialog();
+    accountPictureDialog=new AccountPictureDialog();
 }
 
 void MainWindow::initLabelPixmap()

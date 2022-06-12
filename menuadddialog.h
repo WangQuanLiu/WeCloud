@@ -28,6 +28,7 @@ public:
     void meet_hover();
     void calendar_hover();
     void schedule_hover();
+    void team_hover();
     void init();
 
     bool getIsShow();

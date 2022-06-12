@@ -15,6 +15,8 @@ bool MenuAddDialog::eventFilter(QObject *watched, QEvent *event)
             schedule_hover();
         }else if(watched==ui->labelCalendar){
             calendar_hover();
+        }else if(watched==ui->labelTeam){
+            team_hover();
         }
     }else if(event->type()==QEvent::HoverLeave){
         if(watched==ui->labelMessage){
@@ -27,6 +29,8 @@ bool MenuAddDialog::eventFilter(QObject *watched, QEvent *event)
             schedule_unClick();
         }else if(watched==ui->labelCalendar){
             calendar_unClcik();
+        }else if(watched==ui->labelTeam){
+            team_unClick();
         }
     }
    else if(event->type()==QEvent::ActivationChange){
@@ -103,7 +107,12 @@ void MenuAddDialog::calendar_hover()
 
 void MenuAddDialog::schedule_hover()
 {
-     setLabelRoundRectPixmap(":images/mainWindow/menuAdd/schedule_hover.png",ui->labelSchedule,10);
+    setLabelRoundRectPixmap(":images/mainWindow/menuAdd/schedule_hover.png",ui->labelSchedule,10);
+}
+
+void MenuAddDialog::team_hover()
+{
+      setLabelRoundRectPixmap(":images/mainWindow/menuAdd/team_hover.png",ui->labelTeam,10);
 }
 
 void MenuAddDialog::init()

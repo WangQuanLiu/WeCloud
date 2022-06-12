@@ -1,0 +1,13 @@
+#AccountPcitureDialog,#widget{
+border:2px solid #EAEAEA;
+background:#EFEEEE;
+border-radius: 8px;
+}
+QLabel{
+color:#414141;
+}
+QLabel:hover{
+    background:#D2D2D2;
+    border:2px solid #EAEAEA;
+    border-radius: 8px;
+}

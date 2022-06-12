@@ -13,6 +13,7 @@
 #include <QToolTip>
 #include "mcommon.h"
 #include "menuadddialog.h"
+#include "accountpicturedialog.h"
 namespace Ui {
 class MainWindow;
 }
@@ -41,7 +42,7 @@ private:
     inline  void labelMax_Clicked();
     inline  void labelClose_Clicked();
       void labelMenuAdd_Clicked();
-      void labelAccountPicture_unClicked();
+      void labelAccountPicture_Clicked();
       void menuLeftMessage_Clicked();
       void menuLeftContact_Clicked();
       void menuLeftDocument_Clicked();
@@ -51,6 +52,7 @@ private:
       void menuLeftSchedule_clicked();
       void menuLeftSetting_clicked();
 
+      void labelAccountPicture_unClicked();
       void menuLeftCalendar_unClicked();
       void menuLeftMessage_unClicked();
       void menuLeftContact_unClicked();
@@ -68,6 +70,7 @@ private slots:
     void titleDblClick();
 private:
     MenuAddDialog*menuAddDialog;
+    AccountPictureDialog*accountPictureDialog;
     MQObjects menuLeftobjects;
     MQToolTips toolTips;
 };

@@ -48,5 +48,7 @@
         <file>images/mainWindow/menuAdd/schedule.png</file>
         <file>images/mainWindow/menuAdd/schedule_hover.png</file>
         <file>images/mainWindow/menuAdd/team.png</file>
+        <file>qss/accountPictureDialog.qss</file>
+        <file>images/mainWindow/menuAdd/team_hover.png</file>
     </qresource>
 </RCC>
