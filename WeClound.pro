@@ -17,9 +17,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mcommon.cpp \
-    mdialogmessage.cpp \
     menuadddialog.cpp \
     message.cpp \
+    mmessagebox.cpp \
     mqscrollarea.cpp \
     network.cpp \
     qdlglogin.cpp
@@ -31,9 +31,9 @@ HEADERS += \
     framelessmainwindow.h \
     mainwindow.h \
     mcommon.h \
-    mdialogmessage.h \
     menuadddialog.h \
     message.h \
+    mmessagebox.h \
     mqscrollarea.h \
     network.h \
     qdlglogin.h
@@ -41,8 +41,8 @@ HEADERS += \
 FORMS += \
     accountpicturedialog.ui \
     mainwindow.ui \
-    mdialogmessage.ui \
     menuadddialog.ui \
+    mmessagebox.ui \
     qdlglogin.ui
 
 

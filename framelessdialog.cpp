@@ -10,5 +10,4 @@ FrameLessDialog::FrameLessDialog(QWidget *parent) : QDialog(parent)
     this->setWindowFlags(flags | Qt::FramelessWindowHint);
     //安装事件过滤器识别拖动
     this->installEventFilter(this);
-
 }

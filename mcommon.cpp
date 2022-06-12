@@ -94,6 +94,7 @@ void Common::setLabelPixmap(const QString &imagePath, QLabel *label)
 
 void Common::setLabelRoundRectPixmap(const QString &imagePath, QLabel *label,int radius)
 {
+    if(label==nullptr)return;
     QPixmap pixmap;
     if(!pixmap.load(imagePath))return ;
     QPixmap newPixmap=pixmapScale(pixmap, label->width(),label->height());

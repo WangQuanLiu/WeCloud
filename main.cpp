@@ -4,14 +4,15 @@
 #include "mcommon.h"
 #include "menuadddialog.h"
 #include "accountpicturedialog.h"
-#include "mdialogmessage.h"
+#include "mmessagebox.h"
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
 
-    MDialogMessage message;
-    message.exec();
+    MMessageBox message;
+    message.setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
+    message.show();
 
     MainWindow m;
     m.show();

@@ -50,6 +50,7 @@
         <file>images/mainWindow/menuAdd/team.png</file>
         <file>qss/accountPictureDialog.qss</file>
         <file>images/mainWindow/menuAdd/team_hover.png</file>
-        <file>qss/mDialogMessage.qss</file>
+        <file>images/mainWindow/friend/accountPicture/2510840085.jpg</file>
+        <file>qss/mMessageBox.qss</file>
     </qresource>
 </RCC>
