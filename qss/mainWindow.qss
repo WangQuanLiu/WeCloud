@@ -48,3 +48,9 @@ color:#FDFDFD;
 border-width:30px;
 border-height:30px;
 }
+#scrollAreaWidgetContents{
+background:#FFFFFF;
+}
+#pageMessageLabelIntervaal{
+ background:#F1F1F1;  
+}

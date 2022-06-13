@@ -7,6 +7,7 @@
 #include <QScrollBar>
 #include <QVBoxLayout>
 #include "mmessagebox.h"
+#include "mcommon.h"
 class MQScrollArea : public QScrollArea
 {
     Q_OBJECT

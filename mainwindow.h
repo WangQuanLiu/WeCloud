@@ -14,6 +14,7 @@
 #include "mcommon.h"
 #include "menuadddialog.h"
 #include "accountpicturedialog.h"
+#include "mmessagebox.h"
 namespace Ui {
 class MainWindow;
 }
@@ -64,6 +65,7 @@ private:
 
       void initFilter();
       void init();
+      void initPageMessageScrollArea();
       void initLabelPixmap();
 private slots:
     void initForm();

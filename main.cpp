@@ -10,9 +10,9 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    MMessageBox message;
-    message.setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
-    message.show();
+ //  MMessageBox message;
+  // message.setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
+  //  message.show();
 
     MainWindow m;
     m.show();
