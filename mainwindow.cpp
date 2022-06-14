@@ -28,6 +28,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         if(event->type()==QEvent::WindowStateChange||
                 event->type()==QEvent::Resize){
            ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
+
         }
 
     }
@@ -115,6 +116,7 @@ void MainWindow::labelAccountPicture_unClicked()
 void MainWindow::menuLeftMessage_Clicked()
 {
     setLabelRoundRectPixmap(":images/mainWindow/menuLeft/message_click.png",ui->menuLeftMessage,5);
+    ui->stackedWidget->setCurrentWidget(ui->pageMessage);
 }
 
 void MainWindow::menuLeftContact_Clicked()
@@ -251,13 +253,14 @@ void MainWindow::init()
     menuAddDialog=new MenuAddDialog();
     accountPictureDialog=new AccountPictureDialog();
     initPageMessageScrollArea();
+    menuLeftMessage_Clicked();
 
 }
 
 void MainWindow::initPageMessageScrollArea()
 {
-    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->pageMessageScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->pageMessageScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
      QWidget*widget=new QWidget();
      if(widget==nullptr)return;
@@ -297,20 +300,15 @@ void MainWindow::initPageMessageScrollArea()
      layout->addWidget(message10);
      layout->addWidget(message11);
 
-     QPushButton*push1=new QPushButton();
-     push1->setMinimumSize(100,100);
-      push1->setMaximumSize(100,100);
-     QPushButton*push2=new QPushButton();
-     //layout->addWidget(push1);
-     //layout->addWidget(push2);
+
      layout->addStretch();
      layout->setSpacing(0);
      layout->setMargin(0);
    // widget->setLayout(layout);
-    ui->scrollArea->widget()->setLayout(layout);
+    ui->pageMessageScrollArea->widget()->setLayout(layout);
    // this->setWidget(widget);
      //this->setLayout(layout);
-     ui->scrollArea->setFrameShape(QFrame::NoFrame);
+     ui->pageMessageScrollArea->setFrameShape(QFrame::NoFrame);
 
 
 }
@@ -328,6 +326,14 @@ void MainWindow::initLabelPixmap()
     menuLeftSchedule_unClicked();
     menuLeftSetting_unClicked();
     labelAccountPicture_unClicked();
+}
+
+void MainWindow::stackedWidgetPageResize(QWidget *widget)
+{
+    if(widget==nullptr)return;
+    if(widget==ui->pageMessage){
+
+    }
 }
 
 void MainWindow::initForm()

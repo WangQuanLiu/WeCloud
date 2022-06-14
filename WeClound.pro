@@ -12,7 +12,6 @@ CONFIG += c++11
 SOURCES += \
     QVerificationCode.cpp \
     accountpicturedialog.cpp \
-    framelessdialog.cpp \
     framelessmainwindow.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,21 +19,18 @@ SOURCES += \
     menuadddialog.cpp \
     message.cpp \
     mmessagebox.cpp \
-    mqscrollarea.cpp \
     network.cpp \
     qdlglogin.cpp
 
 HEADERS += \
     QVerificationCode.h \
     accountpicturedialog.h \
-    framelessdialog.h \
     framelessmainwindow.h \
     mainwindow.h \
     mcommon.h \
     menuadddialog.h \
     message.h \
     mmessagebox.h \
-    mqscrollarea.h \
     network.h \
     qdlglogin.h
 

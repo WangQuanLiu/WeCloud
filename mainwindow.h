@@ -39,9 +39,9 @@ protected:
        void showEvent(QShowEvent *event);
 private:
 
-    inline  void labelMin_Clicked();
-    inline  void labelMax_Clicked();
-    inline  void labelClose_Clicked();
+      inline  void labelMin_Clicked();
+      inline  void labelMax_Clicked();
+      inline  void labelClose_Clicked();
       void labelMenuAdd_Clicked();
       void labelAccountPicture_Clicked();
       void menuLeftMessage_Clicked();
@@ -62,15 +62,16 @@ private:
       void menuLeftCloud_unClicked();
       void menuLeftSchedule_unClicked();
       void menuLeftSetting_unClicked();
-
       void initFilter();
       void init();
       void initPageMessageScrollArea();
       void initLabelPixmap();
+      void stackedWidgetPageResize(QWidget*widget);
 private slots:
     void initForm();
     void titleDblClick();
 private:
+
     MenuAddDialog*menuAddDialog;
     AccountPictureDialog*accountPictureDialog;
     MQObjects menuLeftobjects;

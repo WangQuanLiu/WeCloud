@@ -37,7 +37,38 @@ MMessageBox &MMessageBox::operator=(const MMessageBox &obj)
     return *this;
 }
 
-void MMessageBox::contextMenuEvent(QContextMenuEvent *event)
+bool MMessageBox::getIsClick()
+{
+    return this->isClick;
+}
+
+void MMessageBox::setIsClick(bool isClick)
+{
+    this->isClick=isClick;
+}
+
+void MMessageBox::cancelSelected()
+{
+    setIsClick(false);
+
+}
+
+void MMessageBox::cancelTopMessageBox()
+{
+    setIsTopMessageBox(false);
+}
+
+bool MMessageBox::getIsTopMessageBox()
+{
+    return this->isTopMessageBox;
+}
+
+void MMessageBox::setIsTopMessageBox(bool isTopMessageBox)
+{
+    this->isTopMessageBox=isTopMessageBox;
+}
+
+void MMessageBox::contextMenuEvent(QContextMenuEvent *)
 {
     QCursor cur=this->cursor();
     QMenu*menu=new QMenu(this);//右键菜单栏
@@ -48,6 +79,16 @@ void MMessageBox::contextMenuEvent(QContextMenuEvent *event)
     menu->addAction(this->actPersonalInformation);
     menu->addAction(this->actModifyFrinedNote);
     menu->exec(cur.pos());//关联到光标
+}
+
+bool MMessageBox::eventFilter(QObject *watched, QEvent *event)
+{
+    if(event->type()==QEvent::MouseButtonPress){
+        if(watched==this){
+            this->isClick=true;
+        }
+    }
+ return QWidget::eventFilter(watched,event);//交给上层
 }
 
 void MMessageBox::init()

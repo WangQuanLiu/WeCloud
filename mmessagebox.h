@@ -23,8 +23,15 @@ public:
     ~MMessageBox();
     void setMessageBox(const QString&pictureName,const QString&name,const QString&messageText,const QString&statusText,const QString&messageTime);
     MMessageBox& operator=(const MMessageBox&obj);
+    bool getIsClick();
+    void setIsClick(bool isClick);
+    void cancelSelected();
+    void cancelTopMessageBox();
+    bool getIsTopMessageBox();
+    void setIsTopMessageBox(bool isTopMessageBox);
 public slots:
     void contextMenuEvent(QContextMenuEvent*event);
+    bool eventFilter(QObject*watched,QEvent*event);
 private:
     void init();
     void initUi();
@@ -39,6 +46,7 @@ private:
     QAction*actCleanMessageRecord;//清空聊天记录
     QAction*actModifyFrinedNote;//修改好友备注
     bool isTopMessageBox;//是否置顶聊天
+    bool isClick;//是否点击
 };
 
 #endif // MMESSAGEBOX_H

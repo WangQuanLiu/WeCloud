@@ -2,7 +2,6 @@
 #define MENUADDDIALOG_H
 
 #include <QDialog>
-#include "framelessdialog.h"
 #include "mcommon.h"
 namespace Ui {
 class MenuAddDialog;

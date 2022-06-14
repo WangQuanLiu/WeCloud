@@ -85,7 +85,7 @@ void FramelessMainWindow::doWindowStateChange(QEvent *event)
 #endif
 }
 
-void FramelessMainWindow::doResizeEvent(QEvent *event)
+void FramelessMainWindow::doResizeEvent(QEvent *)
 {
 
     //非win系统的无边框拉伸,win系统上已经采用了nativeEvent来处理拉伸
