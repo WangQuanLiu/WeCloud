@@ -162,8 +162,8 @@ void MMessageBox::topMessageBox_triggered()
     QString styleSheet;
     if(this->isTopMessageBox==false){//ÖÃ¶¥
        if(this->isClick==false){
-        styleSheet="#MMessageBox,#widget{border:2px solid #F7F7F7;"
-                       " background:#F7F7F7;border-radius: 8px;}"
+            styleSheet="#MMessageBox,#widget{border:2px solid #FFFFFF;"
+                       " background:#FFFFFF;border-radius: 8px;}"
                        "";
 
        }else{
@@ -201,6 +201,22 @@ void MMessageBox::messageNotDisturb_triggered()
 
 }
 
+void MMessageBox::removeMessageBox_triggered()
+{
+    emit sigremoveMessageBox(this);
+}
+
+void MMessageBox::cleanMessageRecord_triggered()
+{
+     //this->messageText.clear();
+    ui->labelMessage->clear();
+}
+
+void MMessageBox::modifyFriendNote_triggered()
+{
+
+}
+
 void MMessageBox::init()
 {
     readQss("mMessageBox.qss",this);
@@ -232,11 +248,14 @@ void MMessageBox::initUi()
     this->installEventFilter(this);
     connect(this->actTopMessageBox,&QAction::triggered,this,&MMessageBox::topMessageBox_triggered);
     connect(this->actMessageNotDisturb,&QAction::triggered,this,&MMessageBox::messageNotDisturb_triggered);
+    connect(this->actRemoveMessageBox,&QAction::triggered,this,[&](){ emit sigremoveMessageBox(this);});
+    connect(this->actCleanMessageRecord,&QAction::triggered,this,[&](){  ui->labelMessage->clear();});
+    connect(this->actModifyFrinedNote,&QAction::triggered,this,&MMessageBox::modifyFriendNote_triggered);
 }
 
 void MMessageBox::clicked()
 {
-    QString styleSheet="#MMessageBox,#widget{border:2px solid #F8F7F7;"
+   QString styleSheet="#MMessageBox,#widget{border:2px solid #F8F7F7;"
                        " background:#F8F7F7;border-radius: 8px;}"
                        "";
    ui->widget->setStyleSheet(styleSheet);
@@ -252,21 +271,7 @@ MMessageBoxs::MMessageBoxs()
     this->layout->setMargin(0);
     this->messageBoxClicked=nullptr;
 }
-/*
-MMessageBoxs::MMessageBoxs(std::initializer_list<MMessageBox*> list)
 
-{
-
-    this->layout=new QVBoxLayout();
-    for(auto begin=list.begin();begin!=list.end();begin++){
-        this->messageBoxs.push_back(*begin);
-        layout->addWidget(*begin);
-    }
-    this->layout->addStretch();
-    this->layout->setSpacing(0);
-    this->layout->setMargin(0);
-}
-*/
 
 MMessageBox *MMessageBoxs::at(int index)
 {
@@ -292,7 +297,6 @@ QVBoxLayout* MMessageBoxs::topMessageBox(MMessageBox *messageBox)
     this->messageBoxs.insert(0,messageBox);
     this->layout=new QVBoxLayout();
     for(int i=0;i<this->messageBoxs.size();i++){
-        qDebug()<<this->messageBoxs[i]->getName();
         this->layout->addWidget(messageBoxs[i]);
     }
     this->layout->addStretch();
@@ -306,11 +310,12 @@ QVBoxLayout* MMessageBoxs::addMMessageBox(MMessageBox *messageBox)
     connect(messageBox,SIGNAL(sigClicked(MMessageBox*)),this,SLOT(messageBox_triggered(MMessageBox*)));
     connect(messageBox,SIGNAL(sigTopMessge(MMessageBox*)),this,SLOT(topMessageBox_triggered(MMessageBox*)));
     connect(messageBox,SIGNAL(sigCancelTopMessage(MMessageBox*)),this,SLOT(cancelTopMessageBox_triggered(MMessageBox*)));
+    connect(messageBox,SIGNAL(sigremoveMessageBox(MMessageBox*)),this,SLOT(removeMessageBox_triggered(MMessageBox*)));
     int index=0;
     if(this->messageBoxs.size())
         index=this->messageBoxs.size();
     QLayoutItem*layoutItem=this->layout->itemAt(index);
-    qDebug()<<this->messageBoxs.size();
+   // qDebug()<<this->messageBoxs.size();
     layout->removeItem(layoutItem);
     this->messageBoxs.push_back(messageBox);
     this->layout->addWidget(messageBox);
@@ -335,7 +340,7 @@ QVBoxLayout *MMessageBoxs::cancelTopMessageBox(MMessageBox *messageBox)
     this->messageBoxs.insert(count,messageBox);
     this->layout=new QVBoxLayout();
     for(int i=0;i<this->messageBoxs.size();i++){
-        qDebug()<<this->messageBoxs[i]->getName();
+       // qDebug()<<this->messageBoxs[i]->getName();
         this->layout->addWidget(messageBoxs[i]);
     }
     this->layout->addStretch();
@@ -344,9 +349,24 @@ QVBoxLayout *MMessageBoxs::cancelTopMessageBox(MMessageBox *messageBox)
     return this->layout;
 }
 
-void MMessageBoxs::setWidget(QWidget *widget)
+QVBoxLayout *MMessageBoxs::removeMessageBox(MMessageBox *messageBox)
 {
-    this->widget=widget;
+    if(messageBox==nullptr)return nullptr;
+    int i;
+    for( i=0;i<this->messageBoxs.size();i++){
+        if(messageBoxs[i]==messageBox){
+            messageBoxs.remove(i);
+        }
+    }
+    this->layout=new QVBoxLayout();
+    for(int i=0;i<this->messageBoxs.size();i++){
+        //qDebug()<<this->messageBoxs[i]->getName();
+        this->layout->addWidget(messageBoxs[i]);
+    }
+    this->layout->addStretch();
+    this->layout->setSpacing(0);
+    this->layout->setMargin(0);
+    return this->layout;
 }
 
 void MMessageBoxs::setScrollArea(QScrollArea *scrollArea)
@@ -378,4 +398,12 @@ void MMessageBoxs::cancelTopMessageBox_triggered(MMessageBox *messageBox)
     QLayout*layout=scrollArea->widget()->layout();
     delete layout;
     scrollArea->widget()->setLayout(vBoxLayout);
+}
+
+void MMessageBoxs::removeMessageBox_triggered(MMessageBox *messageBox)
+{
+   QVBoxLayout*vBoxLayout=removeMessageBox(messageBox);
+   QLayout*layout=scrollArea->widget()->layout();
+   delete layout;
+   scrollArea->widget()->setLayout(vBoxLayout);
 }

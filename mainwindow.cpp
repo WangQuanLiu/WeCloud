@@ -252,7 +252,7 @@ void MainWindow::init()
     initPageMessageScrollArea();
     menuLeftMessage_Clicked();
     this->messageBoxs.setScrollArea(ui->pageMessageScrollArea);
-    this->messageBoxs.setWidget(this);
+
 }
 
 void MainWindow::initPageMessageScrollArea()
@@ -260,9 +260,6 @@ void MainWindow::initPageMessageScrollArea()
     ui->pageMessageScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->pageMessageScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-     QVBoxLayout* layout=new QVBoxLayout;
-     if(layout==nullptr)return;
-     layout->addSpacing(0);
      MMessageBox*message=new MMessageBox();
      message->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
 
@@ -288,30 +285,19 @@ void MainWindow::initPageMessageScrollArea()
      MMessageBox*message11=new MMessageBox();
      message11->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
 
-   // addMMessageBox(message);
-   // addMMessageBox(message2);
-   // addMMessageBox(message3);
-  //  addMMessageBox(message4);
-  //  addMMessageBox(message5);
-  //  addMMessageBox(message6);
-  //  addMMessageBox(message7);
-   // addMMessageBox(message8);
-  //  addMMessageBox(message9);
-  //  addMMessageBox(message10);
-       this->messageBoxs.addMMessageBox(message);
-       this->messageBoxs.addMMessageBox(message2);
-       this->messageBoxs.addMMessageBox(message3);
-       this->messageBoxs.addMMessageBox(message4);
-       this->messageBoxs.addMMessageBox(message5);
-       this->messageBoxs.addMMessageBox(message6);
-       this->messageBoxs.addMMessageBox(message7);
-       this->messageBoxs.addMMessageBox(message8);
-       this->messageBoxs.addMMessageBox(message9);
+
+     this->messageBoxs.addMMessageBox(message);
+     this->messageBoxs.addMMessageBox(message2);
+     this->messageBoxs.addMMessageBox(message3);
+     this->messageBoxs.addMMessageBox(message4);
+     this->messageBoxs.addMMessageBox(message5);
+     this->messageBoxs.addMMessageBox(message6);
+     this->messageBoxs.addMMessageBox(message7);
+     this->messageBoxs.addMMessageBox(message8);
+     this->messageBoxs.addMMessageBox(message9);
+     this->messageBoxs.addMMessageBox(message10);
      ui->pageMessageScrollArea->widget()->setLayout(this->messageBoxs.getLayout());
-
      ui->pageMessageScrollArea->setFrameShape(QFrame::NoFrame);
-
-
 }
 
 void MainWindow::initLabelPixmap()

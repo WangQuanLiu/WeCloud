@@ -19,6 +19,7 @@ SOURCES += \
     menuadddialog.cpp \
     message.cpp \
     mmessagebox.cpp \
+    modifyfrendnotedialog.cpp \
     network.cpp \
     qdlglogin.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     menuadddialog.h \
     message.h \
     mmessagebox.h \
+    modifyfrendnotedialog.h \
     network.h \
     qdlglogin.h
 
@@ -39,6 +41,7 @@ FORMS += \
     mainwindow.ui \
     menuadddialog.ui \
     mmessagebox.ui \
+    modifyfrendnotedialog.ui \
     qdlglogin.ui
 
 

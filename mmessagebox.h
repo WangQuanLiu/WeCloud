@@ -44,16 +44,21 @@ public slots:
 private slots:
        void topMessageBox_triggered();
        void messageNotDisturb_triggered();
+       void removeMessageBox_triggered();
+       void cleanMessageRecord_triggered();
+       void modifyFriendNote_triggered();
 private:
-    void init();
-    void initUi();
-    void clicked();
+   inline void init();
+   inline void initUi();
+   inline void clicked();
     QString pictureName,name,messageText,statusText,messageTime;
 Q_SIGNALS:
     void sigClicked(MMessageBox*);
     void sigTopMessge(MMessageBox*);
     void sigNotDisturb(MMessageBox*);
     void sigCancelTopMessage(MMessageBox*);
+    void sigremoveMessageBox(MMessageBox*);
+    void sigCleanMessageRecord(MMessageBox*);
 private:
     Ui::MMessageBox *ui;
     QMenu*menu;
@@ -71,23 +76,20 @@ class MMessageBoxs: public QWidget{
         Q_OBJECT
 public:
     MMessageBoxs();
-   // MMessageBoxs(std::initializer_list<MMessageBox*>list);
-
-   // void push_back(MMessageBox*messageBox);
     MMessageBox*at(int index);
-   // void setLayout(QVBoxLayout*layout);
     QVBoxLayout* getLayout();
-    QVBoxLayout* topMessageBox(MMessageBox*messageBox);
     QVBoxLayout* addMMessageBox(MMessageBox*messageBox);
-    QVBoxLayout* cancelTopMessageBox(MMessageBox*messageBox);
-    void setWidget(QWidget*widget);
     void setScrollArea(QScrollArea*scrollArea);
 public slots:
        void messageBox_triggered(MMessageBox*);
        void topMessageBox_triggered(MMessageBox*);
        void cancelTopMessageBox_triggered(MMessageBox*);
+       void removeMessageBox_triggered(MMessageBox*);
 private:
-    QWidget*widget;
+       inline QVBoxLayout* topMessageBox(MMessageBox*messageBox);
+       inline QVBoxLayout* cancelTopMessageBox(MMessageBox*messageBox);
+       inline QVBoxLayout* removeMessageBox(MMessageBox*messageBox);
+private:
     QScrollArea*scrollArea;
     QVector<MMessageBox*>messageBoxs;
     QVBoxLayout*layout;
