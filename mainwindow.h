@@ -15,11 +15,14 @@
 #include "menuadddialog.h"
 #include "accountpicturedialog.h"
 #include "mmessagebox.h"
+#include <QList>
+#include <QLayout>
 namespace Ui {
 class MainWindow;
 }
 
 using namespace Common;
+
 class MainWindow : public FramelessMainWindow
 {
     Q_OBJECT
@@ -29,7 +32,6 @@ public:
     friend class Common::MQObject;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
 private:
     Ui::MainWindow *ui;
 
@@ -70,12 +72,14 @@ private:
 private slots:
     void initForm();
     void titleDblClick();
+
 private:
 
-    MenuAddDialog*menuAddDialog;
-    AccountPictureDialog*accountPictureDialog;
-    MQObjects menuLeftobjects;
-    MQToolTips toolTips;
+    MenuAddDialog*menuAddDialog;//主界面添加菜单窗口
+    AccountPictureDialog*accountPictureDialog;//主界面头像弹出窗口
+    MQObjects menuLeftobjects;//主界面左菜单
+    MQToolTips toolTips;//主界面左菜单的提示框
+    MMessageBoxs messageBoxs;
 };
 
 #endif // MAINWINDOW_H

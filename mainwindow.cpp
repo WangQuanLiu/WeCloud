@@ -18,7 +18,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
     menuLeftobjects.eventFilter(watched,event);
@@ -28,7 +27,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         if(event->type()==QEvent::WindowStateChange||
                 event->type()==QEvent::Resize){
            ui->widgetLeft->resize(ui->widgetLeft->width(),ui->widgetMain->height());
-
+            this->stackedWidgetPageResize(ui->stackedWidget->currentWidget());
         }
 
     }
@@ -94,7 +93,6 @@ void MainWindow::labelMenuAdd_Clicked()
     x=this->frameGeometry().x()+ui->titleBar->width()-480;
     y=this->frameGeometry().y()+ui->titleBar->height()-11;
     menuAddDialog->move(QPoint(x,y));
-  //  menuAddDialog->show();
     menuAddDialog->showed();
 }
 
@@ -212,7 +210,7 @@ void MainWindow::initFilter()
     ui->labelAccountPicture->installEventFilter(this);
     this->installEventFilter(this);
 
-  //  ui->menuLeftCalendar->setToolTip("日历");
+
 }
 
 
@@ -223,7 +221,7 @@ void MainWindow::init()
     QPalette pe;
     pe.setColor(QPalette::Background,Qt::black);
     pe.setColor(QPalette::WindowText,Qt::white);
-   // ui->label->setPalette(pe);
+
     QColor color;
     color.setRgb(235,235,235);
     pe.setColor(QPalette::Background,color);
@@ -240,8 +238,7 @@ void MainWindow::init()
              MQObject(ui->menuLeftCalendar,std::bind(&MainWindow::menuLeftCalendar_unClicked,this),std::bind(&MainWindow::menuleftCalendar_clicked,this)),
              MQObject(ui->menuLeftSchedule,std::bind(&MainWindow::menuLeftSchedule_unClicked,this),std::bind(&MainWindow::menuLeftSchedule_clicked,this)),
              MQObject(ui->menuLeftSetting,std::bind(&MainWindow::menuLeftSetting_unClicked,this),std::bind(&MainWindow::menuLeftSetting_clicked,this))};
- //   toolTips.set_currentPosition_difference_x(50);
- //   toolTips.set_currentPosition_difference_y(-10);
+
     toolTips={MQToolTip(ui->menuLeftMessage,"消息"),
               MQToolTip(ui->menuLeftContact,"通讯录"),
               MQToolTip(ui->menuLeftDocument,"文档"),
@@ -254,7 +251,8 @@ void MainWindow::init()
     accountPictureDialog=new AccountPictureDialog();
     initPageMessageScrollArea();
     menuLeftMessage_Clicked();
-
+    this->messageBoxs.setScrollArea(ui->pageMessageScrollArea);
+    this->messageBoxs.setWidget(this);
 }
 
 void MainWindow::initPageMessageScrollArea()
@@ -262,14 +260,15 @@ void MainWindow::initPageMessageScrollArea()
     ui->pageMessageScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->pageMessageScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-     QWidget*widget=new QWidget();
-     if(widget==nullptr)return;
      QVBoxLayout* layout=new QVBoxLayout;
+     if(layout==nullptr)return;
      layout->addSpacing(0);
      MMessageBox*message=new MMessageBox();
      message->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
+
      MMessageBox*message2=new MMessageBox();
-     message2->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
+     message2->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","321","321","","12:30");
+
      MMessageBox*message3=new MMessageBox();
      message3->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
      MMessageBox*message4=new MMessageBox();
@@ -288,26 +287,28 @@ void MainWindow::initPageMessageScrollArea()
      message10->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
      MMessageBox*message11=new MMessageBox();
      message11->setMessageBox(":images/mainWindow/friend/accountPicture/2510840085.jpg","123","123","","12:30");
-     layout->addWidget(message);
-     layout->addWidget(message2);
-     layout->addWidget(message3);
-     layout->addWidget(message4);
-     layout->addWidget(message5);
-     layout->addWidget(message6);
-     layout->addWidget(message7);
-     layout->addWidget(message8);
-     layout->addWidget(message9);
-     layout->addWidget(message10);
-     layout->addWidget(message11);
 
+   // addMMessageBox(message);
+   // addMMessageBox(message2);
+   // addMMessageBox(message3);
+  //  addMMessageBox(message4);
+  //  addMMessageBox(message5);
+  //  addMMessageBox(message6);
+  //  addMMessageBox(message7);
+   // addMMessageBox(message8);
+  //  addMMessageBox(message9);
+  //  addMMessageBox(message10);
+       this->messageBoxs.addMMessageBox(message);
+       this->messageBoxs.addMMessageBox(message2);
+       this->messageBoxs.addMMessageBox(message3);
+       this->messageBoxs.addMMessageBox(message4);
+       this->messageBoxs.addMMessageBox(message5);
+       this->messageBoxs.addMMessageBox(message6);
+       this->messageBoxs.addMMessageBox(message7);
+       this->messageBoxs.addMMessageBox(message8);
+       this->messageBoxs.addMMessageBox(message9);
+     ui->pageMessageScrollArea->widget()->setLayout(this->messageBoxs.getLayout());
 
-     layout->addStretch();
-     layout->setSpacing(0);
-     layout->setMargin(0);
-   // widget->setLayout(layout);
-    ui->pageMessageScrollArea->widget()->setLayout(layout);
-   // this->setWidget(widget);
-     //this->setLayout(layout);
      ui->pageMessageScrollArea->setFrameShape(QFrame::NoFrame);
 
 
@@ -315,8 +316,7 @@ void MainWindow::initPageMessageScrollArea()
 
 void MainWindow::initLabelPixmap()
 {
-    //setLabelPixmap(":images/menuLeftMessage.png",ui->labelMenuLeftMessage);
-    //setLabelPixmap(":images/menuLeftContact.png",ui->labelMenuLeftContact);
+
     menuLeftMessage_unClicked();
     menuLeftContact_unClicked();
     menuLeftDocument_unClicked();
@@ -332,6 +332,10 @@ void MainWindow::stackedWidgetPageResize(QWidget *widget)
 {
     if(widget==nullptr)return;
     if(widget==ui->pageMessage){
+        ui->stackedWidget->resize(ui->stackedWidget->width(),ui->widgetMain->height());
+        ui->pageMessage->resize(ui->pageMessage->width(),ui->widgetMain->height());
+        ui->pageMessageScrollArea->resize(ui->pageMessageScrollArea->width(),ui->widgetMain->height());
+        ui->pageMessageScrollAreaWidgetContents->resize(ui->pageMessageScrollAreaWidgetContents->width(),ui->widgetMain->height());
 
     }
 }
@@ -355,6 +359,7 @@ void MainWindow::titleDblClick()
 {
     labelMax_Clicked();
 }
+
 
 
 

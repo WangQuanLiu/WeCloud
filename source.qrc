@@ -52,5 +52,7 @@
         <file>images/mainWindow/menuAdd/team_hover.png</file>
         <file>images/mainWindow/friend/accountPicture/2510840085.jpg</file>
         <file>qss/mMessageBox.qss</file>
+        <file>images/mainWindow/messageBox/top.png</file>
+        <file>images/mainWindow/messageBox/notDisturb.png</file>
     </qresource>
 </RCC>
